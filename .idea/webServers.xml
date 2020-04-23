@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c4bc6469-048c-4d3f-bbdb-a18cbdcdb427" name="ocladeserver" url="http://localhost:8080/">
+        <fileTransfer port="0" mountedRoot="J:\apache-tomcat-9.0.33" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
