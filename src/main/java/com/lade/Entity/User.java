@@ -1,12 +1,48 @@
 package com.lade.Entity;
 
-public class User {
-    String userName = "";
-    String password = "";
-    String name = "";
-    String firstName = "";
-    String email = "";
-    Boolean Member = false;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "user")
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "username")
+    private String userName = "";
+    @Column(name = "password")
+    private String password = "";
+
+    @Column(name = "name")
+    private String name = "";
+
+    @Column(name = "firstname")
+    private String firstName = "";
+
+    @Column(name = "email")
+    private String email = "";
+
+    @Column(name = "member")
+    private Boolean Member = false;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Spot> spots = new HashSet<>();
+
+    public User() {
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUserName() {
         return userName;
@@ -54,5 +90,13 @@ public class User {
 
     public void setMember(Boolean member) {
         Member = member;
+    }
+
+    public Set<Spot> getSpots() {
+        return spots;
+    }
+
+    public void setSpots(Set<Spot> spots) {
+        this.spots = spots;
     }
 }

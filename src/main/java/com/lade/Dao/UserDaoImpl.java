@@ -1,12 +1,29 @@
 package com.lade.Dao;
 
 import com.lade.Entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import java.sql.*;
-
+@Repository
 public class UserDaoImpl implements UserDao {
+    @Autowired
+    private EntityManager em;
 
-    private DaoFactory daoFactory;
+
+    @Override
+    public void ajouter(User user) {
+
+    }
+
+    @Override
+    public int existingUser(String userName, String password) {
+        return 0;
+    }
+
+
+   /* private DaoFactory daoFactory;
 
     public UserDaoImpl(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -60,5 +77,5 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return userId;
-    }
+    }*/
 }

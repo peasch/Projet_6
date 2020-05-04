@@ -20,10 +20,10 @@ public class SectorService {
         System.out.println(" Dans quel spot se situe le secteur: ? ");
         for (int i = 0; i < spots.size(); i++) {
             spot = spots.get(i);
-            System.out.println("nom du spot : " + "\t" + spot.getName() + "\t" + spot.getSpotId());
+          //  System.out.println("nom du spot : " + "\t" + spot.getName() + "\t" + spot.getSpotId());
             System.out.println("-------------------------------------------------------------");
         }
-        sector.setSpotId(sc.nextInt());
+        //sector.setSpotId(sc.nextInt());
 
         return sector;
     }

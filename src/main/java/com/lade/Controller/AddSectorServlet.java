@@ -35,7 +35,7 @@ public class AddSectorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Sector sector = new Sector();
         Integer number = Integer.parseInt(request.getParameter("spotId"));
-        sector.setSpotId(number);
+        //sector.setSpotId(number);
         sector.setName(request.getParameter("nom"));
         sector.setDescription(request.getParameter("description"));
         sectorDao.ajouter(sector);

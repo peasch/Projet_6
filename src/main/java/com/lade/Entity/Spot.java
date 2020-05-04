@@ -1,37 +1,35 @@
 package com.lade.Entity;
 
-public class Spot {
-    Integer spotId = 0;
-    Boolean OfficialLade;
-    String name = "";
-    String adress = "";
-    String latitude = "";
-    String longitude = "";
-    String contributor = "";
-    int userId = 0;
+import javax.persistence.*;
+import java.io.Serializable;
 
-    public int getUserId() {
-        return userId;
+@Entity
+@Table(name = "spot")
+public class Spot implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "official_Lade")
+    private Boolean OfficialLade;
+    @Column(name = "name")
+    private String name = "";
+    @Column(name = "adress")
+    private String adress = "";
+    @Column(name = "latitude")
+    private String latitude = "";
+    @Column(name = "longitude")
+    private String longitude = "";
+    @ManyToOne
+    @JoinColumn(name = "fk_user")
+    private User user;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getContributor() {
-        return contributor;
-    }
-
-    public void setContributor(String contributor) {
-        this.contributor = contributor;
-    }
-
-    public Integer getSpotId() {
-        return spotId;
-    }
-
-    public void setSpotId(Integer spotId) {
-        this.spotId = spotId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Boolean getOfficialLade() {
@@ -72,5 +70,13 @@ public class Spot {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

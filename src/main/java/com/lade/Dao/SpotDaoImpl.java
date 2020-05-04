@@ -1,14 +1,28 @@
 package com.lade.Dao;
-
-
 import com.lade.Entity.Spot;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpotDaoImpl implements SpotDao {
-    private DaoFactory daoFactory;
+@Repository
+public class SpotDaoImpl implements SpotDao{
+   @Autowired
+    private EntityManager em;
+
+    @Override
+    public void ajouter(Spot spot) {
+
+    }
+
+    @Override
+    public List<Spot> lister() {
+        return null;
+    }
+
+    /*private DaoFactory daoFactory;
     List<Spot> spots = new ArrayList();
 
     public SpotDaoImpl(DaoFactory daoFactory) {
@@ -27,7 +41,7 @@ public class SpotDaoImpl implements SpotDao {
             preparedStatement.setString(2, spotPlus.getAdress());
             preparedStatement.setString(3, spotPlus.getLatitude());
             preparedStatement.setString(4, spotPlus.getLongitude());
-            preparedStatement.setInt(5,spotPlus.getUserId());
+           // preparedStatement.setInt(5,spotPlus.getUserId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             lister();
@@ -52,8 +66,8 @@ public class SpotDaoImpl implements SpotDao {
                 spot.setLatitude(resultat.getString("Latitude"));
                 spot.setLongitude(resultat.getString("Longitude"));
                 spot.setOfficialLade(resultat.getBoolean("official LADE"));
-                spot.setSpotId(resultat.getInt("id"));
-                spot.setUserId(resultat.getInt("user_id"));
+               // spot.setSpotId(resultat.getInt("id"));
+                //spot.setUserId(resultat.getInt("user_id"));
                 spots.add(spot);
             }
 
@@ -64,5 +78,5 @@ public class SpotDaoImpl implements SpotDao {
         }
 
         return spots;
-    }
+    }*/
 }

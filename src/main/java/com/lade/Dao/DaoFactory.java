@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DaoFactory {
-    private static final DaoFactory instance = new DaoFactory();
+   /* private static final DaoFactory instance = new DaoFactory();
     String url = "jdbc:mysql://localhost:3306/ladedb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
     String user = "root";
     String passwd = "ocpizza";
+
 
     public static final DaoFactory getInstance() {
         try {
@@ -40,5 +41,5 @@ public class DaoFactory {
     public UserDao getUserDao(){
         return new UserDaoImpl(this);
 
-    }
+    }*/
 }

@@ -28,7 +28,7 @@ public class AddSpotServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         Spot spot = new Spot();
-        spot.setUserId((Integer)session.getAttribute("userId"));
+        //spot.setUserId((Integer)session.getAttribute("userId"));
         spot.setName(request.getParameter("nom"));
         spot.setAdress(request.getParameter("adresse"));
         spot.setLatitude(request.getParameter("latitude"));

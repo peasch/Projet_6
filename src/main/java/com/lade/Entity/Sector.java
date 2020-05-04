@@ -1,17 +1,32 @@
 package com.lade.Entity;
 
-public class Sector {
-    String name = "";
-    String description = "";
-    Integer spotId = 0;
-    Integer sectorId = 0;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-    public Integer getSectorId() {
-        return sectorId;
+@Entity
+@Table(name = "sector")
+public class Sector implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "name")
+    private String name = "";
+    @Column(name = "description")
+    private String description = "";
+    @ManyToOne
+    @JoinColumn(name = "fk_spot")
+    private Spot spot;
+    @OneToMany(mappedBy="sector")
+    private Set<Route> routes =new HashSet<>();
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setSectorId(Integer sectorId) {
-        this.sectorId = sectorId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,13 +45,19 @@ public class Sector {
         this.description = description;
     }
 
-    public Integer getSpotId() {
-        return spotId;
+    public Spot getSpot() {
+        return spot;
     }
 
-    public void setSpotId(Integer spotId) {
-        this.spotId = spotId;
+    public void setSpot(Spot spot) {
+        this.spot = spot;
     }
 
+    public Set<Route> getRoutes() {
+        return routes;
+    }
 
+    public void setRoutes(Set<Route> routes) {
+        this.routes = routes;
+    }
 }

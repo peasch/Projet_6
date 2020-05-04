@@ -39,7 +39,7 @@ public class SpotService {
         for (int i = 0; i < spots.size(); i++) {
             Spot spot = new Spot();
             spot = (Spot) spots.get(i);
-            System.out.println("nom du spot : " + "\t" + spot.getName() + "\t" + spot.getSpotId());
+            //System.out.println("nom du spot : " + "\t" + spot.getName() + "\t" + spot.getSpotId());
             System.out.println("||--------------------------------------------------------||");
         }
         System.out.println("Saisissez l'id du spot qui vous intéresse :");
