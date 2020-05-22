@@ -15,12 +15,21 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <spring.version>5.2.6.RELEASE</spring.version>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
+        <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -28,22 +37,15 @@
             <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>7.0.55</version>
+        </dependency>
         <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.11</version>
-      </dependency>
-      <dependency>
-        <groupId>jstl</groupId>
-        <artifactId>jstl</artifactId>
-        <version>1.2</version>
-
-      </dependency>
-      <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>1.2.17</version>
+        <version>8.0.20</version>
       </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -57,23 +59,18 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>5.2.5.RELEASE</version>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.5.0</version>
-        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+
         <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.0-api -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -86,7 +83,16 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.14.Final</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.27.0-GA</version>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -94,33 +100,25 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-c3p0 -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-c3p0</artifactId>
-            <version>5.4.14.Final</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
+            <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
+            <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>2.2.6.RELEASE</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>5.2.6.RELEASE</version>
         </dependency>
     </dependencies>
 

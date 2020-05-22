@@ -6,11 +6,12 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="UP_OCLADE" value="5c469692-6105-4eb6-bed1-5f206c8024ed" />
+          <factory-entry name="Entities" />
+          <factory-entry name="oclade_unit" />
           <factory-entry name="unit" />
         </datasource-mapping>
         <naming-strategy-map />
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
     <facet type="hibernate" name="Hibernate">

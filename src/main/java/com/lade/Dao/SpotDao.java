@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface SpotDao {
 
-    void ajouter(Spot spot);
+    Spot ajouter(Spot spot);
     List<Spot> lister();
 }

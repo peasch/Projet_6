@@ -2,7 +2,7 @@ package com.lade.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+
 
 @Entity
 @Table(name="length")
@@ -48,5 +48,8 @@ public class Length implements Serializable {
 
     public void setRoute(Route route) {
         this.route = route;
+    }
+
+    public Length() {
     }
 }

@@ -1,6 +1,5 @@
 package com.lade.Controller;
 
-import com.lade.Dao.DaoFactory;
 import com.lade.Dao.SectorDao;
 import com.lade.Dao.SpotDao;
 import com.lade.Service.SpotService;
@@ -20,12 +19,12 @@ public class ShowSectorServlet2 extends HttpServlet {
     private SpotDao spotDao;
     private String spotId;
 
-    public void init() throws ServletException {
+   /* public void init() throws ServletException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         this.spotDao = daoFactory.getSpotDao();
         this.sectorDao = daoFactory.getSectorDao();
 
-    }
+    }*/
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer number = Integer.parseInt(request.getParameter(spotId));

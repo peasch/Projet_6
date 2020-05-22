@@ -42,4 +42,7 @@ public class Route implements Serializable {
     public void setSector(Sector sector) {
         this.sector = sector;
     }
+
+    public Route() {
+    }
 }

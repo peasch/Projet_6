@@ -9,12 +9,9 @@
     <link rel="stylesheet" href="css/style.css"/>
     <title>Bienvenue chez les amis de l'escalade</title>
 </head>
-<header>
-    <h1> Les amis de l'escalade !</h1>
-</header>
 <body>
 <p>
-<%@ include file="navigation.jsp" %>
+    <%@ include file="navigation.jsp" %>
 </p>
 </body>
 </html>

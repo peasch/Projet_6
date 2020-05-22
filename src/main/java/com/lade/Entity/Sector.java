@@ -60,4 +60,7 @@ public class Sector implements Serializable {
     public void setRoutes(Set<Route> routes) {
         this.routes = routes;
     }
+
+    public Sector() {
+    }
 }

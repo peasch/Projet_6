@@ -1,9 +1,7 @@
 package com.lade.Controller;
 
-import com.lade.Dao.DaoFactory;
 import com.lade.Dao.SectorDao;
 import com.lade.Dao.SpotDao;
-import com.lade.Entity.Sector;
 import com.lade.Entity.Spot;
 import com.lade.Service.SpotService;
 
@@ -25,11 +23,6 @@ public class AskSpotServlet extends HttpServlet {
     private Spot spot=new Spot();
 
 
-    public void init() throws ServletException {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        this.spotDao = daoFactory.getSpotDao();
-
-    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer number = Integer.parseInt(request.getParameter("spotId"));
         List spots = spotDao.lister();

@@ -1,7 +1,8 @@
 package com.lade.Controller;
 
-import com.lade.Dao.DaoFactory;
 import com.lade.Dao.SpotDao;
+import com.lade.config.LadeConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,13 +17,12 @@ public class ShowSpotServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private SpotDao spotDao;
 
-    public void init() throws ServletException {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        this.spotDao = daoFactory.getSpotDao();
-    }
+
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LadeConfig.class);
+        SpotDao spotDao = context.getBean(SpotDao.class);
         request.setAttribute("spots", spotDao.lister());
         this.getServletContext().getRequestDispatcher("/WEB-INF/showSpot.jsp").forward(request, response);
     }

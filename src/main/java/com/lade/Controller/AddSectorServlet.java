@@ -1,6 +1,5 @@
 package com.lade.Controller;
 
-import com.lade.Dao.DaoFactory;
 import com.lade.Dao.SectorDao;
 import com.lade.Dao.SpotDao;
 import com.lade.Entity.Sector;
@@ -25,12 +24,12 @@ public class AddSectorServlet extends HttpServlet {
     private Spot spot = new Spot();
 
 
-    public void init() throws ServletException {
+    /*public void init() throws ServletException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         this.spotDao = daoFactory.getSpotDao();
         this.sectorDao = daoFactory.getSectorDao();
 
-    }
+    }*/
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Sector sector = new Sector();
@@ -41,8 +40,8 @@ public class AddSectorServlet extends HttpServlet {
         sectorDao.ajouter(sector);
         request.setAttribute("sectors", sectorDao.lister(number));
         List spots = spotDao.lister();
-        spot = spotService.quelSpot(number,spots);
-        request.setAttribute("spot",spot);
+        spot = spotService.quelSpot(number, spots);
+        request.setAttribute("spot", spot);
         this.getServletContext().getRequestDispatcher("/WEB-INF/addedSector.jsp").forward(request, response);
     }
 

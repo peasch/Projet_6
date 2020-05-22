@@ -1,30 +1,19 @@
 package com.lade.Service;
 
 import com.lade.Entity.User;
+import org.springframework.stereotype.Service;
 
-import java.util.Scanner;
+@Service
+public class UserService extends User {
 
-
-public class UserService {
-
-    Scanner sc = new Scanner(System.in);
-
-
-
-
-
-    public void registration() {
-        User user = new User();
-
-        System.out.println("quel est votre nom ?:");
-        user.setName(sc.nextLine());
-        System.out.println("prénom ?:");
-        user.setFirstName(sc.nextLine());
-        System.out.println("Email ?:");
-        System.out.println("Pseudo ?:");
-        System.out.println("Mot de passe ?:");
-
+    public User toUser(String userName,String name,String firstName,String password,String email){
+        User user=new User();
+        user.setUserName(userName);
+        user.setName(name);
+        user.setFirstName(firstName);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setMember(false);
+        return user;
     }
-
-
 }

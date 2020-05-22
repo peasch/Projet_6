@@ -20,7 +20,7 @@
                     <h2>Liste des spots : </h2>
                     <ul>
                         <c:forEach var="spot" items="${ spots }">
-                            <li><c:out value="${spot.spotId} : ${ spot.name } || ${spot.adress}"/>
+                            <li><c:out value="${spot.id} : ${ spot.name } || ${spot.adress}"/>
                             </li>
                         </c:forEach>
                     </ul>

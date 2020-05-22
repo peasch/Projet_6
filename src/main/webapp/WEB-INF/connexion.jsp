@@ -13,12 +13,12 @@
 <body>
 <%@ include file="navigation.jsp" %>
 
-<form method="post" action="/ConnexionServlet">
+<form method="post" action="login">
     <fieldset>
         <legend> connectez-vous :</legend>
 
-        <label for="Username">Nom d'utilisateur ? </label><br>
-        <input type="text" name="Username" id="Username"/><br>
+        <label for="username">Nom d'utilisateur ? </label><br>
+        <input type="text" name="username" id="username"/><br>
 
         <label for="password">Mot de passe ?</label><br>
         <input type="password" name="password" id="password"/><br>

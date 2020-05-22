@@ -79,4 +79,7 @@ public class Spot implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Spot() {
+    }
 }

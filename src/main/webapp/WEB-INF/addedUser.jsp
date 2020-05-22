@@ -9,8 +9,8 @@
 <%@ include file="navigation.jsp" %>
 <h1>bienvenue</h1>
 <p>
-    Bienvenue ${user.name} !
+    Bienvenue ${user.firstName}  ${user.name} !
 </p>
-<a href="ConnexionServlet" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Connectez-vous !</a>
+<a href="connexion" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Connectez-vous !</a>
 </body>
 </html>

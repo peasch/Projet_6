@@ -10,8 +10,8 @@
 <h1>liste des spots mise à jour</h1>
 <ul>
         <c:forEach var="spot" items="${ spots }">
-            <li><c:out value="${spot.spotId} ${ spot.name } ${spot.adress}, ${spot.latitude}, ${spot.longitude},"/>
-                <c:if test="${!empty spot.contributor}"><c:out value="ajouté par ${spot.contributor}"></c:out></c:if>
+            <li><c:out value="${spot.id} ${ spot.name } ${spot.adress}, ${spot.latitude}, ${spot.longitude},"/>
+                <c:out value="ajouté par ${spot.user}"/>
             </li>
         </c:forEach>
 
