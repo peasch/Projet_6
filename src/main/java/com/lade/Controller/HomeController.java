@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-    @RequestMapping(value="/Home", method = RequestMethod.GET)
+    @RequestMapping(value="/home", method = RequestMethod.GET)
     public String index(ModelMap model){
         model.addAttribute("message", "Spring MVC XML Config Example");
         return "index";

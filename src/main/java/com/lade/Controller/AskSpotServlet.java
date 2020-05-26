@@ -23,7 +23,7 @@ public class AskSpotServlet extends HttpServlet {
     private Spot spot=new Spot();
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer number = Integer.parseInt(request.getParameter("spotId"));
         List spots = spotDao.lister();
         spot = spotService.quelSpot(number,spots);
@@ -34,5 +34,5 @@ public class AskSpotServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("spots", spotDao.lister());
         this.getServletContext().getRequestDispatcher("/WEB-INF/askSpot.jsp").forward(request, response);
-    }
+    }*/
 }

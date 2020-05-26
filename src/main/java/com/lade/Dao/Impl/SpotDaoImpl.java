@@ -26,6 +26,11 @@ public class SpotDaoImpl implements SpotDao {
         return spots;
     }
 
+    @Override
+    public Spot find(Integer id){
+        return em.find(Spot.class,id);
+    }
+
     /*
     @Override
     public void ajouter(Spot spotPlus) {

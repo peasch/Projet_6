@@ -7,15 +7,14 @@
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
-<h1>liste des spots mise à jour</h1>
+<h1>Le spot a bien été ajouté !</h1>
 <ul>
-        <c:forEach var="spot" items="${ spots }">
-            <li><c:out value="${spot.id} ${ spot.name } ${spot.adress}, ${spot.latitude}, ${spot.longitude},"/>
-                <c:out value="ajouté par ${spot.user}"/>
-            </li>
-        </c:forEach>
+    <li><c:out value="${spot.id} ${ spot.name } ${spot.adress}, ${spot.latitude}, ${spot.longitude},"/>
+        <c:out value="ajouté par ${userName}"/>
+    </li>
 
-    </ul>
+
+</ul>
 
 </body>
 </html>

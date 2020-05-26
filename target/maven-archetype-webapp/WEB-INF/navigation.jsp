@@ -7,26 +7,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css"/>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-</head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Home">L-A-D-E</a>
+            <a class="navbar-brand" href="/home">L-A-D-E</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            <c:choose>
+            <c:when test="${ sessionScope.userName!=null}">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                   <!-- <li class="nav-item">
                         <a class="nav-link" href="ShowSpotServlet">Spots</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="ShowSectorServlet">Secteurs</a>
-                    </li>
+                    </li>-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="login" id="spotDropdown" role="button"
                            data-toggle="dropdown"
@@ -34,12 +36,12 @@
                             Spots
                         </a>
                         <div class="dropdown-menu" aria-labelledby="spotDropdown">
-                            <a class="dropdown-item" href="connexion">Action</a>
-                            <a class="dropdown-item" href="registration">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="spots">Consulter un spot</a>
+                            <a class="dropdown-item" href="addSpot">Enregistrer un spot</a>
+
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="sectorDropdown" role="button"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -51,14 +53,18 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </li>
+                    </li>-->
                 </ul>
-                <c:choose>
-                    <c:when test="${ sessionScope.userName==null}">
+                <button class="btn btn-info btn-circle btn-lg"><span class="fa fa-user"></span>  ${sessionScope.userName}</button>
+                <a href="/disconnect" class="btn btn-info btn-circle btn-lg"><span class="fa fa-user"></span> <i style="font-size:24px" class="fa">&#xf08b;</i></a>
+                        </c:when>
+
+                    <c:otherwise>
+
                         <a href="connexion" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Connexion</a>
-                        <a href="registration" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Inscription</a></c:when>
-                    <c:otherwise>  <span class="navbar-text">
-                            ${sessionScope.userName}</span> </c:otherwise>
+                        <a href="registration" class="btn btn-secondary btn-sm active" role="button"
+                           aria-pressed="true">Inscription</a>
+                        </c:otherwise>
                 </c:choose>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -70,48 +76,10 @@
         </div>
     </nav>
 </div>
-<div class="container">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="photos/climb1.jpg" class="d-block w-100" alt="escalade">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="photos/climb2.jpg" class="d-block w-100" alt="escalade">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="photos/climb3.jpg" class="d-block w-100" alt="escalade">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</div>
 
-</body>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

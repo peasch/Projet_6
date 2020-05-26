@@ -24,7 +24,7 @@ public class ShowSpotServlet extends HttpServlet {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LadeConfig.class);
         SpotDao spotDao = context.getBean(SpotDao.class);
         request.setAttribute("spots", spotDao.lister());
-        this.getServletContext().getRequestDispatcher("/WEB-INF/showSpot.jsp").forward(request, response);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

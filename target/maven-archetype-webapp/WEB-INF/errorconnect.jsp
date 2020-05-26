@@ -16,7 +16,7 @@
 <p>
     Désolé, votre nom d'utilisateur et mot de passe ne correspondent pas !
 
-    <a href="ConnexionServlet" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Réessayer !</a>
+    <a href="/connexion" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Réessayer !</a>
 </p>
 </body>
 </html>

@@ -11,7 +11,7 @@ public class Spot implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Column(name = "official_Lade")
-    private Boolean OfficialLade;
+    private Boolean officialLade;
     @Column(name = "name")
     private String name = "";
     @Column(name = "adress")
@@ -33,11 +33,11 @@ public class Spot implements Serializable {
     }
 
     public Boolean getOfficialLade() {
-        return OfficialLade;
+        return officialLade;
     }
 
     public void setOfficialLade(Boolean officialLade) {
-        OfficialLade = officialLade;
+        officialLade = officialLade;
     }
 
     public String getName() {

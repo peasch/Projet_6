@@ -29,10 +29,10 @@ public class ShowSectorServlet extends HttpServlet {
 
     }*/
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  /*  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer number = Integer.parseInt(request.getParameter("spotId"));
         List spots = spotDao.lister();
-        spot = spotService.quelSpot(number,spots);
+       // spot = spotService.quelSpot(number,spots);
         request.setAttribute("spot",spot);
         request.setAttribute("sectors",sectorDao.lister(number));
 
@@ -43,5 +43,5 @@ public class ShowSectorServlet extends HttpServlet {
 
         request.setAttribute("spots", spotDao.lister());
         this.getServletContext().getRequestDispatcher("/WEB-INF/showSector.jsp").forward(request, response);
-    }
+    }*/
 }

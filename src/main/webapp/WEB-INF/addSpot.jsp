@@ -14,15 +14,15 @@
 <%@ include file="navigation.jsp" %>
 <h1>Vous allez ajouter un spot à la base de données !</h1>
 
-<form method="post" action="/AddSpotServlet">
+<form method="post" action="addedSpot">
     <fieldset>
         <legend> Saisissez les informations du spot :</legend>
 
-        <label for="nom">Quel est le nom du spot ?</label><br>
-        <input type="text" name="nom" id="nom"/><br>
+        <label for="name">Quel est le nom du spot ?</label><br>
+        <input type="text" name="name" id="name"/><br>
 
-        <label for="adresse">Quel est l'adresse du spot ?</label><br>
-        <input type="text" name="adresse" id="adresse"/><br>
+        <label for="adress">Quel est l'adresse du spot ?</label><br>
+        <input type="text" name="adress" id="adress"/><br>
 
         <label for="latitude">Quelle est la latitude du spot ? ( aidez-vous de google map)</label><br>
         <input type="text" name="latitude" id="latitude"/><br>

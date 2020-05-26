@@ -21,12 +21,12 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "connexion", method = RequestMethod.GET)
+    @RequestMapping(value = "/connexion", method = RequestMethod.GET)
     public String connexion() {
         return "connexion";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password, HttpSession session) {
         User conn = userDao.existingUser(username);
@@ -41,12 +41,12 @@ public class AccountController {
 
     }
 
-    @RequestMapping(value = "registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration() {
         return "registration";
     }
 
-    @RequestMapping(value = "registered", method = RequestMethod.POST)
+    @RequestMapping(value = "/registered", method = RequestMethod.POST)
     public String registered(@RequestParam("username") String username, @RequestParam("nom") String name,
                              @RequestParam("prenom") String firstName, @RequestParam("email") String email,
                              @RequestParam("password") String password, HttpSession session) {
@@ -54,5 +54,11 @@ public class AccountController {
         User user = userDao.ajouter(userService.toUser(username, name, firstName, password, email));
         session.setAttribute("user",user);
         return "addedUser";
+    }
+
+    @RequestMapping(value ="/disconnect",method = RequestMethod.GET)
+    public String deconnexion(HttpSession session){
+        session.invalidate();
+        return "disconnected";
     }
 }

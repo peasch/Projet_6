@@ -36,4 +36,8 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
+    public User findById(Integer id){
+        return em.find(User.class,id);
+    }
 }

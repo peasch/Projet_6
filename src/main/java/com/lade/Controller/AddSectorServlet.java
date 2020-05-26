@@ -31,7 +31,7 @@ public class AddSectorServlet extends HttpServlet {
 
     }*/
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   /* protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Sector sector = new Sector();
         Integer number = Integer.parseInt(request.getParameter("spotId"));
         //sector.setSpotId(number);
@@ -48,5 +48,5 @@ public class AddSectorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("spots", spotDao.lister());
         this.getServletContext().getRequestDispatcher("/WEB-INF/askSpot.jsp").forward(request, response);
-    }
+    }*/
 }
