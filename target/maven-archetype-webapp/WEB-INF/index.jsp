@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -12,10 +13,9 @@
     <title>Bienvenue chez les amis de l'escalade</title>
 </head>
 <body>
-<p>
     <%@ include file="navigation.jsp" %>
-</p>
-<div class="container-fluid">
+<div class="container">
+    <div class="row">
     <div class="containerCarousel">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -65,6 +65,23 @@
             </a>
         </div>
     </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-lg-12">
+           <div class=card>
+                <div class="card-body">
+                    <h5 class="card-title"> Dernier spot ajouté :</h5>
+                    <p class="card-text">
+                        <c:out value="Nom : ${ lastSpot.name }"/><br>
+                        <c:out value="Description  : ${ last.spot.adress }"/><br>
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>-->
 </div>
+    <%@ include file="footer.jsp" %>
 </body>
 </html>

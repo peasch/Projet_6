@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peasc
-  Date: 09/04/2020
-  Time: 14:59
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>connecté</title>
@@ -14,10 +9,18 @@
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
-<h3>
-        Félicitations ${sessionScope.userName}, vous êtes connectés !
-</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12"></div>
+    </div>
+    <div class="jumbotron">
 
+            <h3>
+                Félicitations ${sessionScope.userName}, vous êtes connecté !
+            </h3>
 
+    </div>
+</div>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

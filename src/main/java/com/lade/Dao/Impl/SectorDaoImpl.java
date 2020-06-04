@@ -4,16 +4,13 @@ package com.lade.Dao.Impl;
 import com.lade.Dao.SectorDao;
 import com.lade.Entity.Sector;
 import com.lade.Entity.Spot;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
+
 @Transactional
 @Repository
 public class SectorDaoImpl implements SectorDao {
@@ -22,17 +19,24 @@ public class SectorDaoImpl implements SectorDao {
     private EntityManager em;
 
 
+
     @Override
-    public void ajouter(Sector sector) {
+    public Sector ajouter(Sector sector) {
+        em.persist(sector);
+        return sector;
+    }
+
+    @Override
+    public List<Sector> lister(Spot spot) {
+        List<Sector> sectors = em.createQuery("SELECT s from Sector s WHERE s.spot like : spot", Sector.class).setParameter("spot", spot).getResultList();
+        return sectors;
 
     }
 
     @Override
-    public List<Sector> lister(Integer spotId) {
-        return null;
+    public Sector find(Integer id){
+        return em.find(Sector.class,id);
     }
-
-
    /* private DaoFactory daoFactory;
     List<Sector> sectors =new ArrayList<>();
     public SectorDaoImpl(DaoFactory daoFactory) {

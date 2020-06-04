@@ -11,6 +11,7 @@
 <p>
     Bienvenue ${user.firstName}  ${user.name} !
 </p>
-<a href="connexion" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Connectez-vous !</a>
+<a href="/connexion" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Connectez-vous !</a>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

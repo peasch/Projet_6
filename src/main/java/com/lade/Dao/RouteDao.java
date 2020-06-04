@@ -1,12 +1,16 @@
 package com.lade.Dao;
 
 
+import com.lade.Entity.Length;
 import com.lade.Entity.Route;
+import com.lade.Entity.Sector;
 
 import java.util.List;
 
 public interface RouteDao {
 
     void ajouter(Route route);
-    List<Route> lister();
+    List<Length> lister(Route route);
+    Route find(Integer id);
+    List<Route> listerRoute(Sector sector);
 }

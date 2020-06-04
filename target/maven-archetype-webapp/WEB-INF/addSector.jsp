@@ -15,14 +15,13 @@
 <h1>Vous allez ajouter un secteur de ${spot.name} à la base de données !</h1>
 
 
-<form method="post" action="/AddSectorServlet">
-    <select name="spotId" id="spotId">
-    <option value="${spot.spotId}" selected>${spot.name} ${spot.spotId}</option></select>
+<form method="post" action="/spots/${spotId}/sector/add">
+
     <fieldset>
         <legend> Saisissez les informations du secteur :</legend>
 
-        <label for="nom">Quel est le nom du secteur ?</label><br>
-        <input type="text" name="nom" id="nom"/><br>
+        <label for="name">Quel est le nom du secteur ?</label><br>
+        <input type="text" name="name" id="name"/><br>
 
         <label for="description">description du secteur ?</label><br>
         <input type="text" name="description" id="description"/><br>
@@ -31,5 +30,6 @@
     </fieldset>
 
 </form>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

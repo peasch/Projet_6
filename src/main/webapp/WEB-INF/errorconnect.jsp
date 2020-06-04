@@ -18,5 +18,6 @@
 
     <a href="/connexion" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Réessayer !</a>
 </p>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

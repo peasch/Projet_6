@@ -13,11 +13,11 @@ public class Route implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="fk_sector")
+    @JoinColumn(name = "fk_sector")
     private Sector sector;
 
-    @OneToMany(mappedBy="route")
-    private Set<Length> lengths=new HashSet<>();
+    @OneToMany(mappedBy = "route")
+    private Set<Length> lengths = new HashSet<>();
 
     public Set<Length> getLengths() {
         return lengths;

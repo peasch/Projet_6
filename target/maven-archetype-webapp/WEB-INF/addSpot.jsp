@@ -1,38 +1,44 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peasc
-  Date: 29/03/2020
-  Time: 17:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Ajouter un Spot</title>
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
-<h1>Vous allez ajouter un spot à la base de données !</h1>
+<div class="container">
+    <div class="jumbotron">
+        <h3>Vous allez ajouter un spot à la base de données !</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
 
-<form method="post" action="addedSpot">
-    <fieldset>
-        <legend> Saisissez les informations du spot :</legend>
+        </div>
+        <div class="col-lg-8">
+            <form method="post" action="/spots/added">
+                <fieldset>
+                    <legend> Saisissez les informations du spot :</legend>
 
-        <label for="name">Quel est le nom du spot ?</label><br>
-        <input type="text" name="name" id="name"/><br>
+                    <label for="name">Quel est son nom ?</label><br>
+                    <input type="text" name="name" id="name"/><br>
 
-        <label for="adress">Quel est l'adresse du spot ?</label><br>
-        <input type="text" name="adress" id="adress"/><br>
+                    <label for="adress">Quel est son adresse ?</label><br>
+                    <input type="text" name="adress" id="adress"/><br>
 
-        <label for="latitude">Quelle est la latitude du spot ? ( aidez-vous de google map)</label><br>
-        <input type="text" name="latitude" id="latitude"/><br>
+                    <label for="latitude">Quelle est sa latitude ? ( aidez-vous de google map)</label><br>
+                    <input type="text" name="latitude" id="latitude"/><br>
 
-        <label for="longitude">Quel est la longitude du spot ?</label><br>
-        <input type="text" name="longitude" id="longitude"/><br>
+                    <label for="longitude">Quel est sa longitude ?</label><br>
+                    <input type="text" name="longitude" id="longitude"/><br>
 
 
-        <input type="submit" value="Envoyer" />
-    </fieldset>
-</form>
+                    <input type="submit" value="Envoyer"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

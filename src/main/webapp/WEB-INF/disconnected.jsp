@@ -19,6 +19,6 @@
     Au revoir et à bientôt !
 </h5>
 
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>

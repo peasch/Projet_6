@@ -3,6 +3,8 @@ package com.lade.Service;
 import com.lade.Entity.User;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class UserService extends User {
 
@@ -15,5 +17,13 @@ public class UserService extends User {
         user.setEmail(email);
         user.setMember(false);
         return user;
+    }
+    public String userConnected(HttpSession session,String link){
+        if(session.getAttribute("userName")!=null){
+            return link;
+        }else {
+
+            return "notConnected";
+        }
     }
 }

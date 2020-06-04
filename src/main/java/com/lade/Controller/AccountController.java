@@ -27,8 +27,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password, HttpSession session) {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
         User conn = userDao.existingUser(username);
         if (conn.getPassword().equals(password)) {
             session.setAttribute("user", conn);
@@ -42,8 +41,13 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration() {
-        return "registration";
+    public String registration(HttpSession session) {
+        if(session.getAttribute("userName")!=null){
+            session.invalidate();
+            return "alreadyConnected";
+
+        }else {
+        return "registration";}
     }
 
     @RequestMapping(value = "/registered", method = RequestMethod.POST)
