@@ -37,7 +37,7 @@
                 </ul>
                 <a href="/sector/${sector.id}/route/add" class="btn btn-outline-primary btn-block active" role="button"
                    aria-pressed="true">
-                    Ajouter une voie </a>
+                    Ajouter une longueur </a>
                 </p>
             </div>
         </div>

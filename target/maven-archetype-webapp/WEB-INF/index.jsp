@@ -66,21 +66,34 @@
         </div>
     </div>
     </div>
-    <!--<div class="row">
+    <div class="row">
+        <div class="col-lg-5">
+        <p>
+            Bienvenue sur le site des amis de l'escalade.
+            Vous rencontrerez ici d'autres fans de grimpe et autres vaches !
+            N'hesitez pas à vous inscrire pour rejoindre la communauté, accéder aux meilleurs spots de chacun
+            et partager les votres !
+        </p>
+        </div>
+        <div class="col-lg-5 offset-1 ">
+            <img src="/photos/escalade_2.jpg"  class="img-circle">
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
            <div class=card>
                 <div class="card-body">
                     <h5 class="card-title"> Dernier spot ajouté :</h5>
                     <p class="card-text">
                         <c:out value="Nom : ${ lastSpot.name }"/><br>
-                        <c:out value="Description  : ${ last.spot.adress }"/><br>
+                        <c:out value="Adresse : ${ lastSpot.adress }"/><br>
 
 
                     </p>
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
 </div>
     <%@ include file="footer.jsp" %>
 </body>

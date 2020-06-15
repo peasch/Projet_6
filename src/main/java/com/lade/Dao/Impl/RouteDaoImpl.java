@@ -35,7 +35,7 @@ public class RouteDaoImpl implements RouteDao {
     }
 
     @Override
-    public List<Route> listerRoute(Sector sector){
+    public List<Route> routes (Sector sector){
          List<Route> routes =em.createQuery("SELECT r from Route r WHERE r.sector like : sector", Route.class).setParameter("sector",sector).getResultList();
          return routes;
     }

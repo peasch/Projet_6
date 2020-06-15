@@ -23,6 +23,18 @@ public class Topo implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "fk_spot")})
     private Set<Spot> spots = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "fk_user")
+    private User owner;
+
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
     public Topo() {
     }
 

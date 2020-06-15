@@ -14,7 +14,7 @@ import java.util.Set;
 public class SectorService {
 
     @Autowired
-    SectorDao sectorDao;
+   private SectorDao sectorDao;
 
     public Sector toSector(String name, String description, Spot spot){
         Sector sector = new Sector();
@@ -26,27 +26,16 @@ public class SectorService {
     }
 
 
+    public List<Sector> lister(Spot spot) {
+        return sectorDao.lister(spot);
+    }
 
+    public Sector find(Integer id){
+        return sectorDao.find(id);
+    }
 
+    public Sector ajouter(String name, String description, Spot spot) {
+        return sectorDao.ajouter(this.toSector(name, description, spot));
+    }
 
-
-
-    /*Sector sector;
-   Scanner sc;
-   public Sector saisirSector(List<Spot> spots) {
-        Spot spot;
-        System.out.println(" nom du secteur : ? ");
-        sector.setName(sc.nextLine());
-        System.out.println(" description du secteur : ? ");
-        sector.setDescription(sc.nextLine());
-        System.out.println(" Dans quel spot se situe le secteur: ? ");
-        for (int i = 0; i < spots.size(); i++) {
-            spot = spots.get(i);
-          //  System.out.println("nom du spot : " + "\t" + spot.getName() + "\t" + spot.getSpotId());
-            System.out.println("-------------------------------------------------------------");
-        }
-        //sector.setSpotId(sc.nextInt());
-
-        return sector;
-    }*/
 }

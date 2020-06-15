@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,7 +36,17 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<Spot> spots = new HashSet<>();
 
+    @OneToMany(mappedBy = "owner")
+    private Set<Topo> topos = new HashSet<>();
 
+
+    public Set<Topo> getTopos() {
+        return topos;
+    }
+
+    public void setTopos(Set<Topo> topos) {
+        this.topos = topos;
+    }
 
     public User() {
     }

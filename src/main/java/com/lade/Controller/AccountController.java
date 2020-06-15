@@ -17,8 +17,6 @@ import javax.servlet.http.HttpSession;
 public class AccountController {
 
     @Autowired
-    private UserDao userDao;
-    @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/connexion", method = RequestMethod.GET)
@@ -28,7 +26,7 @@ public class AccountController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
-        User conn = userDao.existingUser(username);
+        User conn = userService.existingUser(username);
         if (conn.getPassword().equals(password)) {
             session.setAttribute("user", conn);
             session.setAttribute("userName", conn.getUserName());
@@ -54,9 +52,7 @@ public class AccountController {
     public String registered(@RequestParam("username") String username, @RequestParam("nom") String name,
                              @RequestParam("prenom") String firstName, @RequestParam("email") String email,
                              @RequestParam("password") String password, HttpSession session) {
-
-        User user = userDao.ajouter(userService.toUser(username, name, firstName, password, email));
-        session.setAttribute("user",user);
+        session.setAttribute("user",userService.addUser(username, name, firstName, password, email));
         return "addedUser";
     }
 

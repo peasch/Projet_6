@@ -12,5 +12,5 @@ public interface RouteDao {
     void ajouter(Route route);
     List<Length> lister(Route route);
     Route find(Integer id);
-    List<Route> listerRoute(Sector sector);
+    List<Route> routes(Sector sector);
 }

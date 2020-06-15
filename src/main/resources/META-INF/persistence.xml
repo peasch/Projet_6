@@ -21,6 +21,7 @@
         <class>com.lade.Entity.Route</class>
         <class>com.lade.Entity.Length</class>
         <class>com.lade.Entity.Topo</class>
+        <class>com.lade.Entity.Reservation</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

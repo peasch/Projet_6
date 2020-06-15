@@ -31,7 +31,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User existingUser(String userName) {
-
         User user = em.createQuery("SELECT u from User u where u.userName like :userName", User.class).setParameter("userName", userName).getSingleResult();
         return user;
     }

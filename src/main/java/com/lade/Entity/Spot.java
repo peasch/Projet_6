@@ -20,6 +20,7 @@ public class Spot implements Serializable {
     private String latitude = "";
     @Column(name = "longitude")
     private String longitude = "";
+
     @ManyToOne
     @JoinColumn(name = "fk_user")
     private User user;

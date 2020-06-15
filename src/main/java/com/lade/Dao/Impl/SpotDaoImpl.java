@@ -31,10 +31,10 @@ public class SpotDaoImpl implements SpotDao {
         return em.find(Spot.class,id);
     }
 
-   /* @Override
+   @Override
     public Spot findLast(){
-        return em.createQuery("SELECT s from Spot S order by id desc",Spot.class).getSingleResult();
-    }*/
+        return em.createQuery("SELECT s from Spot s order by id desc",Spot.class).setMaxResults(1).getSingleResult();
+    }
     /*
     @Override
     public void ajouter(Spot spotPlus) {

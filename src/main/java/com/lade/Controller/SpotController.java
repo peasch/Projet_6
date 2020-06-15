@@ -6,6 +6,7 @@ import com.lade.Dao.UserDao;
 import com.lade.Entity.Sector;
 import com.lade.Entity.Spot;
 import com.lade.Entity.User;
+import com.lade.Service.SectorService;
 import com.lade.Service.SpotService;
 import com.lade.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
+
 
 @Controller
 public class SpotController {
@@ -25,28 +26,22 @@ public class SpotController {
     @Autowired
     private UserService userService;
     @Autowired
-    private SpotDao spotDao;
-    @Autowired
     private SpotService spotService;
     @Autowired
-    private UserDao userDao;
-    @Autowired
-    SectorDao sectorDao;
+    private SectorService sectorService;
 
     @RequestMapping(value = "/spots/{spotId}", method = RequestMethod.GET)
     public String spotdescribe(@PathVariable(name = "spotId") Integer id, ModelMap model,HttpSession session) {
-        Spot spot = spotDao.find(id);
-        List<Sector> sectors = sectorDao.lister(spot);
+        Spot spot = spotService.find(id);
         model.addAttribute("spot", spot);
         model.addAttribute("user", spot.getUser());
-        model.addAttribute("sectors", sectors);
+        model.addAttribute("sectors", sectorService.lister(spot));
         return  userService.userConnected(session,"spotDescribe");
     }
 
     @RequestMapping(value = "/spots", method = RequestMethod.GET)
     public String listSpot(ModelMap model,HttpSession session) {
-        List<Spot> spots = spotDao.lister();
-        model.addAttribute("spots", spots);
+        model.addAttribute("spots",spotService.lister());
         return userService.userConnected(session,"spots");
     }
 
@@ -58,7 +53,7 @@ public class SpotController {
     @RequestMapping(value = "/spots/added", method = RequestMethod.POST)
     public String addedSpot(@RequestParam String name, @RequestParam String adress, @RequestParam String latitude, @RequestParam String longitude, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        session.setAttribute("spot", spotDao.ajouter(spotService.toSpot(name, adress, latitude, longitude, user)));
+        session.setAttribute("spot", spotService.ajouter(name, adress, latitude, longitude, user));
         session.setAttribute("userName", user.getUserName());
         return  userService.userConnected(session,"addedSpot");
     }

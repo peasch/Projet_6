@@ -14,14 +14,8 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center text-black-50 d-none d-lg-block site-heading">
-        <span class="text-primary site-heading-upper mb-3">Bienvenue chez nous ! Mathieu le beau-gosse</span><br>
-        <span class="site-heading-lower">LES AMIS DE L'ESCALADE</span>
-    </h1>
-</div>
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #533f03" >
+        <div class="container">
             <a class="navbar-brand" href="/home">L-A-D-E</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +56,7 @@
                         </div>
                     </li>-->
                 </ul>
-                <button class="btn btn-outline-primary btn-circle btn-sm"><span
+                <button class="btn btn-outline-secondary btn-circle btn-sm"><span
                         class="fa fa-user"></span> ${sessionScope.userName}
                 </button>
                 <a href="/disconnect" class="btn btn-outline-secondary btn-circle btn-sm"><span
@@ -71,19 +65,17 @@
                 </c:when>
 
                 <c:otherwise>
-
-                    <a href="/connexion" class="btn btn-outline-primary btn-sm " role="button"
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    </ul>
+                    <a href="/connexion" class="btn btn-outline-secondary btn-sm " role="button"
                        aria-pressed="true">Connexion</a>
                     <a href="/registration" class="btn btn-outline-secondary btn-sm " role="button"
                        aria-pressed="true">Inscription</a>
+                </div>
                 </c:otherwise>
                 </c:choose>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary btn-sm" type="submit"><span
-                            class="glyphicon glyphicon-eye-open"></span>Search
-                    </button>
-                </form>
+
             </div>
         </div>
     </nav>
