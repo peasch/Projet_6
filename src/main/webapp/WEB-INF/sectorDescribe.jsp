@@ -22,10 +22,8 @@
                 </p>
             </div>
         </div>
-        <div class="col-lg-2">
-        </div>
-        <div class="card">
-            <div class="card-body">
+        <div class="card offset-2">
+            <div class="card-body off">
                 <h5 class="card-title">liste des voies :</h5>
                 <p class="card-text">
                 <ul>

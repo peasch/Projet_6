@@ -38,6 +38,7 @@ public class SpotService {
     public List<Spot> lister() {
         return spotDao.lister();
     }
+
     public Spot ajouter( String name, String adress, String latitude, String longitude, User user) {
         return spotDao.ajouter(this.toSpot(name, adress, latitude, longitude, user));
     }

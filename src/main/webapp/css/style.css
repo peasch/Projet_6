@@ -1,6 +1,7 @@
 body
 {
-    background: white url(/photos/backgroundclimb.jpg) no-repeat fixed top right;
+    background: url(/photos/backgroundclimb.jpg) no-repeat fixed top right;
+
 }
 
 .carousel-inner{

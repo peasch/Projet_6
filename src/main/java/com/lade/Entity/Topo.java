@@ -13,10 +13,10 @@ public class Topo implements Serializable {
     private int id;
     @Column(name = "name")
     private String name = "";
-    @Column(name = "description")
-    private String description = "";
-    @Column(name = "release")
-    private String release = "";
+    @Column(name = "apercu")
+    private String apercu = "";
+    @Column(name = "parution")
+    private String parution = "";
     @ManyToMany
     @JoinTable(name = "topo_has_spot",
             joinColumns = {@JoinColumn(name = "fk_topo")},
@@ -54,20 +54,20 @@ public class Topo implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getApercu() {
+        return apercu;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setApercu(String description) {
+        this.apercu = description;
     }
 
-    public String getRelease() {
-        return release;
+    public String getParution() {
+        return parution;
     }
 
-    public void setRelease(String release) {
-        this.release = release;
+    public void setParution(String release) {
+        this.parution = release;
     }
 
     public Set<Spot> getSpots() {
