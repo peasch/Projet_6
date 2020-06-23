@@ -11,10 +11,18 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i"/>
+
 </head>
 <body>
+<h1 class="text-center text-white d-none d-lg-block site-heading">
+    <span class="site-heading-lower">Les amis de l'escalade</span></h1>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FAB04C">
+    <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #F5C98D; background-opacity: 0.75;">
         <div class="container">
             <a class="navbar-brand" href="/home">L-A-D-E</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -25,14 +33,9 @@
             <c:when test="${ sessionScope.userName!=null}">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <!-- <li class="nav-item">
-                         <a class="nav-link" href="ShowSpotServlet">Spots</a>
-                     </li>
-                    -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/login" id="spotDropdown" role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Spots
                         </a>
                         <div class="dropdown-menu" aria-labelledby="spotDropdown">
@@ -41,26 +44,29 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/topos" id="topoDropdown" role="button" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" href="/topos" id="topoDropdown" role="button"
+                           data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Topos</a>
                         <div class="dropdown-menu" aria-labelledby="topoDropdown">
                             <a class="dropdown-item" href="/topos">Consulter la liste des topos</a>
                             <a class="dropdown-item" href="/topos/add">Enregistrer un topo</a>
                         </div>
                     </li>
-                    <!--<li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="sectorDropdown" role="button"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Secteurs
+                            Rechercher
                         </a>
                         <div class="dropdown-menu" aria-labelledby="sectorDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="/lfSpot">Un spot</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="/lfSector">Un secteur</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/lfRoute">Une voie</a>
+
                         </div>
-                    </li>-->
+                    </li>
                 </ul>
                 <a href="/profile" class="btn btn-outline-secondary btn-circle btn-sm"><span
                         class="fa fa-user"></span> ${sessionScope.userName}</a>
@@ -84,7 +90,7 @@
         </div>
     </nav>
 </div>
- 
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>

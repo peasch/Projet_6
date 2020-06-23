@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 
 @Service
-public class UserService extends User {
+public class UserService {
     @Autowired
     private UserDao userDao;
 

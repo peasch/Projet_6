@@ -11,22 +11,28 @@
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <article class=col-md-6">
-                    <h3>Liste des spots : </h3>
-                    <ul>
-                        <c:forEach var="spot" items="${ spots }">
-                            <li><a href="/spots/${spot.id}" ><c:out value="${spot.id} : ${ spot.name }"/></a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </article>
+<section class="page-section cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <div class="row">
+                    <div class="cta-inner text-center rounded">
+                        <h2 class="section-heading mb-4"><span class="section-heading-upper">Liste des spots :</span></h2>
+                        <p class="mb-0 text-center">
+                        <ul>
+                            <c:forEach var="spot" items="${ spots }">
+                                <li><a href="/spots/${spot.id}" ><c:out value="${spot.id} : ${ spot.name }"/></a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

@@ -19,7 +19,7 @@
                     <c:out value="Nom : ${ topo.name }"/><br>
                     <c:out value="description : ${ topo.apercu }"/><br>
                     <c:out value=" date de parution : ${topo.parution}"/><br>
-                    <c:out value="topo proposé par : ${user.userName}"/><br>
+                    <c:out value="topo proposé par : ${topo.owner.getUserName()}"/><br>
                 </p>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="card-body off">
                 <h5 class="card-title"></h5>
                 <p class="card-text">
-                <a href="#" class="btn btn-outline-primary btn-block active" role="button" aria-pressed="true">
+                <a href="/topos/${topo.id}/resa" class="btn btn-outline-primary btn-block active" role="button" aria-pressed="true">
                     Réserver ce topo </a>
                 </p>
             </div>

@@ -1,35 +1,39 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peasc
-  Date: 29/03/2020
-  Time: 17:31
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Ajouter un Spot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
-<h1>Vous allez ajouter un secteur de ${spot.name} à la base de données !</h1>
+<div class="container">
+    <div class="jumbotron">
+        <h3>Vous allez ajouter un secteur de ${spot.name} à la base de données !</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 offset-lg-1">
+            <form method="post" action="/spots/${spotId}/sector/add">
 
+                <fieldset>
+                    <legend> Saisissez les informations du secteur :</legend>
 
-<form method="post" action="/spots/${spotId}/sector/add">
+                    <label for="name">Quel est le nom du secteur ?</label><br>
+                    <input type="text" name="name" id="name"/><br>
 
-    <fieldset>
-        <legend> Saisissez les informations du secteur :</legend>
+                    <label for="description">description du secteur ?</label><br>
+                    <textarea name="description" id="description" rows="5" cols="50"/>
+                    </textarea><br>
 
-        <label for="name">Quel est le nom du secteur ?</label><br>
-        <input type="text" name="name" id="name"/><br>
+                    <input type="submit" value="Envoyer"/>
+            </fieldset>
+            </form>
+        </div>
+    </div>
 
-        <label for="description">description du secteur ?</label><br>
-        <input type="text" name="description" id="description"/><br>
-
-        <input type="submit" value="Envoyer" />
-    </fieldset>
-
-</form>
+</div>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

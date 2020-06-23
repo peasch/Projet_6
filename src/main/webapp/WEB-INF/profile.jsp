@@ -52,6 +52,97 @@
 
     </div>
 </div>
+<section class="page-section cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <div class="cta-inner text-center rounded">
+                    <h3 class="section-heading mb-4"><span class="section-heading-upper">demandes de réservations en cours :</span><span
+                            class="section-heading-lower"></span></h3>
+                    <p>
+                        <c:forEach var="reservation" items="${reservations}">
+                            <c:choose>
+                                <c:when test="${reservation.accepted==null}">
+                                    <c:out value="${reservation.topo.getName()} demandé par ${reservation.caller.getUserName()} le ${reservation.dateReservation}"/>
+                                    <a href="/reservation/accept/${reservation.id}"
+                                       class="btn btn-outline-secondary btn-sm "
+                                       role="button"
+                                       aria-pressed="true">
+                                        Accepter</a>
+                                    <a href="#" class="btn btn-outline-warning btn-sm " role="button"
+                                       aria-pressed="true">
+                                        Refuser </a> <br>
+                                </c:when>
+                                <c:when test="${reservation.accepted==false}">
+                                    <c:out value="${reservation.topo.getName()} demandé par ${reservation.caller.getUserName()} le ${reservation.dateReservation} a été refusée."/><br>
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="page-section" style="background-color: #F5C98D;opacity: 0.8">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <div class="cta-inner text-center rounded">
+                    <h3 class="section-heading mb-4"><span
+                            class="section-heading-upper">Vos réservations en attente :</span><span
+                            class="section-heading-lower"></span></h3>
+                    <p>
+                        <c:forEach var="reservation" items="${resaEnCours}">
+                            <c:choose>
+                                <c:when test="${reservation.accepted==null}">
+                                    <c:out value="${reservation.topo.getName()} demandé à ${reservation.topo.getOwner().getUserName()} le ${reservation.dateReservation}"/>
+                                    <a href="/reservation/accept/${reservation.id}"
+                                       class="btn btn-outline-secondary btn-sm " role="button"
+                                       aria-pressed="true">
+                                        Annuler</a><br></c:when>
+                                <c:when test="${reservation.accepted==true}">
+                                    <c:out value="La demande de réservation pour le topo : ${reservation.topo.getName()} demandé à ${reservation.topo.getOwner().getUserName()} le ${reservation.dateReservation} "/><br>
+                                    <c:out value="a été acceptée. Vous allez être mis en relation avec le propriétaire"/><br>
+                                </c:when>
+                                <c:when test="${reservation.accepted==false}">
+                                    <c:out value="La demande de réservation pour le topo : ${reservation.topo.getName()} demandé à ${reservation.topo.getOwner().getUserName()} le ${reservation.dateReservation} "/><br>
+                                    <c:out value="a été refusée."/><br>
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="page-section cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <div class="cta-inner text-center rounded">
+                    <h3 class="section-heading mb-4"><span
+                            class="section-heading-upper">Vos topos indisponibles :</span><span
+                            class="section-heading-lower"></span></h3>
+                    <p>
+                        <c:forEach var="reservation" items="${reservations}">
+                            <c:choose>
+                                <c:when test="${reservation.accepted==true}">
+                            <c:out value="${reservation.topo.getName()} emprunté par ${reservation.getCaller().getUserName()} le ${reservation.acceptDate}"/>
+                            <a href="#" class="btn btn-outline-secondary btn-sm " role="button" aria-pressed="true">Rendu</a><br>
+                            </c:when>
+                        </c:choose>
+                        </c:forEach>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

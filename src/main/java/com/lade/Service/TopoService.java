@@ -6,6 +6,8 @@ import com.lade.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,12 +16,18 @@ public class TopoService {
     @Autowired
     TopoDao topoDao;
 
-    public Topo toTopo(String description,String name ,String release, User user) {
-        Topo topo =new Topo();
+    public Topo toTopo(String description, String name, String release, User user) {
+        long millis = System.currentTimeMillis();
+        Date date = new Date(millis);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String time = dateFormat.format(date);
+        Topo topo = new Topo();
         topo.setApercu(description);
         topo.setName(name);
         topo.setParution(release);
         topo.setOwner(user);
+        topo.setPublication(time);
+        topo.setAvailable(true);
         return topo;
     }
 
@@ -27,18 +35,23 @@ public class TopoService {
         return topoDao.topos();
     }
 
-    public Topo find(Integer id){
+    public Topo find(Integer id) {
         return topoDao.find(id);
     }
 
-    public List<Topo> findByUser(User user){
+    public List<Topo> findByUser(User user) {
         return topoDao.findByUser(user);
     }
 
-    public Topo ajouter( String describe, String name, String release,User user) {
-        return topoDao.ajouter(this.toTopo(describe,name,release,user));
+    public Topo ajouter(String describe, String name, String release, User user) {
+        return topoDao.ajouter(this.toTopo(describe, name, release, user));
     }
-    public List<Topo> toposWithoutUsers(User user){
+
+    public List<Topo> toposWithoutUsers(User user) {
         return topoDao.toposWithoutUsers(user);
+    }
+
+    public List<Topo> findUnavailable(User user){
+        return topoDao.findUnavailable(user);
     }
 }

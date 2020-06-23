@@ -1,8 +1,10 @@
 package com.lade.Controller;
 
+import com.lade.Entity.Reservation;
 import com.lade.Entity.Spot;
 import com.lade.Entity.Topo;
 import com.lade.Entity.User;
+import com.lade.Service.ReservationService;
 import com.lade.Service.TopoService;
 import com.lade.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class TopoController {
@@ -21,6 +25,8 @@ public class TopoController {
     private UserService userService;
     @Autowired
     private TopoService topoService;
+    @Autowired
+    private ReservationService reservationService;
 
     @RequestMapping(value = "/topos", method = RequestMethod.GET)
     public String listTopo(ModelMap model, HttpSession session) {
@@ -29,7 +35,7 @@ public class TopoController {
     }
 
     @RequestMapping(value = "/topos/{topoId}", method = RequestMethod.GET)
-    public String spotdescribe(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
+    public String topodescribe(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
         Topo topo = topoService.find(id);
         model.addAttribute("topo",topo);
         model.addAttribute("owner", topo.getOwner());
@@ -49,4 +55,9 @@ public class TopoController {
         model.addAttribute("userName", user.getUserName());
         return  userService.userConnected(session,"addedTopo");
     }
+
+
+
+
+
 }

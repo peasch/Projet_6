@@ -20,6 +20,10 @@ public class Spot implements Serializable {
     private String latitude = "";
     @Column(name = "longitude")
     private String longitude = "";
+    @Column(name="country")
+    private String country ="";
+    @Column(name="region")
+    private String region ="";
 
     @ManyToOne
     @JoinColumn(name = "fk_user")
@@ -79,6 +83,22 @@ public class Spot implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public Spot() {

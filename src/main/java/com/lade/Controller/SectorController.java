@@ -36,6 +36,7 @@ public class SectorController {
     @RequestMapping(value = "/spots/{spotId}/sector/add", method = RequestMethod.GET)
     public String addSector(@PathVariable Integer spotId, ModelMap model, HttpSession session) {
         model.addAttribute("spotId", spotId);
+        model.addAttribute("spot",spotService.find(spotId));
         return userService.userConnected(session, "addSector");
     }
 

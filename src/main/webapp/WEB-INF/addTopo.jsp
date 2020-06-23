@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Ajouter un Spot</title>
@@ -21,7 +22,8 @@
                     <input type="text" name="name" id="name"/><br>
 
                     <label for="apercu">Une description du topo ?</label><br>
-                    <input type="text" name="apercu" id="apercu"/><br>
+                    <textarea  name="apercu" id="apercu" rows="5" cols="50"/></textarea>
+                    <br>
 
                     <label for="parution">Quelle est sa date de parution ?</label><br>
                     <input type="text" name="parution" id="parution"/><br>

@@ -11,11 +11,10 @@
     <div class="jumbotron">
         <h3>Vous allez ajouter un spot à la base de données !</h3>
     </div>
+</div>
+<section class="page-section cta">
     <div class="row">
-        <div class="col-lg-2">
-
-        </div>
-        <div class="col-lg-8">
+        <div class="col-lg-8 offset-2">
             <form method="post" action="/spots/added">
                 <fieldset>
                     <legend> Saisissez les informations du spot :</legend>
@@ -32,13 +31,12 @@
                     <label for="longitude">Quel est sa longitude ?</label><br>
                     <input type="text" name="longitude" id="longitude"/><br>
 
-
                     <input type="submit" value="Envoyer"/>
                 </fieldset>
             </form>
         </div>
     </div>
-</div>
+</section>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

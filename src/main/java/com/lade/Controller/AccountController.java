@@ -1,8 +1,10 @@
 package com.lade.Controller;
 
 import com.lade.Dao.UserDao;
+import com.lade.Entity.Reservation;
 import com.lade.Entity.Topo;
 import com.lade.Entity.User;
+import com.lade.Service.ReservationService;
 import com.lade.Service.TopoService;
 import com.lade.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class AccountController {
     private UserService userService;
     @Autowired
     private TopoService topoService;
+    @Autowired
+    private ReservationService reservationService;
 
     @RequestMapping(value = "/connexion", method = RequestMethod.GET)
     public String connexion() {
@@ -73,8 +77,12 @@ public class AccountController {
         User user = (User) session.getAttribute("user");
         List<Topo> topos = topoService.findByUser(user);
         Integer size = topos.size();
+        List<Reservation> reservations = reservationService.findResaByOwner(user);
+        List<Reservation> resaEnCours = reservationService.findResaByCaller(user);
         model.addAttribute("user",user);
         model.addAttribute("topos",topos);
+        model.addAttribute("reservations",reservations);
+        model.addAttribute("resaEnCours",resaEnCours);
         model.addAttribute("size",size);
         return userService.userConnected(session, "profile");
     }

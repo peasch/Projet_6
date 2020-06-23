@@ -2,8 +2,7 @@ package com.lade.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 @Entity
 @Table(name = "topo")
@@ -17,11 +16,14 @@ public class Topo implements Serializable {
     private String apercu = "";
     @Column(name = "parution")
     private String parution = "";
-    @ManyToMany
-    @JoinTable(name = "topo_has_spot",
-            joinColumns = {@JoinColumn(name = "fk_topo")},
-            inverseJoinColumns = {@JoinColumn(name = "fk_spot")})
-    private Set<Spot> spots = new HashSet<>();
+    @Column(name = "country")
+    private String country = "";
+    @Column(name = "region")
+    private String region = "";
+    @Column(name = "publication")
+    private String publication;
+    @Column(name="available")
+    private Boolean available;
 
     @ManyToOne
     @JoinColumn(name = "fk_user")
@@ -35,6 +37,7 @@ public class Topo implements Serializable {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
     public Topo() {
     }
 
@@ -70,11 +73,35 @@ public class Topo implements Serializable {
         this.parution = release;
     }
 
-    public Set<Spot> getSpots() {
-        return spots;
+    public String getCountry() {
+        return country;
     }
 
-    public void setSpots(Set<Spot> spots) {
-        this.spots = spots;
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getPublication() {
+        return publication;
+    }
+
+    public void setPublication(String publication) {
+        this.publication = publication;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }

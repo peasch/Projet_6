@@ -13,12 +13,16 @@ public class Reservation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "date_reservation")
     private Date dateReservation;
+
     @Column(name = "accepted")
     private Boolean accepted;
+
     @Column(name = "accept_date")
     private Date acceptDate;
+
     @Column(name = "return_date")
     private Date returnDate;
 
