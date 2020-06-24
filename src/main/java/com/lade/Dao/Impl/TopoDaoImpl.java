@@ -57,4 +57,6 @@ public class TopoDaoImpl implements TopoDao {
         return em.createQuery("SELECT t FROM Topo t where t.owner like: user AND t.available is false ",Topo.class).setParameter("user",user).getResultList();
 
     }
+
+
 }

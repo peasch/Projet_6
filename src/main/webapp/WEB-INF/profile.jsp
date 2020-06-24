@@ -85,7 +85,7 @@
         </div>
     </div>
 </section>
-<section class="page-section" style="background-color: #F5C98D;opacity: 0.8">
+<section class="page-section testage" >
     <div class="container">
         <div class="row">
             <div class="col-xl-9 mx-auto">
@@ -98,17 +98,17 @@
                             <c:choose>
                                 <c:when test="${reservation.accepted==null}">
                                     <c:out value="${reservation.topo.getName()} demandé à ${reservation.topo.getOwner().getUserName()} le ${reservation.dateReservation}"/>
-                                    <a href="/reservation/accept/${reservation.id}"
+                                    <a href="/reservation/cancel/${reservation.id}"
                                        class="btn btn-outline-secondary btn-sm " role="button"
                                        aria-pressed="true">
                                         Annuler</a><br></c:when>
                                 <c:when test="${reservation.accepted==true}">
-                                    <c:out value="La demande de réservation pour le topo : ${reservation.topo.getName()} demandé à ${reservation.topo.getOwner().getUserName()} le ${reservation.dateReservation} "/><br>
-                                    <c:out value="a été acceptée. Vous allez être mis en relation avec le propriétaire"/><br>
+                                    <c:out value="La demande de réservation pour le topo : ${reservation.topo.getName()} a été acceptée."/><br>
+                                    <c:out value="Vous pouvez contacter ${reservation.topo.getOwner().getUserName()} ici :"/><a href="mailto:${reservation.topo.getOwner().getEmail()} ">${reservation.topo.getOwner().getEmail()}</a><br>
                                 </c:when>
                                 <c:when test="${reservation.accepted==false}">
-                                    <c:out value="La demande de réservation pour le topo : ${reservation.topo.getName()} demandé à ${reservation.topo.getOwner().getUserName()} le ${reservation.dateReservation} "/><br>
-                                    <c:out value="a été refusée."/><br>
+                                    <c:out value="La demande de réservation pour le topo : ${reservation.topo.getName()} a été refusée."/><br>
+
                                 </c:when>
                             </c:choose>
                         </c:forEach>
@@ -130,9 +130,9 @@
                     <p>
                         <c:forEach var="reservation" items="${reservations}">
                             <c:choose>
-                                <c:when test="${reservation.accepted==true}">
+                                <c:when test="${reservation.accepted==true && reservation.topo.getAvailable()==false}">
                             <c:out value="${reservation.topo.getName()} emprunté par ${reservation.getCaller().getUserName()} le ${reservation.acceptDate}"/>
-                            <a href="#" class="btn btn-outline-secondary btn-sm " role="button" aria-pressed="true">Rendu</a><br>
+                            <a href="/topo/${reservation.topo.getId()}/retourdispo" class="btn btn-outline-secondary btn-sm " role="button" aria-pressed="true">Retour dispo</a><br>
                             </c:when>
                         </c:choose>
                         </c:forEach>

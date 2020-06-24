@@ -56,7 +56,12 @@ public class TopoController {
         return  userService.userConnected(session,"addedTopo");
     }
 
-
+    @RequestMapping(value="/topo/{topoId}/retourdispo",method =RequestMethod.GET )
+    public String retourDispo(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session){
+        Topo topo =topoService.find(id);
+        topoService.retourDispo(topo);
+        return  userService.userConnected(session,"retourDispo");
+    }
 
 
 

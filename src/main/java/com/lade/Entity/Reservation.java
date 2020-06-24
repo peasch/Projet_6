@@ -26,6 +26,7 @@ public class Reservation implements Serializable {
     @Column(name = "return_date")
     private Date returnDate;
 
+
     @ManyToOne
     @JoinColumn(name = "fk_user")
     private User caller;
@@ -94,5 +95,6 @@ public class Reservation implements Serializable {
     public void setTopo(Topo topo) {
         this.topo = topo;
     }
+
 }
 

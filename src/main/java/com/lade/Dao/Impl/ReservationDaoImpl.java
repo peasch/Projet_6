@@ -22,12 +22,7 @@ public class ReservationDaoImpl implements ReservationDao {
 
     @Override
     public Reservation add(Reservation reservation) {
-        try {
-            Reservation resa = existingResa(reservation.getCaller(), reservation.getTopo());
-
-        } catch (NoResultException nre) {
             em.persist(reservation);
-        }
         return reservation;
     }
 
@@ -54,8 +49,15 @@ public class ReservationDaoImpl implements ReservationDao {
     }
 
     @Override
-    public Reservation AcceptResa(Reservation reservation){
+    public Reservation acceptResa(Reservation reservation){
         em.merge(reservation);
         return reservation;
+    }
+
+    @Override
+    public void cancelResa(Reservation reservation){
+
+
+        em.remove(em.merge(reservation));
     }
 }

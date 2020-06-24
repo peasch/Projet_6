@@ -21,9 +21,9 @@
                         <h2 class="section-heading mb-4"><span class="section-heading-upper">Reservation :</span></h2>
                         <p class="mb-0 text-center">
                             <c:choose>
-                               <c:when test="${resa.accepted==null}">
-                        La demande de réservation a été effectuée.
-                            Vous allez être contacté par le propriétaire du topo.</c:when>
+                                <c:when test="${resa.accepted==null}">
+                                    La demande de réservation a été effectuée.
+                                    Vous allez être contacté par le propriétaire du topo.</c:when>
                                 <c:when test="${resa.accepted==true}">
                                     La demande a été accepté, le demandeur du topo va vous contacter.
                                 </c:when>

@@ -19,10 +19,10 @@
 
 </head>
 <body>
-<h1 class="text-center text-white d-none d-lg-block site-heading">
-    <span class="site-heading-lower">Les amis de l'escalade</span></h1>
+<h2 class="text-center text-white d-none d-lg-block site-heading">
+    <span class="site-heading-lower">LES AMIS DE L'ESCALADE</span></h2>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #F5C98D; background-opacity: 0.75;">
+    <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: white; background-opacity: 0.9;">
         <div class="container">
             <a class="navbar-brand" href="/home">L-A-D-E</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

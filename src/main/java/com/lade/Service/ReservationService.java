@@ -56,7 +56,10 @@ private TopoDao topoDao;
        Topo topo= reservation.getTopo();
        topo.setAvailable(false);
        topoDao.updateTopo(topo);
-        return reservationDao.AcceptResa(reservation);
+        return reservationDao.acceptResa(reservation);
     }
 
+    public void cancelResa(Reservation reservation){
+        reservationDao.cancelResa(reservation);
+    }
 }

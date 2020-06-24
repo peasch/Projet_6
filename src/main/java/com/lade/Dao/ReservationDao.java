@@ -12,5 +12,6 @@ public interface ReservationDao {
     List<Reservation> findResaByOwner(User user);
     List<Reservation> findResaByCaller(User user);
     Reservation findById(Integer id);
-    Reservation AcceptResa(Reservation reservation);
+    Reservation acceptResa(Reservation reservation);
+    void cancelResa(Reservation reservation);
 }

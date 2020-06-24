@@ -54,4 +54,14 @@ public class ReservationController {
         resa.getTopo().setAvailable(false);
         return userService.userConnected(session, "resaDemanded");
     }
+
+    @RequestMapping(value="/reservation/cancel/{reservationId}",method = RequestMethod.GET)
+    public String cancelResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model){
+        Reservation resa = reservationService.acceptResa(reservationService.findById(id));
+        reservationService.cancelResa(resa);
+
+        return userService.userConnected(session, "resaCancelled");
+    }
+
+
 }

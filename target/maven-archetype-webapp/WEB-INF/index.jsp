@@ -17,41 +17,34 @@
 
 <%@ include file="navigation.jsp" %>
 <section class="page-section cta">
-    <div class="container ">
+    <div class="container " style="height: 200px">
         <div class="row">
             <div class="col-lg-5">
-                <div class=card>
-                    <div class="card-body">
-
-                        <p class="card-text">
+                <div class="container ">
+                        <p style="text-align: center">
                             Bienvenue sur le site des amis de l'escalade.
                             Vous rencontrerez ici d'autres fans de grimpe et autres vaches !
                             N'hesitez pas à vous inscrire pour rejoindre la communauté, accéder aux meilleurs spots de
                             chacun
                             et partager les votres !
                         </p>
-                    </div>
                 </div>
             </div>
-            <div class="col-lg-4 offset-2">
-                <div class=card>
-                    <div class="card-body">
-                        <h5 class="card-title"> Dernier spot ajouté :</h5>
+
+        </div>
+    </div>
+</section>
+<section class="page-section testage " style="background-color: whitesmoke">
+    <div class="container "style="height: 200px">
+        <div class="row ">
+            <div class="col-lg-4 offset-8">
+                <div class="container float-lg-right"style="color:black">
+                        <h5> Dernier spot ajouté :</h5>
                         <p class="card-text">
                             <c:out value="Nom : ${ lastSpot.name }"/><br>
                             <c:out value="Adresse : ${ lastSpot.adress }"/><br>
                         </p>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="page-section " style="opacity: 0.8">
-    <div class="container">
-        <div class="row ">
-            <div class="col-lg-12 mx-auto">
-                <img src="/photos/escalade_2.jpg" class="rounded float-lg-right">
             </div>
         </div>
     </div>

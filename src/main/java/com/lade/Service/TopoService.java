@@ -54,4 +54,9 @@ public class TopoService {
     public List<Topo> findUnavailable(User user){
         return topoDao.findUnavailable(user);
     }
+
+    public Topo retourDispo(Topo topo){
+        topo.setAvailable(true);
+        return topoDao.updateTopo(topo);
+    }
 }

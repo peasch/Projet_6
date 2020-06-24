@@ -1,6 +1,6 @@
 body
 {
-    font-family: Lora;
+    font-family: Raleway;
     background: url(/photos/backgroundclimb.jpg) no-repeat fixed top right;
 color: white;
 
@@ -30,7 +30,12 @@ color: white;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
-
+.testage{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: whitesmoke;
+    color:black;
+}
 
 
 
