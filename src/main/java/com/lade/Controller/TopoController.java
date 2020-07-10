@@ -1,12 +1,9 @@
 package com.lade.Controller;
 
 import com.lade.Entity.Reservation;
-import com.lade.Entity.Spot;
 import com.lade.Entity.Topo;
 import com.lade.Entity.User;
-import com.lade.Service.ReservationService;
-import com.lade.Service.TopoService;
-import com.lade.Service.UserService;
+import com.lade.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -30,7 +26,7 @@ public class TopoController {
 
     @RequestMapping(value = "/topos", method = RequestMethod.GET)
     public String listTopo(ModelMap model, HttpSession session) {
-        model.addAttribute("topos",topoService.toposWithoutUsers((User) session.getAttribute("user")));
+        model.addAttribute("topos", topoService.toposWithoutUsers((User) session.getAttribute("user")));
         return userService.userConnected(session,"topos");
     }
 
@@ -56,9 +52,15 @@ public class TopoController {
         return  userService.userConnected(session,"addedTopo");
     }
 
-    @RequestMapping(value="/topo/{topoId}/retourdispo",method =RequestMethod.GET )
-    public String retourDispo(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session){
-        Topo topo =topoService.find(id);
+    @RequestMapping(value="/topo/{reservationId}/retourdispo",method =RequestMethod.GET )
+    public String retourDispo(@PathVariable(name = "reservationId") Integer id, ModelMap model, HttpSession session){
+        long millis = System.currentTimeMillis();
+        Date date = new Date(millis);
+        Reservation reservation = reservationService.findById(id);
+        reservation.setReturnDate(date);
+        reservation.setReturned(true);
+        reservationService.update(reservation);
+        Topo topo =reservation.getTopo();
         topoService.retourDispo(topo);
         return  userService.userConnected(session,"retourDispo");
     }

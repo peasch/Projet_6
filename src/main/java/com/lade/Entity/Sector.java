@@ -15,11 +15,16 @@ public class Sector implements Serializable {
     private String name = "";
     @Column(name = "description")
     private String description = "";
+
     @ManyToOne
     @JoinColumn(name = "fk_spot")
     private Spot spot;
+
     @OneToMany(mappedBy="sector")
     private Set<Route> routes =new HashSet<>();
+
+
+
 
     public Integer getId() {
         return id;

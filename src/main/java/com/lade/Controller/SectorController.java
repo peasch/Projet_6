@@ -1,16 +1,8 @@
 package com.lade.Controller;
 
-import com.lade.Dao.RouteDao;
-import com.lade.Dao.SectorDao;
-import com.lade.Dao.SpotDao;
-import com.lade.Entity.Route;
 import com.lade.Entity.Sector;
 import com.lade.Entity.Spot;
-import com.lade.Entity.User;
-import com.lade.Service.RouteService;
-import com.lade.Service.SectorService;
-import com.lade.Service.SpotService;
-import com.lade.Service.UserService;
+import com.lade.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,7 +28,7 @@ public class SectorController {
     @RequestMapping(value = "/spots/{spotId}/sector/add", method = RequestMethod.GET)
     public String addSector(@PathVariable Integer spotId, ModelMap model, HttpSession session) {
         model.addAttribute("spotId", spotId);
-        model.addAttribute("spot",spotService.find(spotId));
+        model.addAttribute("spot", spotService.find(spotId));
         return userService.userConnected(session, "addSector");
     }
 
@@ -54,7 +46,7 @@ public class SectorController {
         Sector sector = sectorService.find(id);
         model.addAttribute("sector", sector);
         model.addAttribute("spot", sector.getSpot());
-        model.addAttribute("routes",routeService.routes(sector));
+        model.addAttribute("routes", routeService.routes(sector));
         return userService.userConnected(session, "sectorDescribe");
     }
 

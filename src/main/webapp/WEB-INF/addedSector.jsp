@@ -1,14 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peasc
-  Date: 29/03/2020
-  Time: 17:30
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Lister les secteurs</title>
+    <%@ include file="headAndMetas.jsp" %>
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
@@ -24,5 +22,7 @@
     </c:forEach>
 
 </ul>
+<%@ include file="footer.jsp" %>
+<%@ include file="scripts.jsp" %>
 </body>
 </html>

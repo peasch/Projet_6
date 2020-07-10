@@ -1,15 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peasc
-  Date: 09/04/2020
-  Time: 15:57
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>faux !</title>
-
+    <%@ include file="headAndMetas.jsp" %>
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
@@ -19,5 +16,6 @@
     <a href="/connexion" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Connexion</a>
 </p>
 <%@ include file="footer.jsp" %>
+<%@ include file="scripts.jsp" %>
 </body>
 </html>

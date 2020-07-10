@@ -1,12 +1,9 @@
 package com.lade.Entity;
 
 
-import org.springframework.context.annotation.Scope;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,11 +30,17 @@ public class User implements Serializable {
     @Column(name = "member")
     private Boolean member = false;
 
+    @Column(name = "admin")
+    private Boolean admin = false;
+
+
     @OneToMany(mappedBy = "user")
     private Set<Spot> spots = new HashSet<>();
 
     @OneToMany(mappedBy = "owner")
     private Set<Topo> topos = new HashSet<>();
+
+
 
 
     public Set<Topo> getTopos() {
@@ -51,6 +54,13 @@ public class User implements Serializable {
     public User() {
     }
 
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
 
     public Integer getId() {
         return id;
@@ -115,4 +125,6 @@ public class User implements Serializable {
     public void setSpots(Set<Spot> spots) {
         this.spots = spots;
     }
+
+
 }

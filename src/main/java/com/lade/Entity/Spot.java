@@ -2,6 +2,8 @@ package com.lade.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "spot")
@@ -42,7 +44,7 @@ public class Spot implements Serializable {
     }
 
     public void setOfficialLade(Boolean officialLade) {
-        officialLade = officialLade;
+        this.officialLade = officialLade;
     }
 
     public String getName() {

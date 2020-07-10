@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 
 @Transactional
@@ -21,8 +22,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User ajouter(User user) {
         try {
-           User userExist =existingUser(user.getUserName());
-            System.out.println("ce nom d'utilisateur est indisponible");
+            this.findUserByUserName(user.getUserName());
         }catch (NoResultException nre){
             em.persist(user);
         }
@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User existingUser(String userName) {
+    public User findUserByUserName(String userName) {
         User user = em.createQuery("SELECT u from User u where u.userName like :userName", User.class).setParameter("userName", userName).getSingleResult();
         return user;
     }
@@ -39,4 +39,25 @@ public class UserDaoImpl implements UserDao {
     public User findById(Integer id){
         return em.find(User.class,id);
     }
+
+    @Override
+    public Boolean existingUser(String userName){
+        try{
+            User user = this.findUserByUserName(userName);
+            return true;
+        }catch (NoResultException nre){
+            return false;
+        }
+    }
+
+    @Override
+    public List<User> userList(){
+        return em.createQuery("SELECT u from User u order by userName",User.class).getResultList();
+    }
+
+    @Override
+    public User update(User user){
+        return em.merge(user);
+    }
+
 }

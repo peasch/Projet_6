@@ -1,6 +1,6 @@
 package com.lade.Controller;
 
-import com.lade.Entity.User;
+import com.lade.Service.LengthService;
 import com.lade.Service.SpotService;
 import com.lade.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,20 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ResearchController {
-@Autowired
+    @Autowired
     UserService userService;
-@Autowired
+    @Autowired
     SpotService spotService;
+    @Autowired
+    LengthService lengthService;
 
     @RequestMapping(value = "/lfSpot", method = RequestMethod.GET)
     public String lookingForSpot(ModelMap model, HttpSession session) {
-        model.addAttribute("spots",spotService.lister());
-        return userService.userConnected(session,"lfSpot");
+        model.addAttribute("spots", spotService.lister());
+        model.addAttribute("regions", spotService.searchRegion());
+        model.addAttribute("countries", spotService.searchCountry());
+        model.addAttribute("ratings", lengthService.searchRatings());
+        return userService.userConnected(session, "lfSpot");
     }
+
 }

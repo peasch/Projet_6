@@ -22,14 +22,20 @@
         <class>com.lade.Entity.Length</class>
         <class>com.lade.Entity.Topo</class>
         <class>com.lade.Entity.Reservation</class>
+        <class>com.lade.Entity.Commentaire</class>
+
+
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/new_oclade?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/new_oclade?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;characterEncoding=UTF-8&amp;CharSet=UTF-8"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="ocpizza"/>
+            <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
+            <property name="hibernate.connection.CharSet" value="UTF-8"/>
         </properties>
     </persistence-unit>
 </persistence>

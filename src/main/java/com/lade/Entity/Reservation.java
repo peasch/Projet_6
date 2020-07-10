@@ -35,7 +35,8 @@ public class Reservation implements Serializable {
     @JoinColumn(name = "fk_topo")
     private Topo topo;
 
-
+    @Column(name = "returned")
+    private Boolean returned;
 
     public Reservation() {
     }
@@ -96,5 +97,12 @@ public class Reservation implements Serializable {
         this.topo = topo;
     }
 
+    public Boolean getReturned() {
+        return returned;
+    }
+
+    public void setReturned(Boolean returned) {
+        this.returned = returned;
+    }
 }
 

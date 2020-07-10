@@ -2,6 +2,7 @@ package com.lade.Dao.Impl;
 
 import com.lade.Dao.ReservationDao;
 import com.lade.Entity.Reservation;
+import com.lade.Entity.Spot;
 import com.lade.Entity.Topo;
 import com.lade.Entity.User;
 import org.springframework.stereotype.Repository;
@@ -56,8 +57,17 @@ public class ReservationDaoImpl implements ReservationDao {
 
     @Override
     public void cancelResa(Reservation reservation){
-
-
         em.remove(em.merge(reservation));
     }
+    @Override
+    public Reservation update(Reservation reservation){
+        return em.merge(reservation);
+    }
+
+    @Override
+    public Reservation findLastRefuse(User user) {
+        return em.createQuery("SELECT  r from Reservation r ORDER by id desc where r.accepted is false and r.returned is true and r.caller like : user",Reservation.class).setParameter("user",user).setMaxResults(1).getSingleResult();
+    }
+
+
 }

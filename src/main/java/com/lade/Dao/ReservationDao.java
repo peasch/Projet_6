@@ -14,4 +14,7 @@ public interface ReservationDao {
     Reservation findById(Integer id);
     Reservation acceptResa(Reservation reservation);
     void cancelResa(Reservation reservation);
+    Reservation update(Reservation reservation);
+    Reservation findLastRefuse(User user);
+
 }

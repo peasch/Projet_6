@@ -9,4 +9,7 @@ public interface SpotDao {
     List<Spot> lister();
     Spot find(Integer id);
     Spot findLast();
+    Spot update(Spot spot);
+    List<String> searchRegion();
+    List<String> searchCountry();
 }

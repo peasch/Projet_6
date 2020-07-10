@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>profil de ${user.userName}</title>
+    <title> Profil de ${user.userName}</title>
+    <%@ include file="headAndMetas.jsp" %>
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
@@ -62,14 +63,14 @@
                     <p>
                         <c:forEach var="reservation" items="${reservations}">
                             <c:choose>
-                                <c:when test="${reservation.accepted==null}">
+                                <c:when test="${reservation.accepted==null && reservation.topo.getAvailable()==true}">
                                     <c:out value="${reservation.topo.getName()} demandé par ${reservation.caller.getUserName()} le ${reservation.dateReservation}"/>
                                     <a href="/reservation/accept/${reservation.id}"
                                        class="btn btn-outline-secondary btn-sm "
                                        role="button"
                                        aria-pressed="true">
                                         Accepter</a>
-                                    <a href="#" class="btn btn-outline-warning btn-sm " role="button"
+                                    <a href="/reservation/refuse/${reservation.id}" class="btn btn-outline-warning btn-sm " role="button"
                                        aria-pressed="true">
                                         Refuser </a> <br>
                                 </c:when>
@@ -102,7 +103,7 @@
                                        class="btn btn-outline-secondary btn-sm " role="button"
                                        aria-pressed="true">
                                         Annuler</a><br></c:when>
-                                <c:when test="${reservation.accepted==true}">
+                                <c:when test="${reservation.accepted==true && reservation.returned!=true}">
                                     <c:out value="La demande de réservation pour le topo : ${reservation.topo.getName()} a été acceptée."/><br>
                                     <c:out value="Vous pouvez contacter ${reservation.topo.getOwner().getUserName()} ici :"/><a href="mailto:${reservation.topo.getOwner().getEmail()} ">${reservation.topo.getOwner().getEmail()}</a><br>
                                 </c:when>
@@ -130,9 +131,9 @@
                     <p>
                         <c:forEach var="reservation" items="${reservations}">
                             <c:choose>
-                                <c:when test="${reservation.accepted==true && reservation.topo.getAvailable()==false}">
+                                <c:when test="${reservation.accepted==true && reservation.topo.getAvailable()==false && reservation.returned!=true}">
                             <c:out value="${reservation.topo.getName()} emprunté par ${reservation.getCaller().getUserName()} le ${reservation.acceptDate}"/>
-                            <a href="/topo/${reservation.topo.getId()}/retourdispo" class="btn btn-outline-secondary btn-sm " role="button" aria-pressed="true">Retour dispo</a><br>
+                            <a href="/topo/${reservation.id}/retourdispo" class="btn btn-outline-secondary btn-sm " role="button" aria-pressed="true">Retour dispo</a><br>
                             </c:when>
                         </c:choose>
                         </c:forEach>
@@ -144,5 +145,6 @@
     </div>
 </section>
 <%@ include file="footer.jsp" %>
+<%@ include file="scripts.jsp" %>
 </body>
 </html>

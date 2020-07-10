@@ -1,5 +1,6 @@
 package com.lade.Dao;
 
+import com.lade.Entity.Reservation;
 import com.lade.Entity.Spot;
 import com.lade.Entity.Topo;
 import com.lade.Entity.User;
@@ -16,4 +17,5 @@ public interface TopoDao {
     List<Topo> toposWithoutUsers(User user);
     Topo updateTopo(Topo topo);
     List<Topo> findUnavailable(User user);
-}
+
+    }

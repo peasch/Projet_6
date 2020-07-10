@@ -1,11 +1,12 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Ajouter un Spot</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%@ include file="headAndMetas.jsp" %>
 </head>
 <body>
 <%@ include file="navigation.jsp" %>
@@ -32,8 +33,8 @@
             </form>
         </div>
     </div>
-
 </div>
 <%@ include file="footer.jsp" %>
+<%@ include file="scripts.jsp" %>
 </body>
 </html>

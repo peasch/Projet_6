@@ -1,7 +1,7 @@
 package com.lade.Service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class LengthService {
+public interface LengthService {
+    List<String> searchRatings();
 }

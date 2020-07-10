@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 @Controller
 public class ReservationController {
@@ -39,10 +38,7 @@ public class ReservationController {
     public String reservedTopo(@PathVariable(name = "topoId") Integer id, HttpSession session, ModelMap model) {
         User caller = (User) session.getAttribute("user");
         Topo topo = topoService.find(id);
-        long millis = System.currentTimeMillis();
-        Date date = new Date(millis);
-        Reservation resa = reservationService.toResa(caller, date, topo);
-        reservationService.add(resa);
+        reservationService.add(caller,topo);
         model.addAttribute("topo", topo);
         return userService.userConnected(session, "resaDemanded");
     }
@@ -51,7 +47,6 @@ public class ReservationController {
     public String acceptResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model) {
         Reservation resa = reservationService.acceptResa(reservationService.findById(id));
         model.addAttribute("resa",resa);
-        resa.getTopo().setAvailable(false);
         return userService.userConnected(session, "resaDemanded");
     }
 
@@ -59,9 +54,13 @@ public class ReservationController {
     public String cancelResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model){
         Reservation resa = reservationService.acceptResa(reservationService.findById(id));
         reservationService.cancelResa(resa);
-
         return userService.userConnected(session, "resaCancelled");
     }
 
-
+    @RequestMapping(value = "/reservation/refuse/{reservationId}", method = RequestMethod.GET)
+    public String refuseResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model) {
+        Reservation resa = reservationService.refuse(reservationService.findById(id));
+        model.addAttribute("resa",resa);
+        return userService.userConnected(session, "resaRefused");
+    }
 }

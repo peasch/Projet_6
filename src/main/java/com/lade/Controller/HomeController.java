@@ -1,6 +1,5 @@
 package com.lade.Controller;
 
-import com.lade.Dao.SpotDao;
 import com.lade.Service.SpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +14,8 @@ public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String index(ModelMap model) {
-        model.addAttribute("lastSpot",spotService.findLast());
-        return "index";
+        model.addAttribute("lastSpot", spotService.findLast());
+        return "home";
     }
 
 }
