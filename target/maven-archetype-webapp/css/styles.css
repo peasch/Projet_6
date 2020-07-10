@@ -1,0 +1,180 @@
+*{
+    margin:0;
+    padding :0;
+}
+body{
+    font-size: 16px;
+}
+.wrapper{
+    width: 90%;
+    margin : 0 auto;
+    padding:0 10px;
+}
+.clear
+{
+    clear: both;
+}
+h1{
+    font-family:'Montserrat Subrayada','Raleway', sans-serif;
+    font-size: 50px;
+
+}
+h2{
+    font-family:'Montserrat Subrayada','Raleway', sans-serif;
+    font-size: 90px;
+
+}
+h4{
+    font-size: 24px;
+}
+p{
+   line-height: 20px;
+}
+small{
+    font-style: italic;
+    font-size: 13px;
+}
+.red-dot{
+    color:red;
+    font-size: 1.5em;
+}
+ul{
+    list-style: none;
+}
+/*Header */
+header{
+    height: 50px;
+}
+header h1{
+    float:left;
+    margin:20px 0px 0px 20px;
+
+}
+
+
+/*Nav bar */
+#navigation-section{
+    width: 100%;
+    float: left;
+}
+/* section image accueil*/
+
+#accueil-image{
+    height: 580px;
+    background: url("/photos/climb2.jpg") center;
+
+}
+
+#accueil-image h2{
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+    padding:70px 0px 40px 0px;
+}
+#accueil-image h4{
+    display: block;
+    color:white;
+    text-align: center;
+    padding:80px 0;
+}
+ .formulaire{
+    color:white;
+    text-align: center;
+    padding:80px 0;
+}
+
+/*Steps */
+#steps ul{
+margin:80px 0;
+}
+#steps ul li {
+    width : 32%;
+    float:left;
+    padding-top: 140px;
+text-align: center;
+    margin-right: 10px;
+}
+#steps h4{
+
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#steps p{
+
+}
+#step-1{
+background: url("/photos/icons1.png") no-repeat top center;
+}
+#step-2{
+    background: url("/photos/icons2.png") no-repeat top center;
+}
+#step-3{
+    background: url("/photos/icons3.png") no-repeat top center;
+}
+
+/* lasts */
+#lasts
+{
+    background-color: #efefef;
+    padding : 60px 0;
+}
+#lasts article
+{
+    width : 40%;
+    height: 270px;
+    border-radius: 10px;
+    margin: 0 5%;
+    border:1px solid black;
+}
+
+.overlay{
+background-color:rgba(255,255,255,0.9);
+    height: 100%;
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+}
+article h4{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+#lasts p{
+    text-align: center;
+}
+
+/*Footer */
+footer{
+    height: 260px;
+    background-color: #444;
+}
+footer h1{
+    color:white;
+    text-align: center;
+    padding-top: 80px;
+}
+.copyright{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 30px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
