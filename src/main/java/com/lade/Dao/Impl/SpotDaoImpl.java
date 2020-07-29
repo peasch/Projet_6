@@ -48,7 +48,15 @@ public class SpotDaoImpl implements SpotDao {
 
     @Override
     public List<String> searchCountry(){
-        return em.createQuery("SELECT DISTINCT country from Spot s ",String.class).getResultList();
+        return em.createQuery("SELECT DISTINCT country from Spot s  ",String.class).getResultList();
     }
+@Override
+    public List<Spot> researchSpotByParameters(String query){
+
+        return em.createQuery(query,Spot.class).getResultList();
+    }
+
+
+
 
 }

@@ -33,9 +33,9 @@ public class AdministrationController {
         if (userService.isAdmin(user)){
             model.addAttribute("user", user);
             model.addAttribute("admin", user.getAdmin());
-            return userService.userConnected(session,  "pageAdmin");
+            return userService.userConnected(session,  "/account/pageAdmin");
         }else {
-            return userService.userConnected(session, "notAdmin");
+            return userService.userConnected(session, "/account/notAdmin");
         }
     }
 
@@ -48,9 +48,9 @@ public class AdministrationController {
             model.addAttribute("admin", user.getAdmin());
             model.addAttribute("userList",userService.userList());
             model.addAttribute("roleAdmin",roleAdmin);
-            return userService.userConnected(session,  "pageAdmin");
+            return userService.userConnected(session,  "/account/pageAdmin");
         }else {
-            return userService.userConnected(session, "notAdmin");
+            return userService.userConnected(session, "/account/notAdmin");
         }
     }
 
@@ -68,9 +68,9 @@ public class AdministrationController {
             model.addAttribute("reservations", reservations);
             model.addAttribute("resaEnCours", resaEnCours);
             model.addAttribute("size", size);
-            return userService.userConnected(session, "profile");
+            return userService.userConnected(session, "/account/profile");
         }else{
-            return userService.userConnected(session, "notAdmin");
+            return userService.userConnected(session, "/account/notAdmin");
         }
     }
 
@@ -82,9 +82,9 @@ public class AdministrationController {
             user.setMember(true);
             userService.upgradeMember(user);
             model.addAttribute("user", user);
-            return userService.userConnected(session, "membered");
+            return userService.userConnected(session, "/account/membered");
         }else {
-            return userService.userConnected(session, "notAdmin");
+            return userService.userConnected(session, "/account/notAdmin");
         }
     }
 }

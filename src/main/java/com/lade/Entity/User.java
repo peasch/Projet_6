@@ -34,10 +34,10 @@ public class User implements Serializable {
     private Boolean admin = false;
 
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private Set<Spot> spots = new HashSet<>();
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner",fetch = FetchType.LAZY)
     private Set<Topo> topos = new HashSet<>();
 
 

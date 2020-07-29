@@ -12,4 +12,5 @@ public interface SpotDao {
     Spot update(Spot spot);
     List<String> searchRegion();
     List<String> searchCountry();
+    List<Spot> researchSpotByParameters(String countries);
 }

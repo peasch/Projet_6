@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
@@ -22,7 +22,7 @@
 <%@ include file="header.jsp" %>
 <section id="accueil-image">
     <div class="wrapper">
-        <h2>la communautÃ©<br><strong> de l'escalade</strong><span class="red-dot">.</span></h2>
+        <h2>la communauté<br><strong> de l'escalade</strong><span class="red-dot">.</span></h2>
         <div class="clear"></div>
     </div>
 </section>
@@ -36,13 +36,13 @@
             </li>
             <li id="step-2">
                 <h4>Partager<span class="red-dot">.</span></h4>
-                <p>Vous avez des spots Ã  nous faire dÃ©couvrir ? Enregistrez-les pour que les amis en profitent
+                <p>Vous avez des spots à nous faire découvrir ? Enregistrez-les pour que les amis en profitent
                     !</p>
             </li>
             <li id="step-3">
                 <h4>Echanger<span class="red-dot">.</span></h4>
                 <p>Vous avez des topos dont vous voulez en faire profiter ? Nous vous mettons en relation pour le
-                    prÃªt !</p>
+                    prêt !</p>
             </li>
             <div class="clear"></div>
         </ul>
@@ -53,14 +53,15 @@
     <div class="wrapper">
         <article style="background-image: url('/photos/escalade_2.jpg');float:left">
             <div class="overlay">
-                <h4>dernier Spot proposÃ©<span class="red-dot">...</span></h4>
-                <p><small>Nom: ${lastSpot.name}<br> RÃ©gion: ${lastSpot.region}<br>Pays: ${lastSpot.country}</small></p>
+                <h4>dernier Spot proposé<span class="red-dot">...</span></h4>
+                <p><small>Nom: ${lastSpot.name}<br> Région: ${lastSpot.region}<br>Pays: ${lastSpot.country}</small></p>
             </div>
         </article>
         <article style="background-image: url('/photos/escalade_4.jpg');float: right">
             <div class="overlay">
-                <h4>dernier topo proposÃ© <span class="red-dot">...</span></h4>
-                <p><small></small></p>
+                <h4>dernier topo proposé <span class="red-dot">...</span></h4>
+                <p><small>Nom: ${lastTopo.name}<br> Région: ${lastTopo.region}<br>Pays: ${lastTopo.country}</small></p>
+                <p><small>Parution : ${lastTopo.parution}</small></p>
             </div>
         </article>
         <div class="clear"></div>

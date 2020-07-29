@@ -58,5 +58,8 @@ public class TopoDaoImpl implements TopoDao {
 
     }
 
-
+    @Override
+    public Topo findLast(){
+        return em.createQuery("SELECT t from Topo t order by id desc",Topo.class).setMaxResults(1).getSingleResult();
+    }
 }

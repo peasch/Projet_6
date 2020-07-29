@@ -19,8 +19,8 @@ public class SectorServiceImpl implements SectorService {
 
     public Sector toSector(String name, String description, Spot spot){
         Sector sector = new Sector();
-        sector.setName(name);
-        sector.setDescription(description);
+        sector.setName(name.trim());
+        sector.setDescription(description.trim());
         sector.setSpot(spot);
 
         return sector;

@@ -25,7 +25,7 @@ public class CommentaireServiceImpl implements CommentaireService {
         Commentaire com = new Commentaire();
         com.setDate(this.dateToday());
         com.setSpot(spot);
-        com.setText(text);
+        com.setText(text.trim());
         com.setUser(user);
         return com;
     }

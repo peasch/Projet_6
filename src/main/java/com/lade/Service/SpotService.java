@@ -19,7 +19,15 @@ public interface SpotService {
     Spot approuve(Spot spot);
 
     Spot downgrade(Spot spot);
-
+    List<String> stringToList(String string);
     List<String> searchRegion();
     List<String> searchCountry();
+    String convertRegionToQuery(List<String> regions);
+    String convertCountryToQuery(List<String> countries);
+    String convertRatingToQuery(List<String> ratings);
+    //List<Spot> researchSpotByCountry(String countries);
+    List<String> countryUnchecked(List<String>countriesChecked);
+    List<Spot> researchSpotWithParameters(String[] countries,String regions,String ratings, String nameSpot, String nameSector);
+    List<String> tabletoList(String[] string);
+
 }

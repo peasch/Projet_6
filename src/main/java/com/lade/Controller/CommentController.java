@@ -35,7 +35,7 @@ public class CommentController {
         model.addAttribute("comments", comments);
         model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("sectors", sectorService.lister(spot));
-        return userService.userConnected(session, "spotDescribe");
+        return userService.userConnected(session, "/spot/spotDescribe");
     }
 
     @RequestMapping(value = "/comment/{commentId}/delete", method = RequestMethod.GET)
@@ -49,14 +49,14 @@ public class CommentController {
         model.addAttribute("user", user);
         if (userService.isMember(user) && user.getUserName().equals(poster.getUserName())) {
             commentaireService.delete(commentaireService.find(id));
-            return userService.userConnected(session, "commentDeleted");
+            return userService.userConnected(session, "/messages/commentDeleted");
         } else if(userService.isAdmin(user)) {
             Boolean roleAdmin=true;
             model.addAttribute("roleAdmin",roleAdmin);
             commentaireService.delete(commentaireService.find(id));
-            return userService.userConnected(session, "commentDeleted");
+            return userService.userConnected(session, "/messages/commentDeleted");
         }else{
-            return userService.userConnected(session, "notYourMessage");
+            return userService.userConnected(session, "/messages/notYourMessage");
         }
 
     }
@@ -67,9 +67,9 @@ public class CommentController {
         User poster = com.getUser();
         if (userService.isMember(user) && user.getUserName().equals(poster.getUserName())) {
             model.addAttribute("commentaire",com);
-            return userService.userConnected(session, "updateMessage");
+            return userService.userConnected(session, "/messages/updateMessage");
         }else{
-            return userService.userConnected(session, "notYourMessage");
+            return userService.userConnected(session, "/messages/notYourMessage");
         }
     }
 
@@ -86,7 +86,7 @@ public class CommentController {
             model.addAttribute("comments", comments);
             model.addAttribute("user", user);
             model.addAttribute("sectors", sectorService.lister(spot));
-            return userService.userConnected(session, "spotDescribe");
-        }else{return userService.userConnected(session, "notYourMessage");}
+            return userService.userConnected(session, "/spot/spotDescribe");
+        }else{return userService.userConnected(session, "/messages/notYourMessage");}
     }
 }

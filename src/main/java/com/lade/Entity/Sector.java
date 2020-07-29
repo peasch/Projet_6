@@ -20,7 +20,7 @@ public class Sector implements Serializable {
     @JoinColumn(name = "fk_spot")
     private Spot spot;
 
-    @OneToMany(mappedBy="sector")
+    @OneToMany(mappedBy="sector",fetch = FetchType.LAZY)
     private Set<Route> routes =new HashSet<>();
 
 

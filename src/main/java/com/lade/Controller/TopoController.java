@@ -27,7 +27,7 @@ public class TopoController {
     @RequestMapping(value = "/topos", method = RequestMethod.GET)
     public String listTopo(ModelMap model, HttpSession session) {
         model.addAttribute("topos", topoService.toposWithoutUsers((User) session.getAttribute("user")));
-        return userService.userConnected(session,"topos");
+        return userService.userConnected(session,"/topos/topos");
     }
 
     @RequestMapping(value = "/topos/{topoId}", method = RequestMethod.GET)
@@ -36,12 +36,12 @@ public class TopoController {
         model.addAttribute("topo",topo);
         model.addAttribute("owner", topo.getOwner());
         model.addAttribute("user",session.getAttribute("user"));
-        return  userService.userConnected(session,"topoDescribe");
+        return  userService.userConnected(session,"/topos/topoDescribe");
     }
 
     @RequestMapping(value = "/topos/add", method = RequestMethod.GET)
     public String addSpot(HttpSession session) {
-        return  userService.userConnected(session, "addTopo");
+        return  userService.userConnected(session, "/topos/addTopo");
     }
 
     @RequestMapping(value = "/topos/added", method = RequestMethod.POST)
@@ -49,7 +49,7 @@ public class TopoController {
         User user = (User) session.getAttribute("user");
         model.addAttribute("topo", topoService.ajouter(apercu,name,parution, user));
         model.addAttribute("userName", user.getUserName());
-        return  userService.userConnected(session,"addedTopo");
+        return  userService.userConnected(session,"/topos/addedTopo");
     }
 
     @RequestMapping(value="/topo/{reservationId}/retourdispo",method =RequestMethod.GET )
@@ -62,7 +62,7 @@ public class TopoController {
         reservationService.update(reservation);
         Topo topo =reservation.getTopo();
         topoService.retourDispo(topo);
-        return  userService.userConnected(session,"retourDispo");
+        return  userService.userConnected(session,"/topos/retourDispo");
     }
 
 

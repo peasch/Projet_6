@@ -41,18 +41,18 @@ public class SpotController {
         model.addAttribute("sectors", sectorService.lister(spot));
         List<Commentaire> comments = commentaireService.findBySpot(spot);
         model.addAttribute("comments", comments);
-        return userService.userConnected(session, "spotDescribe");
+        return userService.userConnected(session, "/spot/spotDescribe");
     }
 
     @RequestMapping(value = "/spots", method = RequestMethod.GET)
     public String listSpot(ModelMap model, HttpSession session) {
         model.addAttribute("spots", spotService.lister());
-        return userService.userConnected(session, "spots");
+        return userService.userConnected(session, "/spot/spots");
     }
 
     @RequestMapping(value = "/spots/add", method = RequestMethod.GET)
     public String addSpot(HttpSession session) {
-        return userService.userConnected(session, "addSpot");
+        return userService.userConnected(session, "/spot/addSpot");
     }
 
     @RequestMapping(value = "/spots/added", method = RequestMethod.POST)
@@ -60,7 +60,7 @@ public class SpotController {
         User user = (User) session.getAttribute("user");
         session.setAttribute("spot", spotService.ajouter(name, adress, latitude, longitude, user));
         session.setAttribute("userName", user.getUserName());
-        return userService.userConnected(session, "addedSpot");
+        return userService.userConnected(session, "/spot/addedSpot");
     }
 
     @RequestMapping(value = "/spot/{spotId}/approuve", method = RequestMethod.GET)
@@ -71,10 +71,10 @@ public class SpotController {
             spot = spotService.approuve(spot);
             model.addAttribute("spot", spot);
             model.addAttribute("approuve",true);
-            return userService.userConnected(session, "approuved");
+            return userService.userConnected(session, "/spot/approuved");
         } else {
             model.addAttribute("role", "member");
-            return userService.userConnected(session, "notAdmin");
+            return userService.userConnected(session, "/account/notAdmin");
         }
     }
 
@@ -89,15 +89,15 @@ public class SpotController {
             spot= spotService.downgrade(spot);
             model.addAttribute("spot", spot);
             model.addAttribute("approuve",false);
-            return userService.userConnected(session, "approuved");
+            return userService.userConnected(session, "/spot/approuved");
             }else{
                 model.addAttribute("impossible",true);
                 model.addAttribute("spot", spot);
-                return userService.userConnected(session, "approuved");
+                return userService.userConnected(session, "/spot/approuved");
             }
         }else {
 
-            return userService.userConnected(session, "notAdmin");
+            return userService.userConnected(session, "/account/notAdmin");
         }
     }
 }

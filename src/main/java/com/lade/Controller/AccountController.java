@@ -34,7 +34,7 @@ public class AccountController {
     @RequestMapping(value = "/connexion", method = RequestMethod.GET)
     public String connexion(ModelMap model) {
         model.addAttribute("lastSpot", spotService.findLast());
-        return "connexion";
+        return "/account/connexion";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -45,15 +45,15 @@ public class AccountController {
             if (conn.getPassword().equals(password)) {
                 session.setAttribute("user", conn);
                 session.setAttribute("userName", conn.getUserName());
-                return "connected";
+                return "/account/connected";
             } else {
 
-                return "errorconnect";
+                return "/account/errorconnect";
             }
         } else {
             Boolean exist = false;
             model.addAttribute("exist", exist);
-            return "errorconnect";
+            return "/account/errorconnect";
         }
     }
 
@@ -61,10 +61,10 @@ public class AccountController {
     public String registration(HttpSession session) {
         if (session.getAttribute("userName") != null) {
             session.invalidate();
-            return "alreadyConnected";
+            return "/account/alreadyConnected";
 
         } else {
-            return "registration";
+            return "/account/registration";
         }
     }
 
@@ -73,13 +73,13 @@ public class AccountController {
                              @RequestParam("prenom") String firstName, @RequestParam("email") String email,
                              @RequestParam("password") String password, HttpSession session) {
         session.setAttribute("user", userService.addUser(username, name, firstName, password, email));
-        return "addedUser";
+        return "/account/addedUser";
     }
 
     @RequestMapping(value = "/disconnect", method = RequestMethod.GET)
     public String deconnexion(HttpSession session) {
         session.invalidate();
-        return "disconnected";
+        return "/account/disconnected";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
@@ -94,7 +94,7 @@ public class AccountController {
         model.addAttribute("reservations", reservations);
         model.addAttribute("resaEnCours", resaEnCours);
         model.addAttribute("size", size);
-        return userService.userConnected(session, "profile");
+        return userService.userConnected(session, "/account/profile");
     }
 
 

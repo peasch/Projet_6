@@ -27,6 +27,9 @@ public class Spot implements Serializable {
     @Column(name="region")
     private String region ="";
 
+    @OneToMany(mappedBy="spot",fetch = FetchType.LAZY)
+    private Set<Sector> sectors =new HashSet<>();
+
     @ManyToOne
     @JoinColumn(name = "fk_user")
     private User user;
@@ -101,6 +104,14 @@ public class Spot implements Serializable {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public Set<Sector> getSectors() {
+        return sectors;
+    }
+
+    public void setSectors(Set<Sector> sectors) {
+        this.sectors = sectors;
     }
 
     public Spot() {

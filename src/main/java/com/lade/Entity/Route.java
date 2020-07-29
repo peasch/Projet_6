@@ -16,7 +16,7 @@ public class Route implements Serializable {
     @JoinColumn(name = "fk_sector")
     private Sector sector;
 
-    @OneToMany(mappedBy = "route")
+    @OneToMany(mappedBy = "route",fetch=FetchType.LAZY)
     private Set<Length> lengths = new HashSet<>();
 
     public Set<Length> getLengths() {

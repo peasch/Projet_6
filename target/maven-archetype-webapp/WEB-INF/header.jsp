@@ -5,4 +5,5 @@
 </header>
 <section class="navigation-section">
     <%@ include file="navigation.jsp" %>
+    <div class="clear"></div>
 </section>

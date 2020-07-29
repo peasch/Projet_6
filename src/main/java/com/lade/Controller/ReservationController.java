@@ -31,7 +31,7 @@ public class ReservationController {
         model.addAttribute("topo", topo);
         model.addAttribute("owner", topo.getOwner());
         model.addAttribute("user", session.getAttribute("user"));
-        return userService.userConnected(session, "topoResa");
+        return userService.userConnected(session, "/reservations/topoResa");
     }
 
     @RequestMapping(value = "/topos/{topoId}/resaRequest", method = RequestMethod.POST)
@@ -40,27 +40,27 @@ public class ReservationController {
         Topo topo = topoService.find(id);
         reservationService.add(caller,topo);
         model.addAttribute("topo", topo);
-        return userService.userConnected(session, "resaDemanded");
+        return userService.userConnected(session, "/reservations/resaDemanded");
     }
 
     @RequestMapping(value = "/reservation/accept/{reservationId}", method = RequestMethod.GET)
     public String acceptResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model) {
         Reservation resa = reservationService.acceptResa(reservationService.findById(id));
         model.addAttribute("resa",resa);
-        return userService.userConnected(session, "resaDemanded");
+        return userService.userConnected(session, "/reservations/resaDemanded");
     }
 
     @RequestMapping(value="/reservation/cancel/{reservationId}",method = RequestMethod.GET)
     public String cancelResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model){
         Reservation resa = reservationService.acceptResa(reservationService.findById(id));
         reservationService.cancelResa(resa);
-        return userService.userConnected(session, "resaCancelled");
+        return userService.userConnected(session, "/reservations/resaCancelled");
     }
 
     @RequestMapping(value = "/reservation/refuse/{reservationId}", method = RequestMethod.GET)
     public String refuseResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model) {
         Reservation resa = reservationService.refuse(reservationService.findById(id));
         model.addAttribute("resa",resa);
-        return userService.userConnected(session, "resaRefused");
+        return userService.userConnected(session, "/reservations/resaRefused");
     }
 }

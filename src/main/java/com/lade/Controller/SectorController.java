@@ -29,7 +29,7 @@ public class SectorController {
     public String addSector(@PathVariable Integer spotId, ModelMap model, HttpSession session) {
         model.addAttribute("spotId", spotId);
         model.addAttribute("spot", spotService.find(spotId));
-        return userService.userConnected(session, "addSector");
+        return userService.userConnected(session, "/sectors/addSector");
     }
 
     @RequestMapping(value = "/spots/{spotId}/sector/add", method = RequestMethod.POST)
@@ -38,7 +38,7 @@ public class SectorController {
         model.addAttribute("spot", spot);
         model.addAttribute("sector", sectorService.ajouter(name, description, spot));
         model.addAttribute("sectors", sectorService.lister(spot));
-        return userService.userConnected(session, "addedSector");
+        return userService.userConnected(session, "/sectors/addedSector");
     }
 
     @RequestMapping(value = "/sector/{sectorId}", method = RequestMethod.GET)
@@ -47,7 +47,7 @@ public class SectorController {
         model.addAttribute("sector", sector);
         model.addAttribute("spot", sector.getSpot());
         model.addAttribute("routes", routeService.routes(sector));
-        return userService.userConnected(session, "sectorDescribe");
+        return userService.userConnected(session, "/sectors/sectorDescribe");
     }
 
 }

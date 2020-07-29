@@ -17,5 +17,6 @@ public interface TopoDao {
     List<Topo> toposWithoutUsers(User user);
     Topo updateTopo(Topo topo);
     List<Topo> findUnavailable(User user);
+    Topo findLast();
 
     }

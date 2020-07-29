@@ -24,4 +24,6 @@ public interface TopoService {
 
     Topo updateTopo(Topo topo);
 
+    Topo findLast();
+
 }

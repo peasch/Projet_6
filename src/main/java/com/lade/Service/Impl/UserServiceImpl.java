@@ -16,11 +16,11 @@ public class UserServiceImpl implements UserService {
 
     public User toUser(String userName,String name,String firstName,String password,String email){
         User user=new User();
-        user.setUserName(userName);
-        user.setName(name);
-        user.setFirstName(firstName);
-        user.setPassword(password);
-        user.setEmail(email);
+        user.setUserName(userName.trim());
+        user.setName(name.trim());
+        user.setFirstName(firstName.trim());
+        user.setPassword(password.trim());
+        user.setEmail(email.trim());
         user.setMember(false);
         user.setAdmin(false);
         return user;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         if(session.getAttribute("userName")!=null){
             return link;
         }else {
-            return "notConnected";
+            return "/account/notConnected";
         }
     }
 
