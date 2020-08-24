@@ -1,10 +1,11 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Rechercher un Spot</title>
+    <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
     <link href="/css/styles.css" rel="stylesheet">
@@ -21,7 +22,7 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<section id="accueil-recherche">
+<section id="accueil-image">
     <div class="wrapper">
         <h2>Rechercher un spot<span class="red-dot">.</span></h2>
         <div class="clear"></div>
@@ -29,12 +30,11 @@
 </section>
 <section id="research">
     <div class="wrapper">
-        <h4>Selectionnez vos critÃ¨res de recherche<span class="red-dot">.</span></h4>
+        <h4>Selectionnez vos critères de recherche<span class="red-dot">.</span></h4>
         <form method="post" action="/recherche">
             <ul>
                 <li id="research-1">
                     <h6>Pays <span class="red-dotted">:</span></h6>
-
                     <c:choose>
                         <c:when test="${empty countryTable}">
                             <c:forEach var="country" items="${ countries }">
@@ -43,10 +43,10 @@
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="countryTable" items="${countryTable}">
-                                <input type="checkbox" name="country" id="country" value="${countryTable}"
+                            <c:forEach var="country" items="${countryTable}">
+                                <input type="checkbox" name="country" id="country" value="${country}"
                                        checked/>
-                                <label for="${countryTable}">${countryTable}</label><br/>
+                                <label for="${country}">${country}</label><br/>
                             </c:forEach>
                             <c:forEach var="country" items="${uncheckedCountries}">
                                 <input type="checkbox" name="country" id="country" value="${country}"/>
@@ -58,21 +58,50 @@
                     <input type="hidden" name="country" id="country" checked value="no"/><br/>
                 </li>
                 <li id="research-2">
-                    <h6>RÃ©gions <span class="red-dotted">:</span></h6>
-
-                    <c:forEach var="region" items="${ regions }">
-                        <input type="checkbox" name="region" id="region" value="${region}"/> <label
-                            for="${region}">${region}</label><br/>
-                    </c:forEach>
+                    <h6>Régions <span class="red-dotted">:</span></h6>
+                    <c:choose>
+                        <c:when test="${empty regionTable}">
+                            <c:forEach var="region" items="${ regions }">
+                                <input type="checkbox" name="region" id="region" value="${region}"/>
+                                <label for="${region}">${region}</label><br/>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="region" items="${regionTable}">
+                                <input type="checkbox" name="region" id="region" value="${region}"
+                                       checked/>
+                                <label for="${region}">${region}</label><br/>
+                            </c:forEach>
+                            <c:forEach var="region" items="${uncheckedRegions}">
+                                <input type="checkbox" name="region" id="region" value="${region}"/>
+                                <label for="${region}">${region}</label><br/>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                     <input type="hidden" name="region" id="region" checked value="no"/><br/>
                 </li>
                 <li id="research-3">
                     <h6>cotations <span class="red-dotted">:</span></h6>
+                    <c:choose>
+                        <c:when test="${empty ratingTable}">
+                            <c:forEach var="rating" items="${ ratings }">
+                                <input type="checkbox" name="rating" id="rating" value="${rating}"/>
+                                <label for="${rating}">${rating}</label><br/>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="rating" items="${ratingTable}">
+                                <input type="checkbox" name="rating" id="rating" value="${rating}"
+                                       checked/>
+                                <label for="${rating}">${rating}</label><br/>
+                            </c:forEach>
+                            <c:forEach var="rating" items="${uncheckedRatings}">
+                                <input type="checkbox" name="rating" id="rating" value="${rating}"/>
+                                <label for="${rating}">${rating}</label><br/>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
 
-                    <c:forEach var="rating" items="${ratings }">
-                        <input type="checkbox" name="rating" id="rating" value="${rating}"/> <label
-                            for="${rating}">${rating}</label><br/>
-                    </c:forEach>
                     <input type="hidden" name="rating" id="rating" checked value="no"/><br/>
                 </li>
                 <li id="research-4">
@@ -91,7 +120,6 @@
             </ul>
 
             <div id="valid-form">
-                <input type="reset" value="RÃ©initialiser" style="margin-right: 10px"/>
                 <input type="submit" value="Envoyer"/>
             </div>
         </form>
@@ -101,14 +129,14 @@
     <div class="wrapper">
         <c:choose>
             <c:when test="${found==true}">
-                <h4>Spots correspondant Ã  vos critÃ¨res de recherche<span class="red-dot">.</span></h4>
+                <h4>Spots correspondant à vos critères de recherche<span class="red-dot">.</span></h4>
             </c:when>
         </c:choose>
         <c:forEach var="researchSpot" items="${researchSpots}">
             <article style="background-image: url('/photos/escalade_2.jpg');float:left">
                 <div class="overlay">
                     <h4><a href="/spots/${researchSpot.id}">${researchSpot.name}<span class="red-dot">.</span></h4>
-                    <p><small>RÃ©gion : ${researchSpot.region}<br>Pays: ${researchSpot.country}</small></p>
+                    <p><small>Région : ${researchSpot.region}<br>Pays: ${researchSpot.country}</small></p>
 
                 </div>
             </article>

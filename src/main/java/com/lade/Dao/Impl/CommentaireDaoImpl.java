@@ -34,7 +34,7 @@ public class CommentaireDaoImpl  implements CommentaireDao {
 
     @Override
     public List<Commentaire> findBySpot(Spot spot){
-        return em.createQuery("SELECT c from Commentaire c WHERE c.spot like : spot ",Commentaire.class).setParameter("spot",spot).getResultList();
+        return em.createQuery("SELECT c from Commentaire c WHERE c.spot like : spot order by date desc",Commentaire.class).setParameter("spot",spot).getResultList();
     }
 
     @Override

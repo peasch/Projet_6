@@ -27,40 +27,60 @@ public class ReservationController {
 
     @RequestMapping(value = "/topos/{topoId}/resa", method = RequestMethod.GET)
     public String resaTopo(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
-        Topo topo = topoService.find(id);
-        model.addAttribute("topo", topo);
-        model.addAttribute("owner", topo.getOwner());
-        model.addAttribute("user", session.getAttribute("user"));
-        return userService.userConnected(session, "/reservations/topoResa");
+        if (userService.userIsConnected(session)) {
+            Topo topo = topoService.find(id);
+            model.addAttribute("topo", topo);
+            model.addAttribute("owner", topo.getOwner());
+            model.addAttribute("user", session.getAttribute("user"));
+            return "reservations/topoResa";
+        } else {
+            return "/account/notConnected";
+        }
     }
 
     @RequestMapping(value = "/topos/{topoId}/resaRequest", method = RequestMethod.POST)
     public String reservedTopo(@PathVariable(name = "topoId") Integer id, HttpSession session, ModelMap model) {
-        User caller = (User) session.getAttribute("user");
-        Topo topo = topoService.find(id);
-        reservationService.add(caller,topo);
-        model.addAttribute("topo", topo);
-        return userService.userConnected(session, "/reservations/resaDemanded");
+        if (userService.userIsConnected(session)) {
+            User caller = (User) session.getAttribute("user");
+            Topo topo = topoService.find(id);
+            reservationService.add(caller,topo);
+            model.addAttribute("topo", topo);
+            return "reservations/resaDemanded";
+        } else {
+            return "/account/notConnected";
+        }
     }
 
     @RequestMapping(value = "/reservation/accept/{reservationId}", method = RequestMethod.GET)
     public String acceptResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model) {
-        Reservation resa = reservationService.acceptResa(reservationService.findById(id));
-        model.addAttribute("resa",resa);
-        return userService.userConnected(session, "/reservations/resaDemanded");
+        if (userService.userIsConnected(session)) {
+            Reservation resa = reservationService.acceptResa(reservationService.findById(id));
+            model.addAttribute("resa",resa);
+            return "reservations/resaDemanded";
+        } else {
+            return "/account/notConnected";
+        }
     }
 
     @RequestMapping(value="/reservation/cancel/{reservationId}",method = RequestMethod.GET)
     public String cancelResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model){
-        Reservation resa = reservationService.acceptResa(reservationService.findById(id));
-        reservationService.cancelResa(resa);
-        return userService.userConnected(session, "/reservations/resaCancelled");
+        if (userService.userIsConnected(session)) {
+            Reservation resa = reservationService.acceptResa(reservationService.findById(id));
+            reservationService.cancelResa(resa);
+            return "reservations/resaCancelled";
+        } else {
+            return "/account/notConnected";
+        }
     }
 
     @RequestMapping(value = "/reservation/refuse/{reservationId}", method = RequestMethod.GET)
     public String refuseResa(@PathVariable(name = "reservationId") Integer id, HttpSession session, ModelMap model) {
-        Reservation resa = reservationService.refuse(reservationService.findById(id));
-        model.addAttribute("resa",resa);
-        return userService.userConnected(session, "/reservations/resaRefused");
+        if (userService.userIsConnected(session)) {
+            Reservation resa = reservationService.refuse(reservationService.findById(id));
+            model.addAttribute("resa",resa);
+            return "reservations/resaRefused";
+        } else {
+            return "/account/notConnected";
+        }
     }
 }

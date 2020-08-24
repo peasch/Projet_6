@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface CommentaireService {
-    Date dateToday();
+    String dateToday();
 
     Commentaire toCom(String text, User user, Spot spot);
 

@@ -8,17 +8,21 @@ import com.lade.Service.CommentaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class CommentaireServiceImpl implements CommentaireService {
     @Autowired
     CommentaireDao commentaireDao;
 
-    public Date dateToday() {
-        long millis = System.currentTimeMillis();
-        return new Date(millis);
+    public String dateToday() {
+        Locale locale = new Locale("fr", "FR");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
+        DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
+        return "le " + dateFormat.format(new Date())+ " à " +timeFormat.format(new Date());
     }
 
     public Commentaire toCom(String text, User user, Spot spot) {
@@ -46,6 +50,7 @@ public class CommentaireServiceImpl implements CommentaireService {
     }
     public Commentaire modify(Commentaire com,String text){
         com.setText(text);
+        com.setDate(this.dateToday());
         return commentaireDao.update(com);
     }
 }

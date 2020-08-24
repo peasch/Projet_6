@@ -41,26 +41,28 @@ public class SpotController {
         model.addAttribute("sectors", sectorService.lister(spot));
         List<Commentaire> comments = commentaireService.findBySpot(spot);
         model.addAttribute("comments", comments);
-        return userService.userConnected(session, "/spot/spotDescribe");
+        return userService.userConnected(session, "spot/spotDescribe");
     }
 
     @RequestMapping(value = "/spots", method = RequestMethod.GET)
     public String listSpot(ModelMap model, HttpSession session) {
         model.addAttribute("spots", spotService.lister());
-        return userService.userConnected(session, "/spot/spots");
+        return userService.userConnected(session, "spot/spots");
     }
 
     @RequestMapping(value = "/spots/add", method = RequestMethod.GET)
-    public String addSpot(HttpSession session) {
-        return userService.userConnected(session, "/spot/addSpot");
+    public String addSpot(ModelMap model,HttpSession session) {
+        model.addAttribute("regions", spotService.searchRegion());
+        model.addAttribute("countries", spotService.searchCountry());
+        return userService.userConnected(session, "spot/addSpot");
     }
 
     @RequestMapping(value = "/spots/added", method = RequestMethod.POST)
-    public String addedSpot(@RequestParam String name, @RequestParam String adress, @RequestParam String latitude, @RequestParam String longitude, HttpSession session) {
+    public String addedSpot(@RequestParam String name, @RequestParam String adress, @RequestParam String latitude, @RequestParam String longitude, @RequestParam String region, @RequestParam String country, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        session.setAttribute("spot", spotService.ajouter(name, adress, latitude, longitude, user));
+        session.setAttribute("spot", spotService.ajouter(name, adress, latitude, longitude, region, country, user));
         session.setAttribute("userName", user.getUserName());
-        return userService.userConnected(session, "/spot/addedSpot");
+        return userService.userConnected(session, "spot/addedSpot");
     }
 
     @RequestMapping(value = "/spot/{spotId}/approuve", method = RequestMethod.GET)

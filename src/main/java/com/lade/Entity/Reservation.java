@@ -15,16 +15,16 @@ public class Reservation implements Serializable {
     private Integer id;
 
     @Column(name = "date_reservation")
-    private Date dateReservation;
+    private String dateReservation;
 
     @Column(name = "accepted")
     private Boolean accepted;
 
     @Column(name = "accept_date")
-    private Date acceptDate;
+    private String acceptDate;
 
     @Column(name = "return_date")
-    private Date returnDate;
+    private String returnDate;
 
 
     @ManyToOne
@@ -49,11 +49,11 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
-    public Date getDateReservation() {
+    public String getDateReservation() {
         return dateReservation;
     }
 
-    public void setDateReservation(Date dateReservation) {
+    public void setDateReservation(String dateReservation) {
         this.dateReservation = dateReservation;
     }
 
@@ -65,19 +65,19 @@ public class Reservation implements Serializable {
         this.accepted = accepted;
     }
 
-    public Date getAcceptDate() {
+    public String getAcceptDate() {
         return acceptDate;
     }
 
-    public void setAcceptDate(Date acceptDate) {
+    public void setAcceptDate(String acceptDate) {
         this.acceptDate = acceptDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 

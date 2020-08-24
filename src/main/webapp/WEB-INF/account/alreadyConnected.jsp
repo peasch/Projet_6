@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -11,8 +10,8 @@
 <body>
 <%@ include file="../navigation.jsp" %>
 <section class="page-section cta">
-<h5> Il y Ã  dÃ©jÃ  un utilisateur connectÃ© !
-    nous venons de vous dÃ©connecter pour pouvoir vous inscrire sur le site !
+<h5> Il y à déjà un utilisateur connecté !
+    nous venons de vous déconnecter pour pouvoir vous inscrire sur le site !
 </h5>
 <a href="/registration" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Inscription !</a>
 </section>

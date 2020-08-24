@@ -6,7 +6,7 @@ import com.lade.Entity.User;
 import java.util.List;
 
 public interface SpotService {
-    Spot toSpot(String name, String adress, String latitude, String longitude, User user);
+    Spot toSpot(String name, String adress, String latitude, String longitude, String region, String country, User user);
 
     Spot findLast();
 
@@ -14,7 +14,7 @@ public interface SpotService {
 
     List<Spot> lister();
 
-    Spot ajouter(String name, String adress, String latitude, String longitude, User user);
+    Spot ajouter(String name, String adress, String latitude, String longitude, String region, String country, User user);
 
     Spot approuve(Spot spot);
 
@@ -25,8 +25,8 @@ public interface SpotService {
     String convertRegionToQuery(List<String> regions);
     String convertCountryToQuery(List<String> countries);
     String convertRatingToQuery(List<String> ratings);
-    //List<Spot> researchSpotByCountry(String countries);
     List<String> countryUnchecked(List<String>countriesChecked);
+    List<String> regionUnchecked(List<String> regionsChecked);
     List<Spot> researchSpotWithParameters(String[] countries,String regions,String ratings, String nameSpot, String nameSector);
     List<String> tabletoList(String[] string);
 

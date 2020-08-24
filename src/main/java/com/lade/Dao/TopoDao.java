@@ -18,5 +18,6 @@ public interface TopoDao {
     Topo updateTopo(Topo topo);
     List<Topo> findUnavailable(User user);
     Topo findLast();
-
+    List<String> searchRegion();
+    List<String> searchCountry();
     }

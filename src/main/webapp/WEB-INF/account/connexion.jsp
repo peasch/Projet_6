@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" language="java" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>connexion</title>
+    <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
     <link href="/css/styles.css" rel="stylesheet">
@@ -21,12 +21,7 @@
           rel="stylesheet">
 </head>
 <body>
-<header>
-    <h1>Les amis de l'escalade<span class="red-dot">.</span></h1>
-</header>
-<section class="navigation-section">
-    <%@ include file="../navigation.jsp" %>
-</section>
+<%@ include file="../header.jsp" %>
 <section id="accueil-image">
     <div class="formulaire">
         <form method="post" action="login">
@@ -45,48 +40,58 @@
     </div>
 </section>
 <section id="steps">
-    <div class="wrapper">
-        <ul>
-            <li id="step-1">
-                <h4>Rencontrer<span class="red-dot">.</span></h4>
-                <p>Une famille de fans d'escalade, tout comme vous ! </p>
-            </li>
-            <li id="step-2">
-                <h4>Partager<span class="red-dot">.</span></h4>
-                <p>Vous avez des spots Ã  nous faire dÃ©couvrir ? Enregistrez-les pour que les amis en profitent
-                    !</p>
-            </li>
-            <li id="step-3">
-                <h4>Echanger<span class="red-dot">.</span></h4>
-                <p>Vous avez des topos dont vous voulez en faire profiter ? Nous vous mettons en relation pour le
-                    prÃªt !</p>
-            </li>
-            <div class="clear"></div>
-        </ul>
-
+    <div class="container"></div>
+    <div class="row" style="margin: 80px 0;display: flex;flex-wrap: wrap;justify-content: center">
+        <div class="col-12  col-md-6 col-lg-3" id="step-1" style=" width: 32%;float: left; padding-top: 140px;text-align: center;margin-right: 10px;">
+            <h4>Rencontrer<span class="red-dot">.</span></h4>
+            <p>Une famille de fans d'escalade, tout comme vous ! </p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3" id="step-2" style=" width: 32%;float: left; padding-top: 140px;text-align: center;margin-right: 10px;">
+            <h4>Partager<span class="red-dot">.</span></h4>
+            <p>Vous avez des spots à nous faire découvrir ? Enregistrez-les pour que les amis en profitent
+                !</p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3" id="step-3" style=" width: 32%;float: left; padding-top: 140px;text-align: center;margin-right: 10px;">
+            <h4>Echanger<span class="red-dot">.</span></h4>
+            <p>Vous avez des topos dont vous voulez en faire profiter ? Nous vous mettons en relation pour le
+                prêt !</p>
+        </div>
+        <div class="clear"></div>
+    </div>
     </div>
 </section>
 <section id="lasts">
     <div class="wrapper">
-        <article style="background-image: url('/photos/escalade_2.jpg');float:left">
-            <div class="overlay">
-                <h4>dernier Spot proposÃ©<span class="red-dot">...</span></h4>
-                <p><small>Nom: ${lastSpot.name}<br> RÃ©gion: ${lastSpot.region}<br>Pays: ${lastSpot.country}</small></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <article style="background: url('/photos/escalade_2.jpg');float:left;">
+                        <div class="overlay">
+                            <h4>dernier Spot proposé <span class="red-dot">...</span></h4>
+                            <p><small>Nom: ${lastSpot.name}<br> Région: ${lastSpot.region}<br>Pays: ${lastSpot.country}
+                            </small></p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sm-6">
+                    <article style="background-image: url('/photos/escalade_4.jpg');float: right">
+                        <div class="overlay">
+                            <h4>dernier topo proposé <span class="red-dot">...</span></h4>
+                            <p><small>Nom: ${lastTopo.name}<br> Région: ${lastTopo.region}<br>Pays: ${lastTopo.country}
+                            </small></p>
+                            <p><small>Parution : ${lastTopo.parution}</small></p>
+                        </div>
+                    </article>
+                </div>
             </div>
-        </article>
-        <article style="background-image: url('/photos/escalade_4.jpg');float: right">
-            <div class="overlay">
-                <h4>dernier topo proposÃ© <span class="red-dot">...</span></h4>
-                <p><small></small></p>
-            </div>
-        </article>
-        <div class="clear"></div>
+            <div class="clear"></div>
+        </div>
     </div>
 </section>
 <footer>
     <div class="wrapper">
         <h1>Les amis de l'escalade<span class="red-dot">.</span></h1>
-        <div class="copyright">Copyright Â© 2020 Tous droits rÃ©servÃ©s.</div>
+        <div class="copyright">Copyright © 2020 Tous droits réservés.</div>
     </div>
 </footer>
 <%@ include file="../scripts.jsp" %>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <footer>
     <div class="wrapper">
+        <div class="white-divider"></div>
         <h1>Les amis de l'escalade<span class="red-dot">.</span></h1>
         <div class="copyright">Copyright © 2020 Tous droits réservés.</div>
     </div>

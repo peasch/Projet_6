@@ -26,6 +26,13 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    public Boolean userIsConnected(HttpSession session){
+        if(session.getAttribute("userName")!=null){
+            return true;
+        }else
+            return false;
+    }
+
     public String userConnected(HttpSession session,String link){
         if(session.getAttribute("userName")!=null){
             return link;
@@ -67,6 +74,11 @@ public class UserServiceImpl implements UserService {
         user.setMember(true);
         return userDao.update(user);
     }
+    public User downgradeMember(User user){
+        user.setMember(false);
+        return userDao.update(user);
+    }
+
 
     public Boolean isMember(User user){
         User userMember =this.findById(user.getId());

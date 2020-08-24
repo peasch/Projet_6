@@ -32,9 +32,12 @@ public class AccountController {
     private SpotService spotService;
 
     @RequestMapping(value = "/connexion", method = RequestMethod.GET)
-    public String connexion(ModelMap model) {
+    public String connexion(ModelMap model, HttpSession session) {
+        if (session.getAttribute("userName") != null) {
+            return "account/alreadyConnected";
+        } else {
         model.addAttribute("lastSpot", spotService.findLast());
-        return "/account/connexion";
+        return "account/connexion";}
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -45,26 +48,27 @@ public class AccountController {
             if (conn.getPassword().equals(password)) {
                 session.setAttribute("user", conn);
                 session.setAttribute("userName", conn.getUserName());
-                return "/account/connected";
+                return "account/connected";
             } else {
 
-                return "/account/errorconnect";
+                return "account/errorconnect";
             }
         } else {
             Boolean exist = false;
             model.addAttribute("exist", exist);
-            return "/account/errorconnect";
+            return "account/errorconnect";
         }
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(HttpSession session) {
+    public String registration(ModelMap model,HttpSession session) {
         if (session.getAttribute("userName") != null) {
             session.invalidate();
-            return "/account/alreadyConnected";
+            return "account/alreadyConnected";
 
         } else {
-            return "/account/registration";
+            model.addAttribute("lastSpot", spotService.findLast());
+            return "account/registration";
         }
     }
 
@@ -73,13 +77,17 @@ public class AccountController {
                              @RequestParam("prenom") String firstName, @RequestParam("email") String email,
                              @RequestParam("password") String password, HttpSession session) {
         session.setAttribute("user", userService.addUser(username, name, firstName, password, email));
-        return "/account/addedUser";
+        return "account/addedUser";
     }
 
     @RequestMapping(value = "/disconnect", method = RequestMethod.GET)
     public String deconnexion(HttpSession session) {
+        if (userService.userIsConnected(session)) {
         session.invalidate();
-        return "/account/disconnected";
+        return "account/disconnected";
+        }else{
+            return "account/errorconnect";
+        }
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
@@ -94,7 +102,7 @@ public class AccountController {
         model.addAttribute("reservations", reservations);
         model.addAttribute("resaEnCours", resaEnCours);
         model.addAttribute("size", size);
-        return userService.userConnected(session, "/account/profile");
+        return userService.userConnected(session, "account/profile");
     }
 
 

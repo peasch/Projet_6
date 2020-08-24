@@ -25,16 +25,20 @@ public class ResearchController {
 
     @RequestMapping(value = "/lfSpot", method = RequestMethod.GET)
     public String lookingForSpot(ModelMap model, HttpSession session) {
-        model.addAttribute("spots", spotService.lister());
-        model.addAttribute("regions", spotService.searchRegion());
-        model.addAttribute("countries", spotService.searchCountry());
-        model.addAttribute("ratings", lengthService.searchRatings());
-        return userService.userConnected(session, "lfSpot");
+        if (userService.userIsConnected(session)) {
+            model.addAttribute("spots", spotService.lister());
+            model.addAttribute("regions", spotService.searchRegion());
+            model.addAttribute("countries", spotService.searchCountry());
+            model.addAttribute("ratings", lengthService.searchRatings());
+            return  "lfSpot";
+        }else{
+            return "/account/notConnected";
+        }
     }
 
     @RequestMapping(value = "/recherche", method = RequestMethod.POST)
     public String researchWithParam(@RequestParam String rating, @RequestParam String region, @RequestParam String[] country, @RequestParam String searchSpot,@RequestParam String searchSector, HttpSession session, ModelMap model) {
-        User user = (User) session.getAttribute("user");
+        if (userService.userIsConnected(session)) {
         List<String> ratingTable = spotService.stringToList(rating);
         List<String> regionTable = spotService.stringToList(region);
         List<String> countryTable = spotService.tabletoList(country);
@@ -48,6 +52,11 @@ public class ResearchController {
         model.addAttribute("found",true);
         model.addAttribute("researchSpots", spotService.researchSpotWithParameters(country,region,rating,searchSpot,searchSector));
         model.addAttribute("uncheckedCountries", spotService.countryUnchecked(countryTable));
-        return userService.userConnected(session, "lfSpot");
+        model.addAttribute("uncheckedRegions", spotService.regionUnchecked(regionTable));
+        model.addAttribute("uncheckedRatings", lengthService.ratingUnchecked(ratingTable));
+        return "lfSpot";
+        } else {
+            return "/account/notConnected";
+        }
     }
 }

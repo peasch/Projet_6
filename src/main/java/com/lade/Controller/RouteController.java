@@ -26,12 +26,16 @@ public class RouteController {
 
     @RequestMapping(value = "/route/{routeId}", method = RequestMethod.GET)
     public String routeDescribe(@PathVariable(name = "routeId") Integer id, ModelMap model, HttpSession session) {
-        Route route = routeService.find(id);
-        List<Length> lengthes = routeService.lengthes(route);
-        model.addAttribute("route", route);
-        model.addAttribute("sector", route.getSector());
-        model.addAttribute("lengthes", lengthes);
-        return userService.userConnected(session, "routeDescribe");
+        if (userService.userIsConnected(session)) {
+            Route route = routeService.find(id);
+            List<Length> lengthes = routeService.lengthes(route);
+            model.addAttribute("route", route);
+            model.addAttribute("sector", route.getSector());
+            model.addAttribute("lengthes", lengthes);
+            return "routeDescribe";
+        } else {
+            return "/account/notConnected";
+        }
     }
 
 

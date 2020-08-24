@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface ReservationService {
-    Date dateToday();
+    String dateToday();
 
-    Reservation toResa(User user, Date date, Topo topo);
+    Reservation toResa(User user, String date, Topo topo);
 
     Reservation add(User caller, Topo topo);
 

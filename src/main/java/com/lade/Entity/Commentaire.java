@@ -15,7 +15,7 @@ public class Commentaire {
     private String text = "";
 
     @Column(name = "date")
-    private Date date;
+    private String date="";
 
     @ManyToOne
     @JoinColumn(name = "fk_user")
@@ -44,11 +44,11 @@ public class Commentaire {
         this.text = text;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

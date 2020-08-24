@@ -40,24 +40,27 @@ public class TopoController {
     }
 
     @RequestMapping(value = "/topos/add", method = RequestMethod.GET)
-    public String addSpot(HttpSession session) {
+    public String addSpot(ModelMap model, HttpSession session) {
+
+        model.addAttribute("regions", topoService.searchRegion());
+        model.addAttribute("countries", topoService.searchCountry());
+        model.addAttribute("lastTopo",topoService.findLast());
         return  userService.userConnected(session, "/topos/addTopo");
     }
 
     @RequestMapping(value = "/topos/added", method = RequestMethod.POST)
-    public String addedSpot(@RequestParam String name, @RequestParam String apercu, @RequestParam String parution, HttpSession session,ModelMap model) {
+    public String addedSpot(@RequestParam String name, @RequestParam String apercu, @RequestParam String parution,@RequestParam String region,@RequestParam String country, HttpSession session,ModelMap model) {
         User user = (User) session.getAttribute("user");
-        model.addAttribute("topo", topoService.ajouter(apercu,name,parution, user));
+        model.addAttribute("topo", topoService.ajouter(apercu,name,parution, region, country, user));
         model.addAttribute("userName", user.getUserName());
         return  userService.userConnected(session,"/topos/addedTopo");
     }
 
     @RequestMapping(value="/topo/{reservationId}/retourdispo",method =RequestMethod.GET )
     public String retourDispo(@PathVariable(name = "reservationId") Integer id, ModelMap model, HttpSession session){
-        long millis = System.currentTimeMillis();
-        Date date = new Date(millis);
+
         Reservation reservation = reservationService.findById(id);
-        reservation.setReturnDate(date);
+        reservation.setReturnDate(reservationService.dateToday());
         reservation.setReturned(true);
         reservationService.update(reservation);
         Topo topo =reservation.getTopo();

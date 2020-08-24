@@ -21,7 +21,8 @@ public interface UserService {
     List<User> userList();
 
     User upgradeMember(User user);
-
+    User downgradeMember(User user);
+    Boolean userIsConnected(HttpSession session);
     Boolean isMember(User user);
 
     User addUser(String userName,String name,String firstName,String password,String email);

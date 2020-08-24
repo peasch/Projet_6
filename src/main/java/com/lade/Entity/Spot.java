@@ -34,6 +34,9 @@ public class Spot implements Serializable {
     @JoinColumn(name = "fk_user")
     private User user;
 
+
+
+
     public Integer getId() {
         return id;
     }
@@ -113,6 +116,7 @@ public class Spot implements Serializable {
     public void setSectors(Set<Sector> sectors) {
         this.sectors = sectors;
     }
+
 
     public Spot() {
     }

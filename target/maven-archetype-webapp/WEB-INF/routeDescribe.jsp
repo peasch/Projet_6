@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -20,7 +19,7 @@
                 <p class="card-text">
                     <c:out value="Nom : ${ sector.name }"/><br>
                     <c:out value="Description : ${ sector.description }"/><br>
-                    <c:out value="voie numÃ©ro : ${route.id}"/><br>
+                    <c:out value="voie numéro : ${route.id}"/><br>
                 </p>
             </div>
         </div>
@@ -33,7 +32,7 @@
                 <ul>
                     <c:forEach var="length" items="${ lengthes }">
                         <li>
-                            <c:out value="${ length.lentgh} mÃ¨tres, cotation : ${length.rating}"/><br>
+                            <c:out value="${ length.lentgh} mètres, cotation : ${length.rating}"/><br>
                         </li>
                     </c:forEach>
                 </ul>

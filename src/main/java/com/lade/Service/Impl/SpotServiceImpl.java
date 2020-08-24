@@ -17,13 +17,31 @@ public class SpotServiceImpl implements SpotService {
     private SpotDao spotDao;
 
     @Override
-    public Spot toSpot(String name, String adress, String latitude, String longitude, User user) {
+    public Spot toSpot(String name, String adress, String latitude, String longitude, String region1, String country1, User user) {
         Spot spot = new Spot();
         spot.setName(name.trim());
         spot.setAdress(adress.trim());
         spot.setLatitude(latitude.trim());
         spot.setLongitude(longitude.trim());
         spot.setUser(user);
+        if(region1.indexOf(",")==0) {
+            String region = region1.substring(region1.indexOf(",") + 1);
+            spot.setRegion(region.trim());
+        }else if (region1.indexOf(",")==region1.length()){
+            String region = region1.substring(0,region1.length()-2);
+            spot.setRegion(region.trim());
+        }else{
+            spot.setRegion(region1.trim());
+        }
+        if(country1.indexOf(",")==0) {
+            String country = country1.substring(country1.indexOf(",") + 1);
+            spot.setCountry(country.trim());
+        }else if (country1.indexOf(",")==country1.length()){
+            String country = country1.substring(0,country1.length()-1);
+            spot.setCountry(country.trim());
+        }else{
+            spot.setCountry(country1.trim());
+        }
         return spot;
     }
 
@@ -43,8 +61,8 @@ public class SpotServiceImpl implements SpotService {
     }
 
     @Override
-    public Spot ajouter(String name, String adress, String latitude, String longitude, User user) {
-        return spotDao.ajouter(this.toSpot(name, adress, latitude, longitude, user));
+    public Spot ajouter(String name, String adress, String latitude, String longitude, String region, String country, User user) {
+        return spotDao.ajouter(this.toSpot(name, adress, latitude, longitude, region, country, user));
     }
 
     @Override
@@ -107,8 +125,9 @@ public class SpotServiceImpl implements SpotService {
                     query = " country like " + "\'%" + strings.get(i) + "%\'" + " OR " + query;
                 }
             }
-
+            query = "( " + query +" )";
         }
+
         return query;
     }
 
@@ -123,8 +142,9 @@ public class SpotServiceImpl implements SpotService {
                     query = " region like " + "\'%" + regions.get(i) + "%\'" + " OR " + query;
                 }
             }
-
+            query = "( " + query +" )";
         }
+
         return query;
     }
 
@@ -139,8 +159,9 @@ public class SpotServiceImpl implements SpotService {
                     query = " rating like " + "\'%" + ratings.get(i) + "%\'" + " OR " + query;
                 }
             }
-
+            query = "( " + query +" )";
         }
+
         return query;
     }
 
@@ -160,11 +181,25 @@ public class SpotServiceImpl implements SpotService {
     }
 
     @Override
+    public List<String> regionUnchecked(List<String> regionsChecked) {
+        List<String> uncheckedRegions = this.searchRegion();
+        for (int i = 0; i < regionsChecked.size(); i++) {
+            for (int j = 0; j < uncheckedRegions.size(); j++) {
+                if (regionsChecked.get(i).equals(uncheckedRegions.get(j))) {
+                    uncheckedRegions.remove(j);
+                }
+
+            }
+        }
+        return uncheckedRegions;
+    }
+
+    @Override
     public List<Spot> researchSpotWithParameters(String[] countries, String regions, String ratings, String nameSpot, String nameSector) {
         String countriesQuery = this.convertCountryToQuery(this.tabletoList(countries));
         String regionsQuery = this.convertRegionToQuery(this.stringToList(regions));
         String ratingsQuery = this.convertRatingToQuery(this.stringToList(ratings));
-        String queryBase = "SELECT s from Spot s ";
+        String queryBase = "SELECT distinct s from Spot s ";
         String queryRequest = "";
         if (!countriesQuery.isEmpty()) {
             queryRequest = queryRequest + countriesQuery;

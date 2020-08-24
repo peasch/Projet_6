@@ -30,34 +30,41 @@ public class AdministrationController {
     @RequestMapping(value = "/administration", method = RequestMethod.GET)
     public String pageAdmin(HttpSession session, ModelMap model) {
         User user = (User) session.getAttribute("user");
+        if (userService.userIsConnected(session)) {
         if (userService.isAdmin(user)){
             model.addAttribute("user", user);
             model.addAttribute("admin", user.getAdmin());
-            return userService.userConnected(session,  "/account/pageAdmin");
+            return  "account/pageAdmin";
         }else {
-            return userService.userConnected(session, "/account/notAdmin");
+            return  "account/notAdmin";
+        }}else{
+            return "/account/notConnected";
         }
     }
 
     @RequestMapping(value = "/userList", method = RequestMethod.GET)
     public String userList(HttpSession session, ModelMap model) {
         User user = (User) session.getAttribute("user");
-        if (userService.isAdmin(user)){
-            Boolean roleAdmin=true;
-            model.addAttribute("user", user);
-            model.addAttribute("admin", user.getAdmin());
-            model.addAttribute("userList",userService.userList());
-            model.addAttribute("roleAdmin",roleAdmin);
-            return userService.userConnected(session,  "/account/pageAdmin");
-        }else {
-            return userService.userConnected(session, "/account/notAdmin");
+        if (userService.userIsConnected(session)) {
+            if (userService.isAdmin(user)) {
+                Boolean roleAdmin = true;
+                model.addAttribute("user", user);
+                model.addAttribute("admin", user.getAdmin());
+                model.addAttribute("userList", userService.userList());
+                model.addAttribute("roleAdmin", roleAdmin);
+                return "account/pageAdmin";
+            } else {
+                return "account/notAdmin"; }
+        }else{
+            return "/account/notConnected";
         }
     }
 
     @RequestMapping(value = "/profil/{userId}", method = RequestMethod.GET)
     public String profileUser(@PathVariable(name = "userId") Integer id, HttpSession session, ModelMap model) {
         User admin =(User) session.getAttribute("user");
-        if (userService.isAdmin(admin)) {
+        if(userService.userIsConnected(session)){
+            if (userService.isAdmin(admin) ) {
             User user = userService.findById(id);
             List<Topo> topos = topoService.findByUser(user);
             Integer size = topos.size();
@@ -68,23 +75,46 @@ public class AdministrationController {
             model.addAttribute("reservations", reservations);
             model.addAttribute("resaEnCours", resaEnCours);
             model.addAttribute("size", size);
-            return userService.userConnected(session, "/account/profile");
+            return "account/profile";
         }else{
-            return userService.userConnected(session, "/account/notAdmin");
+            return "account/notAdmin";
+        }
+        }else{
+            return "/account/notConnected";
         }
     }
 
     @RequestMapping(value="/user/{userId}/upgrade",method = RequestMethod.GET)
     public String upgradeUser(@PathVariable(name="userId")Integer id, HttpSession session, ModelMap model){
         User admin =(User) session.getAttribute("user");
+        if(userService.userIsConnected(session)){
         if (userService.isAdmin(admin)) {
             User user = userService.findById(id);
             user.setMember(true);
             userService.upgradeMember(user);
             model.addAttribute("user", user);
-            return userService.userConnected(session, "/account/membered");
+            return "account/membered";
         }else {
-            return userService.userConnected(session, "/account/notAdmin");
+            return  "account/notAdmin";
+        }}else{
+            return "/account/notConnected";
+        }
+    }
+
+    @RequestMapping(value="/user/{userId}/downgrade",method = RequestMethod.GET)
+    public String downgradeUser(@PathVariable(name="userId")Integer id, HttpSession session, ModelMap model){
+        User admin =(User) session.getAttribute("user");
+        if(userService.userIsConnected(session)){
+        if (userService.isAdmin(admin)) {
+            User user = userService.findById(id);
+            user.setMember(true);
+            userService.downgradeMember(user);
+            model.addAttribute("user", user);
+            return "account/membered";
+        }else {
+            return "account/notAdmin";
+        }}else{
+            return "/account/notConnected";
         }
     }
 }

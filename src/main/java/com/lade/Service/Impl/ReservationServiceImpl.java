@@ -9,9 +9,12 @@ import com.lade.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -21,12 +24,15 @@ private ReservationDao reservationDao;
 @Autowired
 private TopoDao topoDao;
 
-    public Date dateToday(){
-        long millis = System.currentTimeMillis();
-        return new Date(millis);
+    public String dateToday(){
+        Locale locale = new Locale("fr", "FR");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
+        DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
+        String date = "le " + dateFormat.format(new Date())+ " à " +timeFormat.format(new Date());
+         return date;
     }
 
-    public Reservation toResa(User user, Date date, Topo topo){
+    public Reservation toResa(User user, String date, Topo topo){
         Reservation resa = new Reservation();
         resa.setCaller(user);
         resa.setDateReservation(date);
@@ -52,8 +58,10 @@ private TopoDao topoDao;
         return reservationDao.findById(id);}
 
     public Reservation acceptResa(Reservation reservation){
-        long millis = System.currentTimeMillis();
-        Date date = new Date(millis);
+        Locale locale = new Locale("fr", "FR");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
+        DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
+        String date = "le " + dateFormat.format(new Date())+ " à " +timeFormat.format(new Date());
         reservation.setAccepted(true);
         reservation.setAcceptDate(date);
        Topo topo= reservation.getTopo();
@@ -75,8 +83,10 @@ private TopoDao topoDao;
     }
 
     public Reservation refuse(Reservation reservation){
-        long millis = System.currentTimeMillis();
-        Date date = new Date(millis);
+        Locale locale = new Locale("fr", "FR");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
+        DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
+        String date = "le " + dateFormat.format(new Date())+ " à " +timeFormat.format(new Date());
         reservation.setAcceptDate(date);
         reservation.setAccepted(false);
         reservation.setReturned(true);

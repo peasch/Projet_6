@@ -62,4 +62,14 @@ public class TopoDaoImpl implements TopoDao {
     public Topo findLast(){
         return em.createQuery("SELECT t from Topo t order by id desc",Topo.class).setMaxResults(1).getSingleResult();
     }
+
+    @Override
+    public List<String> searchRegion(){
+        return em.createQuery("SELECT DISTINCT region from Topo t ",String.class).getResultList();
+    }
+
+    @Override
+    public List<String> searchCountry(){
+        return em.createQuery("SELECT DISTINCT country from Topo t ",String.class).getResultList();
+    }
 }

@@ -6,7 +6,7 @@ import com.lade.Entity.User;
 import java.util.List;
 
 public interface TopoService {
-    Topo toTopo(String description, String name, String release, User user);
+    Topo toTopo(String description, String name, String release,String region, String country, User user);
 
     List<Topo> topos();
 
@@ -14,7 +14,7 @@ public interface TopoService {
 
     List<Topo> findByUser(User user);
 
-    Topo ajouter(String describe, String name, String release, User user);
+    Topo ajouter(String describe, String name, String release, String region, String country, User user) ;
 
     List<Topo> toposWithoutUsers(User user);
 
@@ -25,5 +25,8 @@ public interface TopoService {
     Topo updateTopo(Topo topo);
 
     Topo findLast();
+
+     List<String> searchRegion();
+    List<String> searchCountry();
 
 }

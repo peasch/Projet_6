@@ -5,6 +5,7 @@
 <html>
 <head>
     <title> Lister les spots</title>
+    <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
     <link href="/css/styles.css" rel="stylesheet">
@@ -27,19 +28,25 @@
         <div class="clear"></div>
     </div>
 </section>
-<section id="lasts">
-    <div class="wrapper">
-        <c:forEach var="spot" items="${ spots }">
-            <article style="background-image: url('/photos/escalade_2.jpg');float:left">
-                <div class="overlay">
-                    <h4><a href="/spots/${spot.id}" > ${ spot.name }<span class="red-dot">.</span></a></h4>
-                    <p><small>Région : ${spot.region}<br>Pays: ${spot.country}</small></p>
+<section id="spotList">
+    <div class="container">
+        <div class="row">
+            <c:forEach var="spot" items="${ spots }">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article style="background-image: url('/photos/escalade_2.jpg');float:left">
+                        <div class="overlay">
+                            <h4><a href="/spots/${spot.id}"> ${ spot.name }<span class="red-dot">.</span></a></h4>
+                            <p><small>Région : ${spot.region}<br>Pays: ${spot.country}</small></p>
 
+                        </div>
+                    </article>
                 </div>
-            </article>
-        </c:forEach>
-        <div class="clear"></div>
+            </c:forEach>
+
+        </div>
     </div>
+
+    <div class="clear"></div>
 </section>
 
 <%@ include file="../footer.jsp" %>

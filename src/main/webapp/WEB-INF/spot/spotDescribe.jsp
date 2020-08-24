@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" language="java" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>description du spot </title>
+    <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
     <link href="/css/styles.css" rel="stylesheet">
@@ -28,121 +28,130 @@
         <div class="clear"></div>
     </div>
 </section>
-<section class="page-section cta">
+<section class="page-section cta" style="text-align: center; margin: 30px 0">
     <div class="container">
-        <div class="row align-content-center">
-            <div class="col-lg-2">
+        <div class="heading">
+            <h2>Description de <br><strong>${ spot.name } </strong><span class="red-dot">:</span></h2>
+            <div class="black-divider"></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6" style="margin: auto 0">
+                <p>
+                    <strong>Adresse </strong><span class="red-dot">: </span>${ spot.adress }<br>
+                    <strong>Latitude </strong><span class="red-dot">: </span>${spot.latitude}<br>
+                    <strong>Longitude </strong><span class="red-dot">: </span>${ spot.longitude }<br>
+                    <strong>Spot proposé par </strong><span class="red-dot">: </span>${spot.user.getUserName()}<br>
+
+                </p>
             </div>
-            <div class=card>
-                <div class="card-body">
-                    <h5 class="card-title"> description du spot :</h5>
-                    <p class="card-text">
-                        <c:out value="Nom : ${ spot.name }"/><br>
-                        <c:out value="Adresse : ${ spot.adress }"/><br>
-                        <c:out value=" Latitude : ${spot.latitude}"/><br>
-                        <c:out value=" Longitude : ${ spot.longitude }"/><br>
-                        <c:out value="spot proposÃ© par : ${spot.user.getUserName()}"/><br>
-                        <br>
-                        <br>
-                        <c:choose>
-                            <c:when test="${spot.officialLade==true}">
-                                <i class="fa fa-check-square-o" aria-hidden="true" style="color: orangered"> Spot Officiel LADE!</i>
-                            </c:when>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${sessionScope.user.getMember()==true && spot.officialLade!=true}">
-                                <a href="/spot/${spot.id}/approuve" class="btn btn-outline-secondary btn-circle btn-sm"><i class="fa fa-hand-o-right" aria-hidden="true" style="color:orangered">Approuver ce spot ?</i></a><br>
-
-                            </c:when>
-                            <c:when test="${roleAdmin==true && spot.officialLade==true}">
-                                <a href="/spot/${spot.id}/downgrade" class="btn btn-outline-secondary btn-circle btn-sm"><i class="fa fa-hand-o-down" aria-hidden="true" style="color:orangered">RÃ©trograder ce spot ?</i></a>
-
-                            </c:when>
-                        </c:choose>
-                    </p>
-                </div>
-            </div>
-            <div class="card offset-2">
-                <div class="card-body">
-                    <h5 class="card-title">liste des secteurs :</h5>
-                    <p class="card-text">
-                    <ul>
-                        <c:forEach var="sector" items="${ sectors }">
-                            <li>
-                                <a href="/sector/${sector.id}"><c:out
-                                        value="${ sector.name } : ${sector.description}"/></a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                    <a href="/spots/${spot.id}/sector/add" class="btn btn-outline-primary btn " role="button"
-                       aria-pressed="true">Ajouter un secteur </a>
-                    </p>
-
-                </div>
+            <div class="col-12 col-md-6">
+                <c:choose>
+                    <c:when test="${spot.officialLade==true}">
+                        <div style="background:url('/photos/icons8-warranty-96.png')no-repeat center; height: 150px;">
+                            <p style="font-family: 'Montserrat Subrayada', 'Raleway', sans-serif; ">Spot Officiel
+                                LADE<span class="red-dot">!</span></p>
+                        </div>
+                    </c:when>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${sessionScope.user.getMember()==true && spot.officialLade!=true}">
+                        <div>
+                            <a href="/spot/${spot.id}/approuve" class="btn btn-outline-secondary btn-circle btn-sm">
+                                <i class="fa fa-hand-o-right" aria-hidden="true"> Approuver ce
+                                    spot
+                                    ?</i></a>
+                        </div>
+                    </c:when>
+                    <c:when test="${roleAdmin==true && spot.officialLade==true}">
+                        <div>
+                            <a href="/spot/${spot.id}/downgrade"
+                               class="btn btn-outline-secondary btn-circle btn-sm">
+                                <i class="fa fa-hand-o-down" aria-hidden="true"> Rétrograder ce
+                                    spot
+                                    ?</i></a>
+                        </div>
+                    </c:when>
+                </c:choose>
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-lg-6 offset-3">
-            <a href="/spots" class="btn btn-outline-secondary btn " role="button" aria-pressed="true">
-                revenir Ã  la liste des spots </a>
-        </div>
+    <div style="margin-top: 30px">
+        <a href="/spots" class="btn btn-outline-secondary btn " role="button" aria-pressed="true">
+            revenir à la liste des spots </a>
     </div>
 </section>
-
-<section class="page-section cta">
-    <header>
-        <div class="container">
-            <div class="row">
-                <h3><span>commentaires</span></h3>
-            </div>
+<section class="testage">
+    <div class="container">
+        <div class="heading">
+            <h2>Secteurs<span class="red-dot">:</span></h2>
+            <div class="white-divider"></div>
         </div>
-    </header>
-    <c:forEach var="commentaire" items="${comments}">
-        <div class="container">
+        <div class="row" style="justify-content: center">
+            <c:forEach var="sector" items="${ sectors }">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <h4><a href="/sector/${sector.id}" value="${ sector.name }" style="color: snow">${ sector.name }</a>
+                    </h4>
+                    <p>${sector.description}</p>
+                </div>
+            </c:forEach>
+
+        </div>
+        <a href="/spots/${spot.id}/sector/add" class="btn btn-outline-light" role="button"
+           aria-pressed="true">Ajouter un secteur </a>
+    </div>
+</section>
+<section id="steps">
+    <div class="heading">
+        <h2>commentaires à propos de ce spot<span class="red-dot">:</span></h2>
+        <div class="black-divider"></div>
+    </div>
+
+    <div class="container" style="text-align: center">
+        <c:forEach var="commentaire" items="${comments}">
             <div class="row">
                 <div class="col-lg-5" style="padding-left: 10px">
-                    <h6>commentaire de ${commentaire.user.getUserName()}, le ${commentaire.date}</h6>
+                    <h6>commentaire de ${commentaire.user.getUserName()}, ${commentaire.date}</h6>
                     <p style="background-color: white">"${commentaire.text}"</p>
                 </div>
                 <div class="col-lg-2">
                     <c:choose>
                         <c:when test="${sessionScope.user.getUserName()==commentaire.user.getUserName()}">
-                            <a href="/comment/${commentaire.id}/modify" class="btn btn-outline-secondary btn-sm " role="button"
+                            <a href="/comment/${commentaire.id}/modify" class="btn btn-outline-secondary btn-sm "
+                               role="button"
                                aria-pressed="true"><i class="fa fa-eraser" aria-hidden="true"></i></a>
-                            <a href="/comment/${commentaire.id}/delete" class="btn btn-outline-secondary btn-sm " role="button"
+                            <a href="/comment/${commentaire.id}/delete" class="btn btn-outline-secondary btn-sm "
+                               role="button"
                                aria-pressed="true"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </c:when>
                         <c:when test="${roleAdmin==true}">
-                            <a href="/comment/${commentaire.id}/delete" class="btn btn-outline-secondary btn-sm " role="button"
+                            <a href="/comment/${commentaire.id}/delete" class="btn btn-outline-secondary btn-sm "
+                               role="button"
                                aria-pressed="true"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </c:when>
                     </c:choose>
                 </div>
             </div>
-        </div>
-    </c:forEach>
+        </c:forEach>
+    </div>
 
+    <div class="black-divider"></div>
+    <div class="container" style="text-align: center">
+        <c:choose>
+            <c:when test="${spot.user.getUserName()!=userName}">
+                <div>
+                    <form method="post" action="/spots/${spot.id}/comment/add">
+                        <fieldset>
+                            <label for="text"> Rédiger un commentaire <span class="red-dot">:</span></label><br>
+                            <textarea name="text" id="text" rows="5" cols="50"></textarea>
+                            <br>
+                            <input type="submit" value="Envoyer" style="margin-bottom: 30px"/>
+                        </fieldset>
+                    </form>
 
-    <c:choose>
-        <c:when test="${spot.user.getUserName()!=userName}">
-        <div class="wrapper">
-            <div class="card-body">
-                <p class="card-text">
-                <form method="post" action="/spots/${spot.id}/comment/add">
-                    <fieldset>
-                        <label for="text">Saisissez votre commentaire sur le spot :</label><br>
-                        <textarea name="text" id="text" rows="5" cols="50"/></textarea>
-                        <br>
-                        <input type="submit" value="Envoyer"/>
-                    </fieldset>
-                </form>
-                </p>
-            </div>
-        </div>
-        </c:when>
-    </c:choose>
+                </div>
+            </c:when>
+        </c:choose>
+    </div>
 </section>
 
 <%@ include file="../footer.jsp" %>

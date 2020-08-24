@@ -18,6 +18,8 @@ public class Length implements Serializable {
     @JoinColumn(name="fk_route")
     private Route route;
 
+
+
     public Integer getId() {
         return id;
     }

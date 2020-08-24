@@ -1,11 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>connectÃ©</title>
+    <title>connecté</title>
     <%@ include file="../headAndMetas.jsp" %>
 </head>
 <body>
@@ -15,11 +14,11 @@
 
            <c:choose>
                <c:when test="${approuve==true}">
-               <h4>FÃ©licitations ${sessionScope.userName}, vous avez approuvÃ© le spot comme Officiel LADE !</h4></c:when>
+               <h4>Félicitations ${sessionScope.userName}, vous avez approuvé le spot comme Officiel LADE !</h4></c:when>
                <c:when test="${approuve==false}">
-                   <h4>Le statut de spot officiel LADE a bien Ã©tÃ© retirÃ© !</h4></c:when>
+                   <h4>Le statut de spot officiel LADE a bien été retiré !</h4></c:when>
                <c:when test="${impossible==true}">
-                   <h4>Le spot n'Ã©tait pas considÃ©rÃ© parmi les officiels LADE. Impossible de le rÃ©trograder.</h4>
+                   <h4>Le spot n'était pas considéré parmi les officiels LADE. Impossible de le rétrograder.</h4>
                </c:when>
            </c:choose>
         <a href="/spots/${spot.id}" class="btn btn-outline-primary btn- active" role="button" aria-pressed="true">
