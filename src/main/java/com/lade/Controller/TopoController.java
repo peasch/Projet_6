@@ -28,52 +28,70 @@ public class TopoController {
 
     @RequestMapping(value = "/topos", method = RequestMethod.GET)
     public String listTopo(ModelMap model, HttpSession session) {
-        model.addAttribute("topos", topoService.toposWithoutUsers((User) session.getAttribute("user")));
-        return userService.userConnected(session, "/topos/topos");
+        if (userService.userIsConnected(session)) {
+            model.addAttribute("topos", topoService.toposWithoutUsers((User) session.getAttribute("user")));
+            return  "/topos/topos";
+        } else {
+            return "account/errorconnect";
+        }
     }
 
     @RequestMapping(value = "/topos/{topoId}", method = RequestMethod.GET)
     public String topodescribe(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
-        Topo topo = topoService.find(id);
-        model.addAttribute("topo", topo);
-        model.addAttribute("owner", topo.getOwner());
-        model.addAttribute("user", session.getAttribute("user"));
-        return userService.userConnected(session, "/topos/topoDescribe");
+        if (userService.userIsConnected(session)) {
+            Topo topo = topoService.find(id);
+            model.addAttribute("topo", topo);
+            model.addAttribute("owner", topo.getOwner());
+            model.addAttribute("user", session.getAttribute("user"));
+            return "/topos/topoDescribe";
+        } else {
+            return "account/errorconnect";
+        }
     }
 
     @RequestMapping(value = "/topos/add", method = RequestMethod.GET)
     public String addSpot(ModelMap model, HttpSession session) {
-
-        model.addAttribute("regions", topoService.searchRegion());
-        model.addAttribute("countries", topoService.searchCountry());
-        model.addAttribute("lastTopo", topoService.findLast());
-        return userService.userConnected(session, "/topos/addTopo");
+        if (userService.userIsConnected(session)) {
+            model.addAttribute("regions", topoService.searchRegion());
+            model.addAttribute("countries", topoService.searchCountry());
+            model.addAttribute("lastTopo", topoService.findLast());
+            return  "/topos/addTopo";
+        } else {
+            return "account/errorconnect";
+        }
     }
 
     @RequestMapping(value = "/topos/added", method = RequestMethod.POST)
     public String addedSpot(@RequestParam String name, @RequestParam String apercu, @RequestParam String parution, @RequestParam String region, @RequestParam String country, @RequestParam String otherRegion, @RequestParam String otherCountry, HttpSession session, ModelMap model) {
-        if (country.isEmpty()) {
-            country = otherCountry;
+        if (userService.userIsConnected(session)) {
+            if (country.isEmpty()) {
+                country = otherCountry;
+            }
+            if (region.isEmpty()) {
+                region = otherRegion;
+            }
+            User user = (User) session.getAttribute("user");
+            model.addAttribute("topo", topoService.ajouter(apercu, name, parution, region, country, user));
+            model.addAttribute("userName", user.getUserName());
+            return  "/topos/addedTopo";
+        } else {
+            return "account/errorconnect";
         }
-        if (region.isEmpty()) {
-            region = otherRegion;
-        }
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("topo", topoService.ajouter(apercu, name, parution, region, country, user));
-        model.addAttribute("userName", user.getUserName());
-        return userService.userConnected(session, "/topos/addedTopo");
     }
 
     @RequestMapping(value = "/topo/{reservationId}/retourdispo", method = RequestMethod.GET)
     public String retourDispo(@PathVariable(name = "reservationId") Integer id, ModelMap model, HttpSession session) {
-
-        Reservation reservation = reservationService.findById(id);
-        reservation.setReturnDate(reservationService.dateToday());
-        reservation.setReturned(true);
-        reservationService.update(reservation);
-        Topo topo = reservation.getTopo();
-        topoService.retourDispo(topo);
-        return userService.userConnected(session, "/topos/retourDispo");
+        if (userService.userIsConnected(session)) {
+            Reservation reservation = reservationService.findById(id);
+            reservation.setReturnDate(reservationService.dateToday());
+            reservation.setReturned(true);
+            reservationService.update(reservation);
+            Topo topo = reservation.getTopo();
+            topoService.retourDispo(topo);
+            return  "/topos/retourDispo";
+        } else {
+            return "account/errorconnect";
+        }
     }
 
 
@@ -97,6 +115,7 @@ public class TopoController {
             return "account/errorconnect";
         }
     }
+
     @RequestMapping(value = "/topo/{topoId}/enable", method = RequestMethod.GET)
     public String setDispo(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
         if (userService.userIsConnected(session)) {

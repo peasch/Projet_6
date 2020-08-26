@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ajouter un Spot</title>
+    <title>Ajouter une voie</title>
     <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>

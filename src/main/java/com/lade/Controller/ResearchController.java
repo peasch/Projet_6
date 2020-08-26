@@ -38,7 +38,6 @@ public class ResearchController {
 
     @RequestMapping(value = "/recherche", method = RequestMethod.POST)
     public String researchWithParam(@RequestParam String rating, @RequestParam String region, @RequestParam String[] country, @RequestParam String searchSpot,@RequestParam String searchSector, HttpSession session, ModelMap model) {
-
         if (userService.userIsConnected(session)) {
             List<String> ratingTable = spotService.stringToList(rating);
             List<String> regionTable = spotService.stringToList(region);

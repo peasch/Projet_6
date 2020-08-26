@@ -36,8 +36,9 @@ public class AccountController {
         if (session.getAttribute("userName") != null) {
             return "account/alreadyConnected";
         } else {
-        model.addAttribute("lastSpot", spotService.findLast());
-        return "account/connexion";}
+            model.addAttribute("lastSpot", spotService.findLast());
+            return "account/connexion";
+        }
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -61,7 +62,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(ModelMap model,HttpSession session) {
+    public String registration(ModelMap model, HttpSession session) {
         if (session.getAttribute("userName") != null) {
             session.invalidate();
             return "account/alreadyConnected";
@@ -76,6 +77,7 @@ public class AccountController {
     public String registered(@RequestParam("username") String username, @RequestParam("nom") String name,
                              @RequestParam("prenom") String firstName, @RequestParam("email") String email,
                              @RequestParam("password") String password, HttpSession session) {
+
         session.setAttribute("user", userService.addUser(username, name, firstName, password, email));
         return "account/addedUser";
     }
@@ -83,26 +85,30 @@ public class AccountController {
     @RequestMapping(value = "/disconnect", method = RequestMethod.GET)
     public String deconnexion(HttpSession session) {
         if (userService.userIsConnected(session)) {
-        session.invalidate();
-        return "account/disconnected";
-        }else{
+            session.invalidate();
+            return "account/disconnected";
+        } else {
             return "account/errorconnect";
         }
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(HttpSession session, ModelMap model) {
-        User user = (User) session.getAttribute("user");
-        List<Topo> topos = topoService.findByUser(user);
-        Integer size = topos.size();
-        List<Reservation> reservations = reservationService.findResaByOwner(user);
-        List<Reservation> resaEnCours = reservationService.findResaByCaller(user);
-        model.addAttribute("user", user);
-        model.addAttribute("topos", topos);
-        model.addAttribute("reservations", reservations);
-        model.addAttribute("resaEnCours", resaEnCours);
-        model.addAttribute("size", size);
-        return userService.userConnected(session, "account/profile");
+        if (userService.userIsConnected(session)) {
+            User user = (User) session.getAttribute("user");
+            List<Topo> topos = topoService.findByUser(user);
+            Integer size = topos.size();
+            List<Reservation> reservations = reservationService.findResaByOwner(user);
+            List<Reservation> resaEnCours = reservationService.findResaByCaller(user);
+            model.addAttribute("user", user);
+            model.addAttribute("topos", topos);
+            model.addAttribute("reservations", reservations);
+            model.addAttribute("resaEnCours", resaEnCours);
+            model.addAttribute("size", size);
+            return "account/profile";
+        } else {
+            return "account/errorconnect";
+        }
     }
 
 

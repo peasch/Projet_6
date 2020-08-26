@@ -5,7 +5,7 @@
 <html>
 <head>
 
-    <title> Administration du site</title>
+    <title>Administration du site</title>
     <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
