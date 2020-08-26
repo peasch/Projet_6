@@ -25,7 +25,8 @@ public interface TopoService {
     Topo updateTopo(Topo topo);
 
     Topo findLast();
-
+    Topo setIndispo(Topo topo);
+    Topo setDispo(Topo topo);
      List<String> searchRegion();
     List<String> searchCountry();
 

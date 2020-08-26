@@ -59,7 +59,7 @@
                 </h2></c:when>
                 <c:when test="${ size==1}"><h2> topo proposé par ${user.userName}<span class="red-dot">:</span>
                 </h2></c:when>
-                <c:otherwise><h2> topos proposés par ${user.userName}<span class="red-dot">:</span></h2></c:otherwise>
+                <c:otherwise><h2> Mes topos<span class="red-dot">:</span></h2></c:otherwise>
             </c:choose>
         </div>
         <div class="black-divider"></div>
@@ -68,13 +68,28 @@
                 <c:when test="${ size>0}">
                     <c:forEach var="topo" items="${ topos }">
                         <div class="col-12 col-md-6 col-lg-4">
-                            <article style="background-image: url('/photos/escalade_4.jpg');float:left; height: 400px">
+                            <article style="background-image: url('/photos/escalade_4.jpg');float:left; height: 450px">
                                 <div class="overlay">
                                     <h4><a href="/topos/${topo.id}">Nom: ${topo.name} <span
                                             class="red-dot"> .</span></a></h4>
                                     <p><small><br> Région: ${topo.region}<br>Pays: ${topo.country}
                                     </small></p>
-                                    <p><small>Parution : ${topo.parution}</small></p>
+                                    <p><small>Parution : ${topo.parution}</small></p><br>
+                                    <c:choose>
+                                        <c:when test="${reservation.accepted==true && reservation.topo.getAvailable()==false && reservation.returned!=true}">
+                                        </c:when>
+                                        <c:when test="${topo.getAvailable()==true}">
+                                            <a href="/topo/${topo.id}/disable" type="button"
+                                               class="btn btn-outline-dark btn-sm"
+                                               role="button"
+                                               aria-pressed="true">Rendre indisponible</a>
+                                        </c:when>
+                                        <c:when test="${topo.getAvailable()==false}">
+                                            <a href="/topo/${topo.id}/enable"
+                                               class="btn btn-outline-danger btn-sm " role="button" aria-pressed="true">Retour
+                                                dispo</a>
+                                        </c:when>
+                                    </c:choose>
                                 </div>
                             </article>
                         </div>
@@ -89,7 +104,7 @@
 <section class="page-section cta">
     <div class="container">
         <div class="heading">
-            <h2> Demandes de réservation en cours <span class="red-dot">:</span></h2>
+            <h2> Demandes de réservation de mes topos en cours <span class="red-dot">:</span></h2>
             <div class="black-divider"></div>
         </div>
         <div class="row">
@@ -125,7 +140,7 @@
 <section class="testage">
     <div class="container">
         <div class="heading">
-            <h2> Vos réservations en attente<span class="red-dot">:</span></h2>
+            <h2> Mes réservations en attente<span class="red-dot">:</span></h2>
             <div class="white-divider"></div>
         </div>
         <div class="row">
@@ -162,7 +177,7 @@
 <section class="page-section cta">
     <div class="container">
         <div class="heading">
-            <h2>Vos topos indisponibles<span class="red-dot">:</span></h2>
+            <h2>Mes topos indisponibles<span class="red-dot">:</span></h2>
             <div class="black-divider"></div>
         </div>
         <div class="row">

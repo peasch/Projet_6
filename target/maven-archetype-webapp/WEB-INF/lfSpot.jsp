@@ -118,31 +118,36 @@
 
                 <div class="clear"></div>
             </ul>
-
             <div id="valid-form">
                 <input type="submit" value="Envoyer"/>
             </div>
         </form>
     </div>
 </section>
-<section id="lasts">
-    <div class="wrapper">
+<section id="spotList" style="justify-content: center">
+    <div class="container">
         <c:choose>
             <c:when test="${found==true}">
-                <h4>Spots correspondant à vos critères de recherche<span class="red-dot">.</span></h4>
+                <div style="text-align: center">
+                    <h4>Spots correspondant à vos critères de recherche<span class="red-dot">.</span></h4>
+                </div>
             </c:when>
         </c:choose>
-        <c:forEach var="researchSpot" items="${researchSpots}">
-            <article style="background-image: url('/photos/escalade_2.jpg');float:left">
-                <div class="overlay">
-                    <h4><a href="/spots/${researchSpot.id}">${researchSpot.name}<span class="red-dot">.</span></h4>
-                    <p><small>Région : ${researchSpot.region}<br>Pays: ${researchSpot.country}</small></p>
-
+        <div class="row" style="justify-content: center">
+            <c:forEach var="researchSpot" items="${researchSpots}">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article style="background-image: url('/photos/escalade_2.jpg');float:left">
+                        <div class="overlay">
+                            <h4><a href="/spots/${researchSpot.id}">${researchSpot.name}<span class="red-dot">.</span>
+                            </a></h4>
+                            <p><small>Région : ${researchSpot.region}<br>Pays: ${researchSpot.country}</small></p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-        </c:forEach>
-        <div class="clear"></div>
+            </c:forEach>
+        </div>
     </div>
+    <div class="clear"></div>
 </section>
 <%@ include file="footer.jsp" %>
 <%@ include file="scripts.jsp" %>

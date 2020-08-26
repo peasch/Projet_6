@@ -9,8 +9,9 @@ import java.util.List;
 
 public interface RouteDao {
 
-    void ajouter(Route route);
+    Route ajouter(Route route);
     List<Length> lister(Route route);
     Route find(Integer id);
     List<Route> routes(Sector sector);
+    Route findLastRouteOfSector(Sector sector);
 }

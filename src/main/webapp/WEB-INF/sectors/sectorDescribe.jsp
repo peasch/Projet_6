@@ -63,7 +63,7 @@
         <div class="row" style="justify-content: center">
             <c:forEach var="route" items="${ routes }">
                 <div class="col-4 col-md-3 col-lg-2">
-                    <h4><a href="/route/${route.id}" value="${route.id}" style="color: snow">${route.id}</a>
+                    <h4><a href="/route/${route.id}" value="${route.id}" style="color: snow">${route.sectorRouteId}</a>
                     </h4>
                 </div>
             </c:forEach>
@@ -80,7 +80,7 @@
             revenir au spot </a>
         <a href="/spots" class="btn btn-outline-dark " role="button" aria-pressed="true">
             revenir à la liste des spots </a>
-        <div class="black-divider" style="margin: 20px auto"></div>
+
     </div>
 </section>
 <%@ include file="../footer.jsp" %>

@@ -52,7 +52,7 @@
                                             promouvoir</a>
                                     </c:when>
                                     <c:when test="${user.getMember()==true}">
-                                        <a href="/user/${user.getId()}/upgrade"
+                                        <a href="/user/${user.getId()}/downgrade"
                                            class="btn btn-outline-secondary btn-sm " role="button" aria-pressed="true"
                                            style="float:bottom ">
                                             <i class="fa fa-handshake-o" aria-hidden="true"></i>retrograder</a>

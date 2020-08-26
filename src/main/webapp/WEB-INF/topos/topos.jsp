@@ -31,7 +31,7 @@
 <section id="spotList">
     <div class="container">
         <div class="black-divider"></div>
-        <div class="row">
+        <div class="row" style="justify-content: center">
             <c:forEach var="topo" items="${ topos }">
                 <div class="col-12 col-md-6 col-lg-4">
                     <article style="background-image: url('/photos/escalade_4.jpg');float:left;height: 400px">

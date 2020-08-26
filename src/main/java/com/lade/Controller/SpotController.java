@@ -58,8 +58,14 @@ public class SpotController {
     }
 
     @RequestMapping(value = "/spots/added", method = RequestMethod.POST)
-    public String addedSpot(@RequestParam String name, @RequestParam String adress, @RequestParam String latitude, @RequestParam String longitude, @RequestParam String region, @RequestParam String country, HttpSession session) {
+    public String addedSpot(@RequestParam String name, @RequestParam String adress, @RequestParam String latitude, @RequestParam String longitude, @RequestParam String region, @RequestParam String country,@RequestParam String otherRegion,@RequestParam String otherCountry, HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if ( country.isEmpty()){
+            country=otherCountry;
+        }
+        if(region.isEmpty()){
+            region=otherRegion;
+        }
         session.setAttribute("spot", spotService.ajouter(name, adress, latitude, longitude, region, country, user));
         session.setAttribute("userName", user.getUserName());
         return userService.userConnected(session, "spot/addedSpot");

@@ -16,6 +16,9 @@ public class Route implements Serializable {
     @JoinColumn(name = "fk_sector")
     private Sector sector;
 
+    @Column(name = "sector_route_id")
+    private Integer sectorRouteId;
+
     @OneToMany(mappedBy = "route",fetch=FetchType.LAZY)
     private Set<Length> lengths = new HashSet<>();
 
@@ -41,6 +44,14 @@ public class Route implements Serializable {
 
     public void setSector(Sector sector) {
         this.sector = sector;
+    }
+
+    public Integer getSectorRouteId() {
+        return sectorRouteId;
+    }
+
+    public void setSectorRouteId(Integer sectorRouteId) {
+        this.sectorRouteId = sectorRouteId;
     }
 
     public Route() {

@@ -72,4 +72,6 @@ public class TopoDaoImpl implements TopoDao {
     public List<String> searchCountry(){
         return em.createQuery("SELECT DISTINCT country from Topo t ",String.class).getResultList();
     }
+
+
 }

@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public class SpotDaoImpl implements SpotDao {
 
+    public static String NAME_SECTOR="nameSector";
+    public static String NAME_SPOT="nameSpot";
+
     @PersistenceContext
     private EntityManager em;
 
@@ -51,9 +54,20 @@ public class SpotDaoImpl implements SpotDao {
         return em.createQuery("SELECT DISTINCT country from Spot s  ",String.class).getResultList();
     }
 @Override
-    public List<Spot> researchSpotByParameters(String query){
-
-        return em.createQuery(query,Spot.class).getResultList();
+    public List<Spot> researchSpotByParameters(String query,String nameSpot,String nameSector){
+        if(nameSpot.isEmpty()){
+            if(nameSector.isEmpty()){
+                return em.createQuery(query,Spot.class).getResultList();
+            }else{
+                return em.createQuery(query,Spot.class).setParameter(NAME_SECTOR,"%"+ nameSector +"%").getResultList();
+            }
+        }else{
+            if(nameSector.isEmpty()){
+                return em.createQuery(query,Spot.class).setParameter(NAME_SPOT,"%"+nameSpot +"%").getResultList();
+            }else{
+                return em.createQuery(query,Spot.class).setParameter(NAME_SPOT,"%"+nameSpot +"%").setParameter(NAME_SECTOR,"%"+ nameSector +"%").getResultList();
+            }
+        }
     }
 
 

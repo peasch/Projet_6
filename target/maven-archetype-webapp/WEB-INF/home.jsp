@@ -22,6 +22,7 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
+<div class="clear"></div>
 <section id="accueil-image" style="height:500px">
     <div class="wrapper">
         <h2>la communauté<br><strong> de l'escalade</strong><span class="red-dot">.</span></h2>
@@ -33,7 +34,7 @@
        <div class="row" style="margin: 80px 0;display: flex;flex-wrap: wrap;justify-content: center">
             <div class="col-12  col-md-6 col-lg-3" id="step-1" style=" width: 32%;float: left; padding-top: 140px;text-align: center;margin-right: 10px;">
                 <h4>Rencontrer<span class="red-dot">.</span></h4>
-                <p>Une famille de fans d'escalade, tout comme vous ! </p>
+                <p>Une famille de fans d'escalade, tout comme vous! </p>
             </div>
             <div class="col-12 col-md-6 col-lg-3" id="step-2" style=" width: 32%;float: left; padding-top: 140px;text-align: center;margin-right: 10px;">
                 <h4>Partager<span class="red-dot">.</span></h4>
@@ -54,7 +55,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <article style="background: url('/photos/escalade_2.jpg');float:left;">
+                    <article style="background: url('/photos/climb1.jpg');float:left;">
                         <div class="overlay">
                             <h4>dernier Spot proposé <span class="red-dot">...</span></h4>
                             <p><small>Nom: ${lastSpot.name}<br> Région: ${lastSpot.region}<br>Pays: ${lastSpot.country}

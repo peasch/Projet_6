@@ -50,7 +50,7 @@ body {
 
 h1 {
     font-family: 'Montserrat Subrayada', 'Raleway', sans-serif;
-    font-size: 50px;
+    font-size: 30px;
 
 }
 
@@ -88,13 +88,16 @@ ul {
 
 /*Header */
 header {
-    height: 100px;
+    background-color: #444;
+    height: auto;
+   min-height: 100px;
+    position:relative;
 }
 
 header h1 {
     float: left;
     margin: 20px 0px 20px 20px;
-
+position:relative;
 }
 
 #accueil-recherche {
@@ -204,7 +207,7 @@ header h1 {
 #lasts article {
 
     width: 80%;
-    height: 400px;
+    height: 380px;
     border-radius: 10px;
     margin: 20px 20px;
     border: 1px solid black;
@@ -240,11 +243,12 @@ article h4 {
 #userList article {
     background: url('/photos/user2.png') no-repeat center;
     float:left;
-    width: 300px;
+    width:250px;
     height: 320px;
     min-width: 300px;
     border-radius: 10px;
     margin: 40px 40px;
+    border:1px solid snow;
 
 }
 

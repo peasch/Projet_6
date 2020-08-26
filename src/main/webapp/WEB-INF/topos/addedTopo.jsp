@@ -40,7 +40,7 @@
             <p>
                 Date de parution :  ${topo.parution}.<br>
                 <br>
-                Un bref aperçu : ${topo.apercu}<br>
+                Un bref aperçu :<br> ${topo.apercu}<br>
             </p>
             <a href="/topos" class="btn btn-outline-dark" role="button" aria-pressed="true">
                 revenir à la liste des topos </a>

@@ -27,28 +27,33 @@
         <div class="clear"></div>
     </div>
 </section>
-<section class="page-section cta">
+<section class="page-section cta" style="height: 300px">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-8 offset-2 mx-auto text-center">
-                <div class="row">
-                    <div class="cta-inner text-center rounded">
-                        <h2 class="section-heading mb-4"><span class="section-heading-upper">Reservation :</span></h2>
-                        <p class="mb-0 text-center">
-                            <c:choose>
-                                <c:when test="${resa.accepted==null}">
-                                    La demande de réservation a été effectuée.
-                                    Vous allez être contacté par le propriétaire du topo.</c:when>
-                                <c:when test="${resa.accepted==true}">
-                                    La demande a été accepté, le demandeur du topo va vous contacter.
-                                </c:when>
-                                <c:when test="${resa.accepted==false}">
-                                    La demande a été refusée. Renouvelez la demande plus tard, ou essayez un autre topo.
-                                </c:when>
-                            </c:choose>
-                        </p>
+        <div class="row" style="justify-content: center">
+            <div class="col-12" style="text-align: center">
+                <div class="heading">
+                    <h2>Reservation du topo<br><strong> ${ topo.name } </strong><span class="red-dot">.</span></h2>
+                    <div class="black-divider"></div>
+                </div>
+                <p>
+                    <c:choose>
+                        <c:when test="${resa.accepted==null}">
+                            La demande de réservation a été effectuée.
+                            Vous allez être contacté par le propriétaire du topo.</c:when>
+                        <c:when test="${resa.accepted==true}">
+                            La demande a été accepté, le demandeur du topo va vous contacter.
+                        </c:when>
+                        <c:when test="${resa.accepted==false}">
+                            La demande a été refusée. Renouvelez la demande plus tard, ou essayez un autre topo.
+                        </c:when>
+                    </c:choose>
+                </p>
+                <div class="black-divider" style="margin-bottom: 20px"></div>
+                <div class="row" style="justify-content: center">
+                    <div class="col-12" style="text-align: center">
+                        <a href="/topos" class="btn btn-outline-dark" role="button" aria-pressed="true" style="margin: 20px 0">
+                            revenir à la liste des topos  </a>
                     </div>
-
                 </div>
             </div>
         </div>

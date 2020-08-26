@@ -29,8 +29,8 @@
     </div>
 </section>
 <section id="spotList">
-    <div class="container">
-        <div class="row">
+    <div class="container" >
+        <div class="row" style="justify-content: center">
             <c:forEach var="spot" items="${ spots }">
                 <div class="col-12 col-md-6 col-lg-4">
                     <article style="background-image: url('/photos/escalade_2.jpg');float:left">

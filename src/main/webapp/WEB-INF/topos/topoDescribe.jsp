@@ -49,7 +49,7 @@
             <div class="card-body off">
                 <h5 class="card-title"></h5>
                 <p class="card-text">
-                <a href="/topos/${topo.id}/resa" class="btn btn-outline-primary btn-block active" role="button" aria-pressed="true">
+                <a href="/topos/${topo.id}/resaRequest" class="btn btn-outline-primary btn-block active" role="button" aria-pressed="true">
                     Réserver ce topo </a>
                 </p>
             </div>

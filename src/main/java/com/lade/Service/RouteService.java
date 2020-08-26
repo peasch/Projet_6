@@ -15,4 +15,10 @@ public interface RouteService {
 
     List<Length> lengthes(Route route);
 
+    Route toRoute (Sector sector);
+
+    Route ajouter(Sector sector);
+
+    Route FindLastRouteOfSector(Sector sector);
+
 }

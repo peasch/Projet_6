@@ -110,6 +110,7 @@ public class AdministrationController {
             user.setMember(true);
             userService.downgradeMember(user);
             model.addAttribute("user", user);
+            model.addAttribute("admin", user.getAdmin());
             return "account/membered";
         }else {
             return "account/notAdmin";

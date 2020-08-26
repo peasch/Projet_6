@@ -35,7 +35,7 @@ public class SectorController {
         if (userService.userIsConnected(session)) {
             model.addAttribute("spotId", spotId);
             model.addAttribute("spot", spotService.find(spotId));
-            return "sectors/addSector";
+            return "/sectors/addSector";
         } else {
             return "/account/notConnected";
         }
@@ -56,7 +56,7 @@ public class SectorController {
             model.addAttribute("comments", comments);
             model.addAttribute("sector", sectorService.ajouter(name, description, spot));
             model.addAttribute("sectors", sectorService.lister(spot));
-            return "sectors/addedSector";
+            return "/sectors/addedSector";
         } else {
             return "/account/notConnected";
         }
@@ -69,7 +69,7 @@ public class SectorController {
             model.addAttribute("sector", sector);
             model.addAttribute("spot", sector.getSpot());
             model.addAttribute("routes", routeService.routes(sector));
-            return "sectors/sectorDescribe";
+            return "/sectors/sectorDescribe";
         } else {
             return "/account/notConnected";
         }

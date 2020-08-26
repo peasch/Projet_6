@@ -7,7 +7,31 @@ import java.util.Set;
 
 @Entity
 @Table(name = "spot")
+/*@NamedQueries({
+        @NamedQuery(
+                name = Spot.QN.FIND_ALL_SPOT,
+                query = "SELECT s FROM Spot s "),
+        @NamedQuery(
+                name = Spot.QN.FIND_LAST_SPOT,
+                query = "SELECT s from Spot s order by id desc"),
+        @NamedQuery(
+                name = Spot.QN.FIND_ALL_REGIONS,
+                query = "SELECT DISTINCT region from Spot s"),
+        @NamedQuery(
+                name = Spot.QN.FIND_ALL_COUNTRIES,
+                query = "SELECT DISTINCT country from Spot s  "),
+        @NamedQuery(
+                name =
+                query =
+        )
+})*/
 public class Spot implements Serializable {
+    /*public static class QN{
+        public static final String FIND_ALL_SPOT="Spot.FindAll";
+        public static final String FIND_LAST_SPOT="Spot.FindLastSpot";
+        public static final String FIND_ALL_REGIONS="Spot.findRegions";
+        public static final String FIND_ALL_COUNTRIES="Spot.findCountries";
+    }*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

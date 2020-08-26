@@ -9,18 +9,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class RouteServiceImpl implements RouteService {
     @Autowired
     private RouteDao routeDao;
-    public List<Route> routes (Sector sector){
+
+    public List<Route> routes(Sector sector) {
         return routeDao.routes(sector);
     }
 
-    public Route find(Integer id){
+    public Route find(Integer id) {
         return routeDao.find(id);
     }
+
     public List<Length> lengthes(Route route) {
         return routeDao.lister(route);
+    }
+
+    public Route toRoute (Sector sector){
+        Route route = new Route();
+        route.setSectorRouteId(this.FindLastRouteOfSector(sector).getSectorRouteId()+1);
+        route.setSector(sector);
+        return route;
+    }
+
+    public Route ajouter(Sector sector){
+       return routeDao.ajouter(this.toRoute(sector));
+    }
+
+    public Route FindLastRouteOfSector(Sector sector){
+        return routeDao.findLastRouteOfSector(sector);
     }
 }

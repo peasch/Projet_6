@@ -38,23 +38,24 @@ public class ResearchController {
 
     @RequestMapping(value = "/recherche", method = RequestMethod.POST)
     public String researchWithParam(@RequestParam String rating, @RequestParam String region, @RequestParam String[] country, @RequestParam String searchSpot,@RequestParam String searchSector, HttpSession session, ModelMap model) {
+
         if (userService.userIsConnected(session)) {
-        List<String> ratingTable = spotService.stringToList(rating);
-        List<String> regionTable = spotService.stringToList(region);
-        List<String> countryTable = spotService.tabletoList(country);
-        model.addAttribute("spots", spotService.lister());
-        model.addAttribute("regions", spotService.searchRegion());
-        model.addAttribute("countries", spotService.searchCountry());
-        model.addAttribute("ratings", lengthService.searchRatings());
-        model.addAttribute("countryTable", countryTable);
-        model.addAttribute("ratingTable", ratingTable);
-        model.addAttribute("regionTable", regionTable);
-        model.addAttribute("found",true);
-        model.addAttribute("researchSpots", spotService.researchSpotWithParameters(country,region,rating,searchSpot,searchSector));
-        model.addAttribute("uncheckedCountries", spotService.countryUnchecked(countryTable));
-        model.addAttribute("uncheckedRegions", spotService.regionUnchecked(regionTable));
-        model.addAttribute("uncheckedRatings", lengthService.ratingUnchecked(ratingTable));
-        return "lfSpot";
+            List<String> ratingTable = spotService.stringToList(rating);
+            List<String> regionTable = spotService.stringToList(region);
+            List<String> countryTable = spotService.tabletoList(country);
+            model.addAttribute("spots", spotService.lister());
+            model.addAttribute("regions", spotService.searchRegion());
+            model.addAttribute("countries", spotService.searchCountry());
+            model.addAttribute("ratings", lengthService.searchRatings());
+            model.addAttribute("countryTable", countryTable);
+            model.addAttribute("ratingTable", ratingTable);
+            model.addAttribute("regionTable", regionTable);
+            model.addAttribute("found",true);
+            model.addAttribute("researchSpots", spotService.researchSpotWithParameters(country,region,rating,searchSpot,searchSector));
+            model.addAttribute("uncheckedCountries", spotService.countryUnchecked(countryTable));
+            model.addAttribute("uncheckedRegions", spotService.regionUnchecked(regionTable));
+            model.addAttribute("uncheckedRatings", lengthService.ratingUnchecked(ratingTable));
+            return "lfSpot";
         } else {
             return "/account/notConnected";
         }

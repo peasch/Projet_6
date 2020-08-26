@@ -2,6 +2,8 @@ package com.lade.Dao.Impl;
 
 import com.lade.Dao.LengthDao;
 import com.lade.Entity.Length;
+import com.lade.Entity.Route;
+import com.lade.Entity.Sector;
 import com.lade.Entity.Spot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,4 +31,14 @@ public class LengthDaoImpl implements LengthDao {
 
     }
 
+    @Override
+    public  Length ajouter(Length length){
+        em.persist(length);
+        return length;
+    }
+
+    @Override
+    public Length findLastRouteOfSector(Route route){
+        return em.createQuery("SELECT l from Length l where l.route like : route order by id desc",Length.class).setParameter("route",route).setMaxResults(1).getSingleResult();
+    }
 }

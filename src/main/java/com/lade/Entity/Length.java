@@ -13,12 +13,21 @@ public class Length implements Serializable {
     @Column(name="rating")
     private String rating ="";
     @Column(name="length")
-    private int lentgh;
+    private int distance;
+    @Column(name = "route_length_id")
+    private Integer routeLengthId;
+
     @ManyToOne
     @JoinColumn(name="fk_route")
     private Route route;
 
+    public Integer getRouteLengthId() {
+        return routeLengthId;
+    }
 
+    public void setRouteLengthId(Integer routeLengthId) {
+        this.routeLengthId = routeLengthId;
+    }
 
     public Integer getId() {
         return id;
@@ -36,12 +45,12 @@ public class Length implements Serializable {
         this.rating = rating;
     }
 
-    public int getLentgh() {
-        return lentgh;
+    public int getDistance() {
+        return distance;
     }
 
-    public void setLentgh(int lentgh) {
-        this.lentgh = lentgh;
+    public void setDistance(int lentgh) {
+        this.distance = lentgh;
     }
 
     public Route getRoute() {

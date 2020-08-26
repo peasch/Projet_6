@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white">
     <div class="container">
-
         <a class="navbar-brand" href="/home">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +33,7 @@
                     <a class="nav-link" href="/lfSpot">Rechercher</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="margin-left:40%">
                     <a class="nav-link dropdown-toggle" href="/login" id="adminDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administration
@@ -45,17 +44,19 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto" >
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item" role="button">
                     <a href="/profile" class="nav-link"><span class="fa fa-user"></span> ${sessionScope.userName}</a>
                 </li>
                 <li class="nav-item" role="button">
-                    <a href="/disconnect" class="nav-link"><span class="fa fa-user"></span> <i style="font-size:18px" class="fa">&#xf08b;</i></a>
+                    <a href="/disconnect" class="nav-link"><span class="fa fa-user"></span> <i style="font-size:18px"
+                                                                                               class="fa">&#xf08b;</i></a>
                 </li>
             </ul>
+        </div>
             </c:when>
             <c:when test="${ sessionScope.userName!=null}">
-            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mlr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/login" id="spotDropdown" role="button"
@@ -78,34 +79,30 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/lfSpot">Rechercher</a>
                     </li>
-
                 </ul>
-
-
-                <ul class="navbar-nav ml-auto" >
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item" role="button">
-                        <a href="/profile" class="nav-link" ><span class="fa fa-user"></span> ${sessionScope.userName}</a>
+                        <a href="/profile" class="nav-link"><span class="fa fa-user"></span> ${sessionScope.userName}
+                        </a>
                     </li>
                     <li class="nav-item" role="button">
-                        <a href="/disconnect" class="nav-link"><span class="fa fa-user"></span> <i style="font-size:18px" class="fa">&#xf08b;</i></a>
+                        <a href="/disconnect" class="nav-link"><span class="fa fa-user"></span> <i
+                                style="font-size:18px" class="fa">&#xf08b;</i></a>
                     </li>
                 </ul>
-                </c:when>
-                <c:when test="${ sessionScope.userName!=null}"></c:when>
-                <c:otherwise>
-
-                        <ul class="navbar-nav ml-auto" >
-                            <li class="nav-item" role="button">
-                                <a class="nav-link" href="/connexion">Connexion</a>
-                            </li>
-                            <li class="nav-item" role="button">
-                                <a class="nav-link" href="/registration">Inscription</a>
-                            </li>
-                        </ul>
-
-                </c:otherwise>
-                </c:choose>
-
-            </div>
         </div>
+            </c:when>
+            <c:otherwise>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" role="button">
+                        <a class="nav-link" href="/connexion">Connexion</a>
+                    </li>
+                    <li class="nav-item" role="button">
+                        <a class="nav-link" href="/registration">Inscription</a>
+                    </li>
+                </ul>
+        </div>
+            </c:otherwise>
+            </c:choose>
 </nav>

@@ -3,7 +3,9 @@ package com.lade.Controller;
 import com.lade.Entity.Reservation;
 import com.lade.Entity.Topo;
 import com.lade.Entity.User;
-import com.lade.Service.*;
+import com.lade.Service.ReservationService;
+import com.lade.Service.TopoService;
+import com.lade.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.util.List;
 
 @Controller
 public class TopoController {
@@ -27,16 +29,16 @@ public class TopoController {
     @RequestMapping(value = "/topos", method = RequestMethod.GET)
     public String listTopo(ModelMap model, HttpSession session) {
         model.addAttribute("topos", topoService.toposWithoutUsers((User) session.getAttribute("user")));
-        return userService.userConnected(session,"/topos/topos");
+        return userService.userConnected(session, "/topos/topos");
     }
 
     @RequestMapping(value = "/topos/{topoId}", method = RequestMethod.GET)
     public String topodescribe(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
         Topo topo = topoService.find(id);
-        model.addAttribute("topo",topo);
+        model.addAttribute("topo", topo);
         model.addAttribute("owner", topo.getOwner());
-        model.addAttribute("user",session.getAttribute("user"));
-        return  userService.userConnected(session,"/topos/topoDescribe");
+        model.addAttribute("user", session.getAttribute("user"));
+        return userService.userConnected(session, "/topos/topoDescribe");
     }
 
     @RequestMapping(value = "/topos/add", method = RequestMethod.GET)
@@ -44,30 +46,75 @@ public class TopoController {
 
         model.addAttribute("regions", topoService.searchRegion());
         model.addAttribute("countries", topoService.searchCountry());
-        model.addAttribute("lastTopo",topoService.findLast());
-        return  userService.userConnected(session, "/topos/addTopo");
+        model.addAttribute("lastTopo", topoService.findLast());
+        return userService.userConnected(session, "/topos/addTopo");
     }
 
     @RequestMapping(value = "/topos/added", method = RequestMethod.POST)
-    public String addedSpot(@RequestParam String name, @RequestParam String apercu, @RequestParam String parution,@RequestParam String region,@RequestParam String country, HttpSession session,ModelMap model) {
+    public String addedSpot(@RequestParam String name, @RequestParam String apercu, @RequestParam String parution, @RequestParam String region, @RequestParam String country, @RequestParam String otherRegion, @RequestParam String otherCountry, HttpSession session, ModelMap model) {
+        if (country.isEmpty()) {
+            country = otherCountry;
+        }
+        if (region.isEmpty()) {
+            region = otherRegion;
+        }
         User user = (User) session.getAttribute("user");
-        model.addAttribute("topo", topoService.ajouter(apercu,name,parution, region, country, user));
+        model.addAttribute("topo", topoService.ajouter(apercu, name, parution, region, country, user));
         model.addAttribute("userName", user.getUserName());
-        return  userService.userConnected(session,"/topos/addedTopo");
+        return userService.userConnected(session, "/topos/addedTopo");
     }
 
-    @RequestMapping(value="/topo/{reservationId}/retourdispo",method =RequestMethod.GET )
-    public String retourDispo(@PathVariable(name = "reservationId") Integer id, ModelMap model, HttpSession session){
+    @RequestMapping(value = "/topo/{reservationId}/retourdispo", method = RequestMethod.GET)
+    public String retourDispo(@PathVariable(name = "reservationId") Integer id, ModelMap model, HttpSession session) {
 
         Reservation reservation = reservationService.findById(id);
         reservation.setReturnDate(reservationService.dateToday());
         reservation.setReturned(true);
         reservationService.update(reservation);
-        Topo topo =reservation.getTopo();
+        Topo topo = reservation.getTopo();
         topoService.retourDispo(topo);
-        return  userService.userConnected(session,"/topos/retourDispo");
+        return userService.userConnected(session, "/topos/retourDispo");
     }
 
 
-
+    @RequestMapping(value = "/topo/{topoId}/disable", method = RequestMethod.GET)
+    public String setIndispo(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
+        if (userService.userIsConnected(session)) {
+            Topo topo = topoService.find(id);
+            topoService.setIndispo(topo);
+            User user = (User) session.getAttribute("user");
+            List<Topo> topos = topoService.findByUser(user);
+            Integer size = topos.size();
+            List<Reservation> reservations = reservationService.findResaByOwner(user);
+            List<Reservation> resaEnCours = reservationService.findResaByCaller(user);
+            model.addAttribute("user", user);
+            model.addAttribute("topos", topos);
+            model.addAttribute("reservations", reservations);
+            model.addAttribute("resaEnCours", resaEnCours);
+            model.addAttribute("size", size);
+            return "account/profile";
+        } else {
+            return "account/errorconnect";
+        }
+    }
+    @RequestMapping(value = "/topo/{topoId}/enable", method = RequestMethod.GET)
+    public String setDispo(@PathVariable(name = "topoId") Integer id, ModelMap model, HttpSession session) {
+        if (userService.userIsConnected(session)) {
+            Topo topo = topoService.find(id);
+            topoService.setDispo(topo);
+            User user = (User) session.getAttribute("user");
+            List<Topo> topos = topoService.findByUser(user);
+            Integer size = topos.size();
+            List<Reservation> reservations = reservationService.findResaByOwner(user);
+            List<Reservation> resaEnCours = reservationService.findResaByCaller(user);
+            model.addAttribute("user", user);
+            model.addAttribute("topos", topos);
+            model.addAttribute("reservations", reservations);
+            model.addAttribute("resaEnCours", resaEnCours);
+            model.addAttribute("size", size);
+            return "account/profile";
+        } else {
+            return "account/errorconnect";
+        }
+    }
 }

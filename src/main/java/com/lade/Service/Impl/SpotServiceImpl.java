@@ -1,5 +1,6 @@
 package com.lade.Service.Impl;
 
+import com.lade.Dao.Impl.SpotDaoImpl;
 import com.lade.Dao.SpotDao;
 import com.lade.Entity.Spot;
 import com.lade.Entity.User;
@@ -196,13 +197,36 @@ public class SpotServiceImpl implements SpotService {
 
     @Override
     public List<Spot> researchSpotWithParameters(String[] countries, String regions, String ratings, String nameSpot, String nameSector) {
+
         String countriesQuery = this.convertCountryToQuery(this.tabletoList(countries));
         String regionsQuery = this.convertRegionToQuery(this.stringToList(regions));
         String ratingsQuery = this.convertRatingToQuery(this.stringToList(ratings));
         String queryBase = "SELECT distinct s from Spot s ";
         String queryRequest = "";
-        if (!countriesQuery.isEmpty()) {
+
+        if (nameSpot.isEmpty()) {
+        } else if(queryRequest.isEmpty()) {
+
+            queryRequest = " s.name like:" + SpotDaoImpl.NAME_SPOT ;
+        }else{
+          //  nameSpot="%"+nameSpot+"%";
+            queryRequest = queryRequest + " AND " + " s.name like :" + SpotDaoImpl.NAME_SPOT  ;
+        }
+        if (nameSector.isEmpty()) {
+        } else if(queryRequest.isEmpty()) {
+
+            queryBase = queryBase + "Left JOIN Sector sec on s.id=sec.spot.id ";
+            queryRequest = " sec.name like :" +  SpotDaoImpl.NAME_SECTOR ;
+        }else{
+            //nameSpot="\'%"+nameSpot+"%\'";
+            queryRequest = queryRequest + " AND " + " sec.name like :" + SpotDaoImpl.NAME_SECTOR ;
+        }
+        if (countriesQuery.isEmpty()) {
+
+        }else if ( queryRequest.isEmpty()){
             queryRequest = queryRequest + countriesQuery;
+        }else{
+            queryRequest = queryRequest + " AND " + countriesQuery;
         }
         if (regionsQuery.isEmpty()) {
         } else if(queryRequest.isEmpty()) {
@@ -218,23 +242,12 @@ public class SpotServiceImpl implements SpotService {
             queryBase = queryBase + " Left join Sector sec on s.id=sec.spot.id Left join Route rou on rou.sector.id=sec.id Left join Length len on len.route.id=rou.id ";
             queryRequest = queryRequest + " AND " + ratingsQuery;
         }
-        if (nameSpot.isEmpty()) {
-        } else if(queryRequest.isEmpty()) {
-            queryRequest = " name like " + "\'%" + nameSpot + "%\'";
-        }else{
-            queryRequest = queryRequest + " AND " + " name like " + "\'%" + nameSpot + "%\'";
-        }
-        if (nameSector.isEmpty()) {
-        } else if(queryRequest.isEmpty()) {
-            queryBase = queryBase + "Left JOIN Sector sec on s.id=sec.spot.id ";
-            queryRequest = " sec.name like " + "\'%" + nameSector + "%\'";
-        }else{
-            queryRequest = queryRequest + " AND " + " sec.name like " + "\'%" + nameSpot + "%\'";
-        }
+
 
         queryBase = queryBase +" where "+ queryRequest;
-//typed query
-        return spotDao.researchSpotByParameters(queryBase);
+
+        return spotDao.researchSpotByParameters(queryBase,nameSpot,nameSector);
     }
 }
 
+//+"\'%"+ SpotDaoImpl.NAME_SECTOR +"%\'"

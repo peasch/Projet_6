@@ -38,7 +38,7 @@ public class ReservationController {
         }
     }
 
-    @RequestMapping(value = "/topos/{topoId}/resaRequest", method = RequestMethod.POST)
+    @RequestMapping(value = "/topos/{topoId}/resaRequest", method = RequestMethod.GET)
     public String reservedTopo(@PathVariable(name = "topoId") Integer id, HttpSession session, ModelMap model) {
         if (userService.userIsConnected(session)) {
             User caller = (User) session.getAttribute("user");

@@ -25,7 +25,8 @@
 
 <section id="accueil-image">
     <div class="wrapper">
-        <h4>Vous allez ajouter un secteur de ${spot.name} <br><strong>à la base de données !</strong><span class="red-dot">!</span></h4>
+        <h4>Vous allez ajouter un secteur de ${spot.name} <br><strong>à la base de données !</strong><span
+                class="red-dot">!</span></h4>
         <div class="clear"></div>
     </div>
 </section>
@@ -35,31 +36,38 @@
             <h2>Saisissez les informations du secteur<span class="red-dot">:</span></h2>
             <div class="black-divider"></div>
         </div>
-    <div class="row" style="margin:0 0 ">
-        <div class="col-12 col-md-6 ">
-            <form method="post" action="/spots/${spotId}/sector/add" >
+        <div class="row" style="margin:0 0 ">
+            <div class="col-12 col-md-6 ">
+                <form method="post" action="/spots/${spotId}/sector/add">
 
-                <fieldset>
-                    <label for="name" style="font-family: 'Montserrat Subrayada', 'Raleway', sans-serif;">Quel est le nom du secteur ?</label><br>
-                    <input type="text" name="name" id="name" placeholder="nom..."/><br>
+                    <fieldset>
+                        <label for="name" style="font-family: 'Montserrat Subrayada', 'Raleway', sans-serif;">Quel est
+                            le nom du secteur ?</label><br>
+                        <input type="text" name="name" id="name" placeholder="nom..."/><br>
 
-                    <label for="description" style="font-family: 'Montserrat Subrayada', 'Raleway', sans-serif;">description du secteur ?</label><br>
-                    <textarea name="description" id="description" rows="5" cols="50" placeholder="description..."></textarea><br>
+                        <label for="description" style="font-family: 'Montserrat Subrayada', 'Raleway', sans-serif;">description
+                            du secteur ?</label><br>
+                        <textarea name="description" id="description" rows="5" cols="50"
+                                  placeholder="description..."></textarea><br>
 
-                    <input type="submit" value="Envoyer"/>
-                </fieldset>
-            </form>
+                        <input type="submit" value="Envoyer"/>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-12 col-md-6 ">
+                <article style="background-image: url('/photos/escalade_2.jpg');float:left">
+                    <div class="overlay">
+                        <h4><a href="/spots/${spot.id}"> Spot :<br>${ spot.name }<span class="red-dot">.</span></a></h4>
+                        <p><small>Région : ${spot.region}<br>Pays: ${spot.country}</small></p>
+
+                    </div>
+                </article>
+            </div>
         </div>
-        <div class="col-12 col-md-6 ">
-            <article style="background-image: url('/photos/escalade_2.jpg');float:left">
-                <div class="overlay">
-                    <h4><a href="/spots/${spot.id}"> Spot :<br>${ spot.name }<span class="red-dot">.</span></a></h4>
-                    <p><small>Région : ${spot.region}<br>Pays: ${spot.country}</small></p>
-
-                </div>
-            </article>
+        <div style="text-align: center">
+            <a href="/spots/${spot.id}" class="btn btn-outline-dark" role="button" aria-pressed="true">
+                revenir au spot </a>
         </div>
-    </div>
     </div>
 </section>
 

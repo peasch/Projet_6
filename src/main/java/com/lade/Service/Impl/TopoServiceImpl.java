@@ -30,24 +30,8 @@ public class TopoServiceImpl implements TopoService {
         topo.setOwner(user);
         topo.setPublication(time);
         topo.setAvailable(true);
-        if (region1.indexOf(",") == 0) {
-            String region = region1.substring(region1.indexOf(",") + 1);
-            topo.setRegion(region.trim());
-        } else if (region1.indexOf(",") == region1.length()) {
-            String region = region1.substring(0, region1.length() - 2);
-            topo.setRegion(region.trim());
-        } else {
-            topo.setRegion(region1.trim());
-        }
-        if (country1.indexOf(",") == 0) {
-            String country = country1.substring(country1.indexOf(",") + 1);
-            topo.setCountry(country.trim());
-        } else if (country1.indexOf(",") == country1.length()) {
-            String country = country1.substring(0, country1.length() - 1);
-            topo.setCountry(country.trim());
-        } else {
-            topo.setCountry(country1.trim());
-        }
+        topo.setRegion(region1.trim());
+        topo.setCountry(country1.trim());
         return topo;
     }
 
@@ -104,5 +88,16 @@ public class TopoServiceImpl implements TopoService {
     @Override
     public List<String> searchCountry() {
         return topoDao.searchCountry();
+    }
+
+    @Override
+    public Topo setIndispo(Topo topo){
+        topo.setAvailable(false);
+        return topoDao.updateTopo(topo);
+    }
+    @Override
+    public Topo setDispo(Topo topo){
+        topo.setAvailable(true);
+        return topoDao.updateTopo(topo);
     }
 }

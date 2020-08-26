@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ajouter un Spot</title>
+    <title>Enregistrer un topo.</title>
     <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
@@ -37,12 +37,14 @@
 <section id="lasts">
     <div class="wrapper">
         <div class="container">
+            <div class="heading" style="text-align: center;justify-content: center">
+                <h2>Saisissez les informations du topo<span class="red-dot">:</span></h2>
+                <div class="black-divider"></div>
+            </div>
             <div class="row" style="display: flex;flex-wrap: wrap;justify-content: center">
                 <div class="col-12 col-md-6 col-lg-4">
                     <form method="post" action="/topos/added" style="margin-top: 20px">
                         <fieldset>
-                            <legend> Saisissez les informations du topo:</legend>
-
                             <label for="name">Quel est son nom ?</label><br>
                             <input type="text" name="name" id="name"/><br>
 
@@ -51,14 +53,14 @@
                                 <input type="radio" name="region" id="region" value="${region}" style="margin-right: 5px"/>
                                 <label for="${region}">${region}</label>
                             </c:forEach><br>
-                            <input type="radio">Autre : <br><input type="text" name="region" id="region" placeholder="région..."style="margin-left: 10px"/><br>
+                            <input type="radio" name="region" id="region" value="">Autre : <br><input type="text" name="otherRegion" id="otherRegion" placeholder="région..."style="margin-left: 10px"/><br>
 
                             <label for="country"><u>Quel est son pays ?</u></label><br>
                             <c:forEach var="country" items="${ countries }">
                                 <input type="radio" name="country" id="country" value="${country}"style="margin-right: 5px"/>
                                 <label for="${country}">${country}</label>
                             </c:forEach><br>
-                            <input type="radio">Autre : <br><input type="text" name="country" id="country" placeholder="pays..."style="margin-left: 10px"/><br>
+                            <input type="radio" name="country" id="country" value="">Autre : <br><input type="text" name="otherCountry" id="otherCountry" placeholder="pays..."style="margin-left: 10px"/><br>
                             <label for="apercu">Une description du topo ?</label><br>
                             <textarea name="apercu" id="apercu" rows="5" cols="40"/></textarea>
                             <br>

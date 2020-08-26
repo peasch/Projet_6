@@ -4,6 +4,7 @@ import com.lade.Dao.RouteDao;
 import com.lade.Entity.Length;
 import com.lade.Entity.Route;
 import com.lade.Entity.Sector;
+import com.lade.Entity.Spot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,12 +21,10 @@ public class RouteDaoImpl implements RouteDao {
     @PersistenceContext
     private EntityManager em;
 
-    List<Route> routes;
-
-
     @Override
-    public void ajouter(Route route) {
-
+    public Route ajouter(Route route) {
+        em.persist(route);
+        return route;
     }
 
     @Override
@@ -43,5 +42,10 @@ public class RouteDaoImpl implements RouteDao {
     @Override
     public Route find(Integer id){
         return em.find(Route.class,id);
+    }
+
+    @Override
+    public Route findLastRouteOfSector(Sector sector){
+        return em.createQuery("SELECT r from Route r where r.sector like : sector order by id desc",Route.class).setParameter("sector",sector).setMaxResults(1).getSingleResult();
     }
 }

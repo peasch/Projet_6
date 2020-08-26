@@ -147,7 +147,6 @@
                             <input type="submit" value="Envoyer" style="margin-bottom: 30px"/>
                         </fieldset>
                     </form>
-
                 </div>
             </c:when>
         </c:choose>
