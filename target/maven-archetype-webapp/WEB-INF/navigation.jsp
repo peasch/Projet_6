@@ -1,67 +1,108 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css"/>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <a class="navbar-brand" href="Index">L-A-D-E</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: white">
+    <div class="container">
+        <a class="navbar-brand" href="/home">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="ShowSpotServlet">Spots</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="ShowSectorServlet">Secteurs</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="AddSpotServlet">Ajout spot</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="AddSectorServlet">Ajout secteur</a>
-            </li>
+        <c:choose>
+        <c:when test="${ sessionScope.userName!=null && sessionScope.user.admin==true}">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/login" id="spotDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Spots
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="spotDropdown">
+                        <a class="dropdown-item" href="/spots">Consulter un spot</a>
+                        <a class="dropdown-item" href="/spots/add">Enregistrer un spot</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/topos" id="topoDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Topos</a>
+                    <div class="dropdown-menu" aria-labelledby="topoDropdown">
+                        <a class="dropdown-item" href="/topos">Consulter la liste des topos</a>
+                        <a class="dropdown-item" href="/topos/add">Enregistrer un topo</a>
+                    </div>
+                </li>
+                <li class="nav-item" role="button">
+                    <a class="nav-link" href="/lfSpot">Rechercher</a>
+                </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Index" id="spotDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Spots
-                </a>
-                <div class="dropdown-menu" aria-labelledby="spotDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Index" id="sectorDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Secteurs
-                </a>
-                <div class="dropdown-menu" aria-labelledby="sectorDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <c:if test="${!empty sessionScope.userName}"><span class="navbar-text">
-            ${sessionScope.userName}
-        </span></c:if>
-        <c:if test="${empty sessionScope.userName}">
-        <a href="ConnexionServlet" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Connexion</a>
-        <a href="RegistrationServlet" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Inscription</a></c:if>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-eye-open"></span>Search</button>
-        </form>
-    </div>
+                <li class="nav-item dropdown" style="margin-left:40%">
+                    <a class="nav-link dropdown-toggle" href="/login" id="adminDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Administration
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                        <a class="dropdown-item" href="/userList">Gestion des utilisateurs</a>
+
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" role="button">
+                    <a href="/profile" class="nav-link"><span class="fa fa-user"></span> ${sessionScope.userName}</a>
+                </li>
+                <li class="nav-item" role="button">
+                    <a href="/disconnect" class="nav-link"><span class="fa fa-user"></span> <i style="font-size:18px"
+                                                                                               class="fa">&#xf08b;</i></a>
+                </li>
+            </ul>
+        </div>
+            </c:when>
+            <c:when test="${ sessionScope.userName!=null}">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav mlr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/login" id="spotDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Spots
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="spotDropdown">
+                            <a class="dropdown-item" href="/spots">Consulter un spot</a>
+                            <a class="dropdown-item" href="/spots/add">Enregistrer un spot</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/topos" id="topoDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Topos</a>
+                        <div class="dropdown-menu" aria-labelledby="topoDropdown">
+                            <a class="dropdown-item" href="/topos">Consulter la liste des topos</a>
+                            <a class="dropdown-item" href="/topos/add">Enregistrer un topo</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lfSpot">Rechercher</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" role="button">
+                        <a href="/profile" class="nav-link"><span class="fa fa-user"></span> ${sessionScope.userName}
+                        </a>
+                    </li>
+                    <li class="nav-item" role="button">
+                        <a href="/disconnect" class="nav-link"><span class="fa fa-user"></span> <i
+                                style="font-size:18px" class="fa">&#xf08b;</i></a>
+                    </li>
+                </ul>
+        </div>
+            </c:when>
+            <c:otherwise>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" role="button">
+                        <a class="nav-link" href="/connexion">Connexion</a>
+                    </li>
+                    <li class="nav-item" role="button">
+                        <a class="nav-link" href="/registration">Inscription</a>
+                    </li>
+                </ul>
+        </div>
+            </c:otherwise>
+            </c:choose>
 </nav>
-</body>
-</html>

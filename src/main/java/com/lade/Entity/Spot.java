@@ -1,45 +1,80 @@
 package com.lade.Entity;
 
-public class Spot {
-    Integer spotId = 0;
-    Boolean OfficialLade;
-    String name = "";
-    String adress = "";
-    String latitude = "";
-    String longitude = "";
-    String contributor = "";
-    int userId = 0;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-    public int getUserId() {
-        return userId;
+@Entity
+@Table(name = "spot")
+/*@NamedQueries({
+        @NamedQuery(
+                name = Spot.QN.FIND_ALL_SPOT,
+                query = "SELECT s FROM Spot s "),
+        @NamedQuery(
+                name = Spot.QN.FIND_LAST_SPOT,
+                query = "SELECT s from Spot s order by id desc"),
+        @NamedQuery(
+                name = Spot.QN.FIND_ALL_REGIONS,
+                query = "SELECT DISTINCT region from Spot s"),
+        @NamedQuery(
+                name = Spot.QN.FIND_ALL_COUNTRIES,
+                query = "SELECT DISTINCT country from Spot s  "),
+        @NamedQuery(
+                name =
+                query =
+        )
+})*/
+public class Spot implements Serializable {
+    /*public static class QN{
+        public static final String FIND_ALL_SPOT="Spot.FindAll";
+        public static final String FIND_LAST_SPOT="Spot.FindLastSpot";
+        public static final String FIND_ALL_REGIONS="Spot.findRegions";
+        public static final String FIND_ALL_COUNTRIES="Spot.findCountries";
+    }*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "official_Lade")
+    private Boolean officialLade;
+    @Column(name = "name")
+    private String name = "";
+    @Column(name = "adress")
+    private String adress = "";
+    @Column(name = "latitude")
+    private String latitude = "";
+    @Column(name = "longitude")
+    private String longitude = "";
+    @Column(name="country")
+    private String country ="";
+    @Column(name="region")
+    private String region ="";
+
+    @OneToMany(mappedBy="spot",fetch = FetchType.LAZY)
+    private Set<Sector> sectors =new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "fk_user")
+    private User user;
+
+
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getContributor() {
-        return contributor;
-    }
-
-    public void setContributor(String contributor) {
-        this.contributor = contributor;
-    }
-
-    public Integer getSpotId() {
-        return spotId;
-    }
-
-    public void setSpotId(Integer spotId) {
-        this.spotId = spotId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Boolean getOfficialLade() {
-        return OfficialLade;
+        return officialLade;
     }
 
     public void setOfficialLade(Boolean officialLade) {
-        OfficialLade = officialLade;
+        this.officialLade = officialLade;
     }
 
     public String getName() {
@@ -72,5 +107,41 @@ public class Spot {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public Set<Sector> getSectors() {
+        return sectors;
+    }
+
+    public void setSectors(Set<Sector> sectors) {
+        this.sectors = sectors;
+    }
+
+
+    public Spot() {
     }
 }

@@ -2,29 +2,28 @@ package com.lade.Service;
 
 import com.lade.Entity.User;
 
-import java.util.Scanner;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
+public interface UserService {
+    User toUser(String userName, String name, String firstName, String password, String email);
 
-public class UserService {
+    String userConnected(HttpSession session, String link);
 
-    Scanner sc = new Scanner(System.in);
+    Boolean existingUser(String userName);
 
+    Boolean isAdmin(User user);
 
+    User findById(Integer id);
 
+    User findUserByUserName(String userName);
 
+    List<User> userList();
 
-    public void registration() {
-        User user = new User();
+    User upgradeMember(User user);
+    User downgradeMember(User user);
+    Boolean userIsConnected(HttpSession session);
+    Boolean isMember(User user);
 
-        System.out.println("quel est votre nom ?:");
-        user.setName(sc.nextLine());
-        System.out.println("prénom ?:");
-        user.setFirstName(sc.nextLine());
-        System.out.println("Email ?:");
-        System.out.println("Pseudo ?:");
-        System.out.println("Mot de passe ?:");
-
-    }
-
-
+    User addUser(String userName,String name,String firstName,String password,String email);
 }

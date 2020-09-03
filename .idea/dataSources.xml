@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="UP_OCLADE/Hibernate" uuid="5c469692-6105-4eb6-bed1-5f206c8024ed">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/peasc/IdeaProjects/maven-archetype-webapp/src/main/resources/persistence.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mmysql://localhost:3306/new_oclade</jdbc-url>
+    </data-source>
+  </component>
+</project>
