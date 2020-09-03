@@ -24,7 +24,7 @@
 <%@ include file="../header.jsp" %>
 <section id="accueil-image">
     <div class="wrapper">
-        <h2>voie <strong> ${ route.id }</strong><span class="red-dot">.</span></h2>
+        <h2>voie <strong> ${ route.sectorRouteId }</strong><span class="red-dot">.</span></h2>
         <div class="clear"></div>
     </div>
 </section>

@@ -33,7 +33,7 @@
                     <a class="nav-link" href="/lfSpot">Rechercher</a>
                 </li>
 
-                <li class="nav-item dropdown" style="margin-left:40%">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/login" id="adminDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administration

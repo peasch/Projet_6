@@ -142,7 +142,7 @@
                     <form method="post" action="/spots/${spot.id}/comment/add">
                         <fieldset>
                             <label for="text"> Rédiger un commentaire <span class="red-dot">:</span></label><br>
-                            <textarea name="text" id="text" rows="5" cols="50"></textarea>
+                            <textarea name="text" id="text" rows="5" cols="30"></textarea>
                             <br>
                             <input type="submit" value="Envoyer" style="margin-bottom: 30px"/>
                         </fieldset>
