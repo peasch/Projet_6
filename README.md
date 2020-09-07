@@ -1,11 +1,13 @@
 # ocladewebapp
 
 Schaming Pierre-Alain vous présente son Projet 6.
-
+____________________________________________________________________________________________________________________________________________
 Présentation :
 Vous trouverez le code source et les documents nécessaire au fonctionnement d’une application Web, d’un site communautaire d’escalade.
 
+____________________________________________________________________________________________________________________________________________
 Développement :
+
 Cette application a été développée avec les outils suivants :
 -IntelliJ Ultimate 2019.3
 -Apache Maven, mono module.
@@ -13,7 +15,9 @@ Cette application a été développée avec les outils suivants :
 -Spring, Core et MVC pour le FrameWork.
 -Hibernate pour la communication avec la base de données, et la persistence.
 
+____________________________________________________________________________________________________________________________________________
 Installation :
+
 Forkez, ou importez l’ensemble du projet depuis ce dépôt GitHub.
 Télécharger et installer Mysql WorkBench, car l’application est conçue pour communiquer avec ce type de base de données.
 Choisissez ici la plateforme utlisée, dans notre cas il s’agit de Windows :
@@ -26,6 +30,9 @@ C:\Users\peasc\IdeaProjects\maven-archetype-webapp\src\main\resources\META-INF\p
 Hibernate créera automatiquement les tables de la base de données, mais vous trouverez les scripts de création des tables, ainsi qu’un jeu de données (fantaisistes parfois) jointes avec le projets pour tester l’application.
 Paramétrez Tomcat 9.0.33 dans votre IDE (ici IntelliJ) en local, en indiquant l’adresse de départ ci :
 http://localhost:8080/home
+
+
+____________________________________________________________________________________________________________________________________________
 Lancement :
 
 Lancer le server depuis l’ IDE.
