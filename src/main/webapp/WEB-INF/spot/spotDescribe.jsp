@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-lg-2">
                     <c:choose>
-                        <c:when test="${sessionScope.user.getUserName()==commentaire.user.getUserName()}">
+                        <c:when test="${sessionScope.user.getUserName()==commentaire.user.getUserName()&& sessionScope.user.getMember()==true}">
                             <a href="/comment/${commentaire.id}/modify" class="btn btn-outline-secondary btn-sm "
                                role="button"
                                aria-pressed="true"><i class="fa fa-eraser" aria-hidden="true"></i></a>
@@ -142,7 +142,7 @@
                     <form method="post" action="/spots/${spot.id}/comment/add">
                         <fieldset>
                             <label for="text"> Rédiger un commentaire <span class="red-dot">:</span></label><br>
-                            <textarea name="text" id="text" rows="5" cols="50"></textarea>
+                            <textarea name="text" id="text" rows="5" cols="30"></textarea>
                             <br>
                             <input type="submit" value="Envoyer" style="margin-bottom: 30px"/>
                         </fieldset>

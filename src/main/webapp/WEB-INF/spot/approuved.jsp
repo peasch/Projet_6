@@ -22,23 +22,24 @@
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-<div class="container jumbo">
-    <div class="jumbotron">
-
-           <c:choose>
-               <c:when test="${approuve==true}">
-               <h4>Félicitations ${sessionScope.userName}, vous avez approuvé le spot comme Officiel LADE !</h4></c:when>
-               <c:when test="${approuve==false}">
-                   <h4>Le statut de spot officiel LADE a bien été retiré !</h4></c:when>
-               <c:when test="${impossible==true}">
-                   <h4>Le spot n'était pas considéré parmi les officiels LADE. Impossible de le rétrograder.</h4>
-               </c:when>
-           </c:choose>
-        <a href="/spots/${spot.id}" class="btn btn-outline-primary btn- active" role="button" aria-pressed="true">
+<section id="accueil-image">
+    <div class="wrapper">
+        <c:choose>
+            <c:when test="${approuve==true}">
+                <h2>Félicitations ${sessionScope.userName}, vous avez approuvé le spot comme Officiel LADE <span class="red-dot">.</span></h2></c:when>
+            <c:when test="${approuve==false}">
+                <h2>Le statut de spot officiel LADE a bien été retiré <span class="red-dot">.</span></h2></c:when>
+            <c:when test="${impossible==true}">
+                <h2>Le spot n'était pas considéré parmi les officiels LADE. Impossible de le rétrograder<span class="red-dot">.</span></h2>
+            </c:when>
+        </c:choose>
+        <a href="/spots/${spot.id}" class="btn btn-outline-dark" role="button" aria-pressed="true">
             revenir au spot </a>
-
+        <h2>Description de<br><strong> ${ spot.name }</strong><span class="red-dot">.</span></h2>
+        <div class="clear"></div>
     </div>
-</div>
+</section>
+
 <%@ include file="../footer.jsp" %>
 <%@ include file="../scripts.jsp" %>
 </body>

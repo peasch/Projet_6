@@ -48,10 +48,6 @@
                         <label for="rating" style="font-family: 'Montserrat Subrayada', 'Raleway', sans-serif;">quel est sa cotation ?<br>
                             (un chiffre de 5 à 9, et eventuellement une lettre de A à C+</label><br>
                         <select name="rating" id="rating" >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
                             <option value="5">5</option>
                             <option value="5+">5+</option>
                             <option value="6a">6a</option>

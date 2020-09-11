@@ -55,7 +55,7 @@ public class CommentController {
             model.addAttribute("spot", spot);
             model.addAttribute("poster", poster);
             model.addAttribute("user", user);
-            if (userService.isMember(user) && user.getUserName().equals(poster.getUserName())) {
+            if (userService.isMember(user)==true && user.getUserName().equals(poster.getUserName())) {
                 commentaireService.delete(commentaireService.find(id));
                 return userService.userConnected(session, "messages/commentDeleted");
             } else if (userService.isAdmin(user)) {
@@ -78,7 +78,7 @@ public class CommentController {
             User user = (User) session.getAttribute("user");
             Commentaire com = commentaireService.find(id);
             User poster = com.getUser();
-            if (userService.isMember(user) && user.getUserName().equals(poster.getUserName())) {
+            if (userService.isMember(user)==true && user.getUserName().equals(poster.getUserName())) {
                 model.addAttribute("commentaire", com);
                 return "messages/updateMessage";
             } else {
@@ -96,7 +96,7 @@ public class CommentController {
             Commentaire com = commentaireService.find(id);
             Spot spot = com.getSpot();
             User poster = com.getUser();
-            if (userService.isMember(user) && user.getUserName().equals(poster.getUserName())) {
+            if (userService.isMember(user)==true && user.getUserName().equals(poster.getUserName())) {
                 commentaireService.modify(com, text);
                 List<Commentaire> comments = commentaireService.findBySpot(spot);
                 model.addAttribute("spot", spot);

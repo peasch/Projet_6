@@ -32,8 +32,10 @@
     <div class="wrapper">
         <h4>Selectionnez vos critères de recherche<span class="red-dot">.</span></h4>
         <form method="post" action="/recherche">
-            <ul>
-                <li id="research-1">
+            <div class="row">
+
+                <div class="col-12 col-md-6 col-lg-3">
+
                     <h6>Pays <span class="red-dotted">:</span></h6>
                     <c:choose>
                         <c:when test="${empty countryTable}">
@@ -56,8 +58,10 @@
                     </c:choose>
 
                     <input type="hidden" name="country" id="country" checked value="no"/><br/>
-                </li>
-                <li id="research-2">
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+
                     <h6>Régions <span class="red-dotted">:</span></h6>
                     <c:choose>
                         <c:when test="${empty regionTable}">
@@ -79,8 +83,10 @@
                         </c:otherwise>
                     </c:choose>
                     <input type="hidden" name="region" id="region" checked value="no"/><br/>
-                </li>
-                <li id="research-3">
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+
                     <h6>cotations <span class="red-dotted">:</span></h6>
                     <c:choose>
                         <c:when test="${empty ratingTable}">
@@ -103,8 +109,10 @@
                     </c:choose>
 
                     <input type="hidden" name="rating" id="rating" checked value="no"/><br/>
-                </li>
-                <li id="research-4">
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+
                     <h6>Rechercher un nom de spot<span class="red-dotted">:</span></h6>
                     <input type="search" name="searchSpot" id="searchSpot"
                            style="border:1px solid black;padding-left: 10px;margin-top: 5px"
@@ -114,11 +122,12 @@
                     <input type="search" name="searchSector" id="searchSector"
                            style="border:1px solid black;padding-left: 10px;margin-top: 5px"
                            placeholder="votre recherche..."/>
-                </li>
 
+                </div>
                 <div class="clear"></div>
-            </ul>
-            <div id="valid-form">
+                </ul>
+            </div>
+            <div id="valid-form" style="margin-top: 30px">
                 <input type="submit" value="Envoyer"/>
             </div>
         </form>

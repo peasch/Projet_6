@@ -54,12 +54,14 @@ public class RouteController {
         if (userService.userIsConnected(session)) {
             Sector sector = sectorService.find(id);
             Spot spot = sector.getSpot();
+
             User user = (User) session.getAttribute("user");
             if (userService.isAdmin(user)) {
                 Boolean roleAdmin = true;
                 model.addAttribute("roleAdmin", roleAdmin);
             }
             Route route = routeService.ajouter(sector);
+            model.addAttribute("sector", sector);
             model.addAttribute("spot", spot);
             model.addAttribute("user", user);
             model.addAttribute("routes", routeService.routes(sector));

@@ -34,7 +34,7 @@
         <div class="row" style="justify-content: center">
             <c:forEach var="topo" items="${ topos }">
                 <div class="col-12 col-md-6 col-lg-4">
-                    <article style="background-image: url('/photos/escalade_4.jpg');float:left;height: 400px">
+                    <article style="background-image: url('/photos/escalade_4.jpg');height: 400px">
                     <div class="overlay">
                         <h4><a href="/topos/${topo.id}/resa">Nom: ${topo.name} <span class="red-dot"> .</span></a></h4>
                         <p><small><br> Région: ${topo.region}<br>Pays: ${topo.country}

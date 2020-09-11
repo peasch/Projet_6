@@ -35,7 +35,7 @@
             <div class="white-divider"></div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="col-12">
                 <article class="article">
                     <div class="overlay">
                         <h4>${ user.getUserName() }</h4>
@@ -71,7 +71,7 @@
                             <article style="background-image: url('/photos/escalade_4.jpg');float:left; height: 450px">
                                 <div class="overlay">
                                     <h4><a href="/topos/${topo.id}">Nom: ${topo.name} <span
-                                            class="red-dot"> .</span></a></h4>
+                                            class="red-dot">.</span></a></h4>
                                     <p><small><br> Région: ${topo.region}<br>Pays: ${topo.country}
                                     </small></p>
                                     <p><small>Parution : ${topo.parution}</small></p><br>

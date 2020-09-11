@@ -8,6 +8,7 @@ import com.lade.Service.LengthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Service
@@ -37,7 +38,11 @@ public class LengthServiceImpl implements LengthService {
 
     public Length toLength(Route route,Integer distance, String rating){
         Length length = new Length();
-        length.setRouteLengthId(this.findLastLengthOfRoute(route).getRouteLengthId()+1);
+        try{
+            length.setRouteLengthId(this.findLastLengthOfRoute(route).getRouteLengthId()+1);
+        }catch (NoResultException e){
+            length.setRouteLengthId(1);
+        }
         length.setDistance(distance);
         length.setRating(rating);
         length.setRoute(route);

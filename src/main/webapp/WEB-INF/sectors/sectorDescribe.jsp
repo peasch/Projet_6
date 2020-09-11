@@ -62,7 +62,7 @@
         </div>
         <div class="row" style="justify-content: center">
             <c:forEach var="route" items="${ routes }">
-                <div class="col-4 col-md-3 col-lg-2">
+                <div class="col-3 col-md-2 col-lg-2">
                     <h4><a href="/route/${route.id}" value="${route.id}" style="color: snow">${route.sectorRouteId}</a>
                     </h4>
                 </div>

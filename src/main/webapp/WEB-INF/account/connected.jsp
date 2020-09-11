@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>connexion réussie</title>
+    <meta name="viewport" content="width=device-width, intial-scale=1"/>
     <meta charset="ISO-8859-1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
     <link href="/css/styles.css" rel="stylesheet">
