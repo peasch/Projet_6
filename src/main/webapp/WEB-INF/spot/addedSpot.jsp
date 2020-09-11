@@ -35,7 +35,7 @@
                 <div class="col-sm-6">
                     <article style="background: url('/photos/escalade_2.jpg');float:left;">
                         <div class="overlay">
-                            <h4>Nom: ${spot.name}<span class="red-dot">.</span></h4>
+                            <h4><a href="/spots/${spot.id}"> ${ spot.name }<span class="red-dot">.</span></a></h4>
                             <p><small><br>
                                     Adresse: ${spot.adress}<br>
                                     Région: ${spot.region}<br>

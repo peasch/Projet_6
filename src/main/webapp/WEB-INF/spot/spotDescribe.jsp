@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-lg-2">
                     <c:choose>
-                        <c:when test="${sessionScope.user.getUserName()==commentaire.user.getUserName()}">
+                        <c:when test="${sessionScope.user.getUserName()==commentaire.user.getUserName()&& sessionScope.user.getMember()==true}">
                             <a href="/comment/${commentaire.id}/modify" class="btn btn-outline-secondary btn-sm "
                                role="button"
                                aria-pressed="true"><i class="fa fa-eraser" aria-hidden="true"></i></a>

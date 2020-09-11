@@ -31,7 +31,7 @@
 <section id="spotList">
     <div class="container">
         <div class="heading">
-            <h2>Description de la voie <br><strong>${ route.id } </strong><span class="red-dot">:</span></h2>
+            <h2>Description de la voie <br><strong>${ route.sectorRouteId } </strong><span class="red-dot">:</span></h2>
             <div class="black-divider"></div>
         </div>
         <div class="row">
